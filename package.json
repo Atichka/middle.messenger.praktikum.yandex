@@ -1,0 +1,23 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "0.0.0",
+  "description": "Веб-приложение \"Чат\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Atichka/middle.messenger.praktikum.yandex.git"
+  },
+  "author": "Burygina Ekaterina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Atichka/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/Atichka/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}
