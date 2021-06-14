@@ -1,0 +1,17 @@
+extends ../layouts/base
+
+block main
+    section.page
+        aside.page__aside
+            nav.page__nav
+                a.page__link(href='') Профиль &#62;
+            block.search
+                form.search__form(id="formSearch" name="formSearch")
+                        input.search__field(
+                        type="text"
+                        placeholder="Поиск"
+                        name="search")
+                button.search__button
+            block aside
+        div.page__content
+            block content
