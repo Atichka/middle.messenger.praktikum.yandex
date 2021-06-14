@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Веб-приложение \"Чат\"",
   "scripts": {
-    "dev": "parcel src/tpl/pages/ChatPage.pug --port 3000",
+    "dev": "parcel src/tpl/pages/chatPage.pug --port 3000",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Atichka/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
     "@parcel/transformer-pug": "^2.0.0-beta.2",
+    "@parcel/transformer-sass": "^2.0.0-beta.2",
     "express": "^4.17.1",
     "parcel": "^2.0.0-beta.2"
   }
