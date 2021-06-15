@@ -17,6 +17,9 @@ body {
 
   &__content {
     width: 100%;
+    max-height: 100vh;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   &__nav {
@@ -127,7 +130,6 @@ body {
   border-top: 1px solid #EAEAEA;
   border-bottom: 1px solid #EAEAEA;
   padding: 12px 0;
-  margin: 0 21px;
   display: grid;
   grid-template-columns: 47px auto 30px;
   grid-template-rows: 47px;
@@ -154,5 +156,126 @@ body {
     height: 100%;
     border: 0;
     cursor: url('../../assets/cursor.svg'),pointer;
+  }
+}
+
+.main {
+  text-align: center;
+
+  &__date {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    padding-top: 48px;
+    color: #999;
+  }
+
+  &__container {
+    margin-top: 30px;
+  }
+
+  &__user {
+    text-align: left;
+  }
+
+  &__message {
+    width: 250px;
+    margin: 0;
+    padding: 11px 11px 0;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #1E1E1E;
+    text-align: left;
+  }
+
+  &__background-grey {
+    background: #F8F8F8;
+  }
+
+  &__time-text {
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 9px;
+    text-align: right;
+    width: 250px;
+    margin: 0;
+    padding: 0 11px 11px;
+  }
+
+  &__color-grey {
+    color: #999;
+  }
+
+  &__container-pic {
+    position: relative;
+  }
+
+  &__pic {
+    margin-top: 10px;
+    width: 40%;
+  }
+
+  &__time-pic {
+    position: absolute;
+    bottom: 10px;
+    left: 35%;
+    background: rgba(82, 82, 82, 0.5);
+    border-radius: 30px;
+    padding: 2px;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 9px;
+    text-align: right;
+    color: #FFF;
+    margin: 0;
+  }
+
+  &__you {
+    float: right;
+  }
+
+  &__background-blue {
+    background: #E4EDFD;
+  }
+
+  &__color-blue {
+    color: #3369F3;
+  }
+}
+
+.send-form {
+  display: grid;
+  grid-template-columns: 40px auto 40px;
+  margin-top: auto;
+  margin-bottom: 0px;
+  padding: 11px;
+  width: 100%;
+
+  &__button-add {
+    background-image: url(../../assets/addPic.svg);
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    border: none;
+  }
+
+  &__input {
+    background: #EFEFEF;
+    border-radius: 30px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: #999;
+  }
+
+  &__button-send {
+    background: #3369F3;
+    border-radius: 50%;
+    color: #FFF;
   }
 }
