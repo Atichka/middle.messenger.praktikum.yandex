@@ -3,3 +3,7 @@ mixin header(user)
         div.header__avatar
         h1.header__name #{user.name}
         button.header__menu
+    div.menu
+        button.menu__delete-chat
+            img.menu__icon(src='../../../assets/delete.svg')
+            p.menu__title Удалить чат
