@@ -32,6 +32,19 @@ body {
     color: #999;
     text-decoration: none;
   }
+
+  &__not-chat {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    color: #999;
+    margin: 50vh 0;
+  }
+
+  &__hide {
+    display: none;
+  }
 }
 
 .search {
@@ -249,7 +262,6 @@ body {
 .send-form {
   display: grid;
   grid-template-columns: 40px auto 40px;
-  margin-top: auto;
   margin-bottom: 0px;
   padding: 11px;
   width: 100%;
