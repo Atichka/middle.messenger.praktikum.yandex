@@ -17,6 +17,10 @@ mixin chat(chats)
                         div.main__you
                             p.main__message.main__background-blue #{message.message}
                             p.main__time-text.main__background-blue.main__color-blue #{message.clock}
+        div.menu.hide
+            button.menu__delete-chat
+                img.menu__icon(src='../../../assets/fileAdd.svg')
+                p.menu__title Файл
         form.send-form(id='formmessage', name='formmessage')
             button.send-form__button-add(type='button')
             input.send-form__input(type='text', name='message', placeholder="Сообщение")

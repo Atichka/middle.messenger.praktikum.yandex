@@ -41,10 +41,10 @@ body {
     color: #999;
     margin: 50vh 0;
   }
+}
 
-  &__hide {
-    display: none;
-  }
+.hide {
+  display: none;
 }
 
 .search {
@@ -299,7 +299,10 @@ body {
   padding: 12px 71px 12px 28px;
   margin: 10px 20px;
   position: absolute;
-  right: 0;
+
+  &__right {
+    right: 0;
+  }
 
   &__delete-chat {
     display: flex;
@@ -311,7 +314,7 @@ body {
     font-weight: 500;
     font-size: 12px;
     line-height: 14px;
-    margin: 0 0 0 18px;
+    margin: auto 0 auto 18px;
 
     color: #1E1E1E;
   }
