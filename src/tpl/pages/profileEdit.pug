@@ -1,0 +1,70 @@
+extends ../components/page
+
+block main
+    div.profile
+        div.profile__container
+            button.profile__button-back(onclick="window.location.href = './chats.html'") ←
+        div.profile__main
+            form(id="formData" name="formData")
+                div.profile__info
+                    button.profile__button-pic
+                    div.profile__row
+                        p.profile__text Почта
+                        input.profile__input.text__grey.profile__text(
+                            id="userEmail",
+                            type="email",
+                            name="email",
+                            minlength="2",
+                            maxlength="30",
+                            required
+                            placeholder="pochta@yandex.ru")
+                    div.profile__row
+                        p.profile__text Логин
+                        input.profile__input.text__grey.profile__text(
+                            id="userLogin",
+                            type="text",
+                            name="login",
+                            minlength="2",
+                            maxlength="30",
+                            required
+                            placeholder="ivanivanov")
+                    div.profile__row
+                        p.profile__text Имя
+                        input.profile__input.text__grey.profile__text(
+                            id="newFirstName",
+                            type="text",
+                            name="first_name",
+                            minlength="2",
+                            maxlength="30",
+                            required
+                            placeholder="Иван")
+                    div.profile__row
+                        p.profile__text Фамилия
+                        input.profile__input.text__grey.profile__text(
+                            id="newSecondName",
+                            type="text",
+                            name="second_name",
+                            minlength="2",
+                            maxlength="30",
+                            required
+                            placeholder="Иванов")
+                    div.profile__row
+                        p.profile__text Имя в чате
+                        input.profile__input.text__grey.profile__text(
+                            id="newDisplayName",
+                            type="text",
+                            name="display_name",
+                            minlength="2",
+                            maxlength="30",
+                            required
+                            placeholder="Иван")
+                    div.profile__row
+                        p.profile__text Телефон
+                        input.profile__input.text__grey.profile__text(
+                            type="tel",
+                            name="phone",
+                            minlength="11",
+                            maxlength="18",
+                            required
+                            placeholder="+79099673030")
+                button.profile__button(type="submit") Сохранить

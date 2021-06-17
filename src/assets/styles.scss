@@ -407,3 +407,98 @@ body {
   box-sizing: border-box;
   text-align: left;
 }
+
+.profile {
+  display: grid;
+  grid-template-columns: 64px auto;
+
+  &__button {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    color: #FFFFFF;
+    width: 280px;
+    height: 37px;
+    background: #3369F3;
+    border-radius: 8px;
+    margin-top: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__container {
+    background: #FBFBFB;
+    border-right: 1px solid #EAEAEA;
+    height: 100vh;
+    display: flex;
+  }
+
+  &__button-back {
+    background: #3369F3;
+    border-radius: 50%;
+    color: #FFF;
+    margin: auto;
+    padding: 5px 8px;
+  }
+
+  &__photo {
+    width: 100vw;
+  }
+
+  &__info {
+    margin: 60px auto 0;
+    width: 512px;
+  }
+
+  &__button-pic {
+    width: 130px;
+    height: 130px;
+    background: #efefef;
+    border-radius: 50%;
+    margin-top: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(../../assets/not-photo.svg);
+    background-repeat: no-repeat;
+    background-size: 50% 50%;
+    background-position: center;
+    border: none;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  &__main {
+    text-align: center;
+  }
+
+  &__input {
+    border: 0;
+    text-align: right;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+}
+
+.text {
+
+  &__grey {
+    color: #999;
+  }
+}
