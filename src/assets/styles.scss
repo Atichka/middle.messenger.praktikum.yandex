@@ -477,6 +477,22 @@ body {
     background-size: 50% 50%;
     background-position: center;
     border: none;
+    cursor: url('../../assets/cursor.svg'),pointer;
+  }
+
+  &__button-pic:hover:after {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 14px;
+
+    text-align: center;
+    content: 'Поменять аватар';
+  }
+
+  &__button-pic:hover {
+    color: #FFF;
+    background: #000;
+    opacity: 0.5;
   }
 
   &__row {
@@ -498,12 +514,6 @@ body {
   &__input {
     border: 0;
     text-align: right;
-  }
-
-  &__text {
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 13px;
   }
 
   &__pic {
