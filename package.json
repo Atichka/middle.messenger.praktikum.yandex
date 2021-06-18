@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Веб-приложение \"Чат\"",
   "scripts": {
-    "dev": "parcel src/tpl/pages/passwordEdit.pug --port 3000",
+    "dev": "parcel src/tpl/pages/profile.pug --port 3000",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },

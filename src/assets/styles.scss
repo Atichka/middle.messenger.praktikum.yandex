@@ -527,4 +527,18 @@ body {
   &__grey {
     color: #999;
   }
+
+  &__blue {
+    text-decoration: none;
+    color: #3369f3;
+    margin-top: 13px;
+    margin-bottom: 13px;
+  }
+
+  &__red {
+    text-decoration: none;
+    color: #ff0000;
+    margin-top: 13px;
+    margin-bottom: 13px;
+  }
 }
