@@ -1,0 +1,64 @@
+extends ../components/page
+
+block main
+    div.main
+        div.signin
+            h1.signin__title Регистрация
+            form.form(id='form', name='formsignin')
+                label.form__field-name(for='userEmail') Email
+                input.form__input(id='userEmail',
+                    type='email',
+                    name='email',
+                    minlength=2,
+                    maxlength=30,
+                    required,
+                    placeholder='Email')
+                span.error(id='error-email') Неправильный формат email
+                label.form__field-name(for='userLogin') Логин
+                    input.form__input(id='userLogin',
+                        type='text',
+                        name='login',
+                        minlength=2,
+                        maxlength=30,
+                        required,
+                        placeholder='ivanivanov')
+                label.form__field-name(for='newName') Имя
+                    input.form__input(id='newName',
+                        type='text',
+                        name='first_name',
+                        minlength=2,
+                        maxlength=30,
+                        required,
+                        placeholder='Имя')
+                label.form__field-name(for='newSecondName') Фамилия
+                    input.form__input(id='newSecondName',
+                        type='text',
+                        name='second_name',
+                        minlength=2,
+                        maxlength=30,
+                        required,
+                        placeholder='Фамилия')
+                label.form__field-name(for='phone') Телефон
+                    input.form__input(id='phone',
+                        type='tel',
+                        name='phone',
+                        minlength=11,
+                        maxlength=18,
+                        required,
+                        placeholder='+7 (909) 967 30 30')
+                    span.error Телефон в формате: +7 (909) 967 30 30
+                label.form__field-name(for='userPassword') Пароль
+                    input.form__input(id='userPassword',
+                        type='password',
+                        name='password',
+                        required,
+                        placeholder='Пароль')
+                label.form__field-name(for='userPasswordRepeat') Пароль (ещё раз)
+                    input.form__input(id='userPasswordRepeat',
+                        type='password',
+                        name='passwordRepeat',
+                        required,
+                        placeholder='Пароль')
+                    span.error(id='error-password') Пароли не совпадают
+            button.form__button.form__top-signin(type='submit') Зарегистрироваться
+            button.form__signup-button(onclick="window.location.href = './login.html'") Войти
