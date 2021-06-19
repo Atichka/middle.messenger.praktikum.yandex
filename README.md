@@ -8,6 +8,8 @@
 
 Ссылка на прототип проекта https://www.figma.com/file/siuGfqgwyvFII2JE2vY5Qc/Chat?node-id=0%3A1
 
+Ссылка на PR https://github.com/Atichka/middle.messenger.praktikum.yandex/pull/1
+
 ---
 
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
