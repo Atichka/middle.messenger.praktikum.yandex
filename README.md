@@ -1,3 +1,17 @@
+Веб-приложение "Чат"
+
+---
+
+Домен https://confident-goldberg-a8b74c.netlify.app
+
+---
+
+Ссылка на прототип проекта https://www.figma.com/file/siuGfqgwyvFII2JE2vY5Qc/Chat?node-id=0%3A1
+
+Ссылка на PR https://github.com/Atichka/middle.messenger.praktikum.yandex/pull/1
+
+---
+
 ### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
 
 ### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. Название pull request может быть любое.
