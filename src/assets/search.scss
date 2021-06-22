@@ -8,25 +8,28 @@
 
   &__form {
     display: inline-flex;
+    padding: 10px;
+
     background: $light-grey-background;
     border-radius: 5px;
-    padding: 10px;
   }
 
   &__field {
-    border: 0;
-    background: $light-grey-background;
     font-weight: 500;
     font-size: 12px;
     line-height: 12px;
-    color: $grey-color;
     align-items: center;
+    color: $grey-color;
+
+    border: 0;
+    background: $light-grey-background;
   }
 
   &__button {
     border-radius: 8px;
     background: url(../../assets/search.svg) no-repeat 50% 50%;
     background-color: $blue-background-color;
+
     cursor: url('../../assets/cursor.svg'),pointer;
   }
 }
