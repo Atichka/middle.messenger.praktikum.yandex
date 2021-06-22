@@ -13,178 +13,22 @@ $black-background: #000;
 $light-grey-border: #eaeaea;
 $light-grey-box: rgba(0, 0, 0, 0.14);
 
+@import url(./page.scss);
+@import url(./search.scss);
+@import url(./chat-preview.scss);
+@import url(./chat-page.scss);
+@import url(./login.scss);
+@import url(./signin.scss);
+@import url(./profile.scss);
+
 body {
   color: $black-color;
   font-weight: 500;
   line-height: 1.25;
 }
 
-.page {
-  display: flex;
-  height: 100vh;
-
-  &__aside {
-    width: 310px;
-    flex-shrink: 0; // блок не должен уменьшаться
-    background-color: $white-background-color;
-    padding: 21px 10px 0;
-  }
-
-  &__content {
-    width: 100%;
-    max-height: 100vh;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  &__nav {
-    color: $grey-color;
-    text-align: right;
-  }
-
-  &__link {
-    text-align: right;
-    color: $grey-color;
-    text-decoration: none;
-  }
-
-  &__not-chat {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 12px;
-    text-align: center;
-    color: $grey-color;
-    margin: 50vh 0;
-  }
-}
-
 .hide {
   display: none;
-}
-
-.search {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: auto 54px;
-  margin-top: 21px;
-
-  &__form {
-    display: inline-flex;
-    background: $light-grey-background;
-    border-radius: 5px;
-    padding: 10px;
-  }
-
-  &__field {
-    border: 0;
-    background: $light-grey-background;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 12px;
-    color: $grey-color;
-    align-items: center;
-  }
-
-  &__button {
-    border-radius: 8px;
-    background: url(../../assets/search.svg) no-repeat 50% 50%;
-    background-color: $blue-background-color;
-    cursor: url('../../assets/cursor.svg'),pointer;
-  }
-}
-
-.chat-preview {
-  padding: 12px 0;
-  border-top: 1px solid $light-grey-border;
-  display: flex;
-  gap: 10px;
-
-  &__avatar {
-    width: 47px;
-    height: 47px;
-    border-radius: 100%;
-    background-color: $light-grey-background;
-    flex-shrink: 0;
-  }
-
-  &__content {
-    width: 100%;
-  }
-
-  &__title {
-    margin: 0 0 4px;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 13px;
-  }
-
-  &__text {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
-    color: $grey-color;
-    margin: 4px 0 0;
-  }
-
-  &__date {
-    font-weight: 500;
-    font-size: 9px;
-    line-height: 13px;
-    color: #999;
-    margin: 0;
-  }
-
-  &__counter {
-    font-weight: 500;
-    font-size: 11px;
-    line-height: 12px;
-    text-align: center;
-    color: #fff;
-    background: #3369f3;
-    border-radius: 50%;
-    padding: 4px 4px;
-    margin-top: 5px;
-  }
-}
-
-.chat-list {
-  list-style-type: none;
-  padding: 0px;
-  overflow-y: scroll;
-  height: 100%;
-}
-
-.header {
-  border-top: 1px solid $light-grey-border;
-  border-bottom: 1px solid $light-grey-border;
-  padding: 12px 0;
-  display: grid;
-  grid-template-columns: 47px auto 30px;
-  grid-template-rows: 47px;
-  gap: 10px;
-
-  &__avatar {
-    background: $light-grey-background;
-    border-radius: 50%;
-    width: auto;
-    height: 100%;
-  }
-
-  &__name {
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 13px;
-    color: $black-color;
-    margin: auto 0;
-  }
-
-  &__menu {
-    margin: auto;
-    background: url('../../assets/menu.svg') no-repeat 50% 50%;
-    height: 100%;
-    border: 0;
-    cursor: url('../../assets/cursor.svg'),pointer;
-  }
 }
 
 .main {
@@ -273,91 +117,6 @@ body {
   }
 }
 
-.send-form {
-  display: grid;
-  grid-template-columns: 40px auto 40px;
-  margin-bottom: 0px;
-  padding: 11px;
-  width: 100%;
-
-  &__button-add {
-    background-image: url(../../assets/addPic.svg);
-    width: 32px;
-    height: 32px;
-    background-color: transparent;
-    border: none;
-  }
-
-  &__input {
-    background: $light-grey-background;
-    border-radius: 30px;
-    border: none;
-    padding: 10px 20px;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 12px;
-    color: $grey-color;
-  }
-
-  &__button-send {
-    background: $blue-background-color;
-    border-radius: 50%;
-    color: $white-color;
-  }
-}
-
-.menu {
-  background: $white-color;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
-  border-radius: 12px;
-  padding: 12px 71px 12px 28px;
-  margin: 10px 20px;
-  position: absolute;
-
-  &__right {
-    right: 0;
-  }
-
-  &__delete-chat {
-    display: flex;
-    background-color: transparent;
-    border: none;
-  }
-
-  &__title {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    margin: auto 0 auto 18px;
-
-    color: $black-color;
-  }
-}
-
-.login {
-  text-align: center;
-
-  &__container {
-    width: 30%;
-    background: $white-color;
-    box-shadow: 0px 0px 6px rgb(0 0 0 / 14%);
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    margin: 135px auto;
-    padding: 30px;
-  }
-
-  &__title {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 20px;
-    margin-top: 50px;
-    text-align: center;
-    color: $black-color;
-  }
-}
-
 .form {
   margin-top: 40px;
   text-align: left;
@@ -412,141 +171,6 @@ body {
     background: none;
     margin-top: 14px;
     width: 100%;
-  }
-}
-
-.error {
-  font-weight: normal;
-  font-size: 8px;
-  line-height: 8px;
-  color: $red-color;
-  display: block;
-  margin-top: 7px;
-  box-sizing: border-box;
-  text-align: left;
-}
-
-.profile {
-  display: grid;
-  grid-template-columns: 64px auto;
-
-  &__error {
-    font-weight: normal;
-    font-size: 8px;
-    line-height: 8px;
-    color: $red-color;
-    display: block;
-    margin-top: 7px;
-    box-sizing: border-box;
-    text-align: right;
-  }
-
-  &__button {
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 13px;
-    text-align: center;
-    color: $white-color;
-    width: 280px;
-    height: 37px;
-    background: $blue-background-color;
-    border-radius: 8px;
-    margin-top: 60px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  &__container {
-    background: $white-background-color;
-    border-right: 1px solid $light-grey-border;
-    height: 100vh;
-    display: flex;
-  }
-
-  &__button-back {
-    background: $blue-background-color;
-    border-radius: 50%;
-    color: $white-color;
-    margin: auto;
-    padding: 5px 8px;
-  }
-
-  &__photo {
-    width: 100vw;
-  }
-
-  &__info {
-    margin: 60px auto 0;
-    width: 512px;
-  }
-
-  &__button-pic {
-    width: 130px;
-    height: 130px;
-    background: $light-grey-background;
-    border-radius: 50%;
-    margin-top: 60px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-image: url(../../assets/not-photo.svg);
-    background-repeat: no-repeat;
-    background-size: 50% 50%;
-    background-position: center;
-    border: none;
-    cursor: url('../../assets/cursor.svg'),pointer;
-  }
-
-  &__button-pic:hover:after {
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 14px;
-
-    text-align: center;
-    content: 'Поменять аватар';
-  }
-
-  &__button-pic:hover {
-    color: $white-color;
-    background: $black-background;
-    opacity: 0.5;
-  }
-
-  &__row {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid $light-grey-border;
-  }
-
-  &__text {
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 13px;
-  }
-
-  &__main {
-    text-align: center;
-  }
-
-  &__input {
-    border: 0;
-    text-align: right;
-  }
-
-  &__pic {
-    width: 130px;
-    height: 130px;
-    background: $light-grey-background;
-    border-radius: 50%;
-    margin-top: 60px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-image: url(../../assets/not-photo.svg);
-    background-repeat: no-repeat;
-    background-size: 40% 40%;
-    background-position: center;
   }
 }
 
@@ -646,6 +270,14 @@ body {
 }
 
 .error {
+  font-weight: normal;
+  font-size: 8px;
+  line-height: 8px;
+  color: $red-color;
+  display: block;
+  margin-top: 7px;
+  box-sizing: border-box;
+  text-align: left;
 
   &__number {
     font-weight: 500;
@@ -653,7 +285,7 @@ body {
     line-height: 40px;
     margin-top: 280px;
     text-align: center;
-    color: #1E1E1E;
+    color: $black-color;
   }
 
   &__message {
@@ -661,7 +293,7 @@ body {
     font-size: 20px;
     line-height: 20px;
     text-align: center;
-    color: #1E1E1E;
+    color: $black-color;
     margin-top: 20px;
   }
 
@@ -672,27 +304,7 @@ body {
     text-decoration: none;
     display: block;
     text-align: center;
-    color: #3369F3;
+    color: $blue-background-color;
     cursor: url('../../assets/cursor.svg'),pointer;
-  }
-}
-
-.signin {
-  width: 30%;
-  background: $white-color;
-  box-shadow: 0px 0px 6px rgb(0 0 0 / 14%);
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  margin: 135px auto;
-  padding: 30px;
-
-  &__title {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 20px;
-    margin-top: 50px;
-    text-align: center;
-    color: $black-color;
   }
 }

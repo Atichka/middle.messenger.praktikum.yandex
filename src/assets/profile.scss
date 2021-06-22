@@ -1,0 +1,125 @@
+@import "./common.scss";
+
+.profile {
+  display: grid;
+  grid-template-columns: 64px auto;
+
+  &__error {
+    font-weight: normal;
+    font-size: 8px;
+    line-height: 8px;
+    color: $red-color;
+    display: block;
+    margin-top: 7px;
+    box-sizing: border-box;
+    text-align: right;
+  }
+
+  &__button {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    color: $white-color;
+    width: 280px;
+    height: 37px;
+    background: $blue-background-color;
+    border-radius: 8px;
+    margin-top: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__container {
+    background: $white-background-color;
+    border-right: 1px solid $light-grey-border;
+    height: 100vh;
+    display: flex;
+  }
+
+  &__button-back {
+    background: $blue-background-color;
+    border-radius: 50%;
+    color: $white-color;
+    margin: auto;
+    padding: 5px 8px;
+  }
+
+  &__photo {
+    width: 100vw;
+  }
+
+  &__info {
+    margin: 60px auto 0;
+    width: 512px;
+  }
+
+  &__button-pic {
+    width: 130px;
+    height: 130px;
+    background: $light-grey-background;
+    border-radius: 50%;
+    margin-top: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(../../assets/not-photo.svg);
+    background-repeat: no-repeat;
+    background-size: 50% 50%;
+    background-position: center;
+    border: none;
+    cursor: url('../../assets/cursor.svg'),pointer;
+  }
+
+  &__button-pic:hover:after {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 14px;
+
+    text-align: center;
+    content: 'Поменять аватар';
+  }
+
+  &__button-pic:hover {
+    color: $white-color;
+    background: $black-background;
+    opacity: 0.5;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $light-grey-border;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  &__main {
+    text-align: center;
+  }
+
+  &__input {
+    border: 0;
+    text-align: right;
+  }
+
+  &__pic {
+    width: 130px;
+    height: 130px;
+    background: $light-grey-background;
+    border-radius: 50%;
+    margin-top: 60px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(../../assets/not-photo.svg);
+    background-repeat: no-repeat;
+    background-size: 40% 40%;
+    background-position: center;
+  }
+}

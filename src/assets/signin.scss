@@ -1,0 +1,21 @@
+@import "./common.scss";
+
+.signin {
+  width: 30%;
+  background: $white-color;
+  box-shadow: 0px 0px 6px rgb(0 0 0 / 14%);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  margin: 135px auto;
+  padding: 30px;
+
+  &__title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 50px;
+    text-align: center;
+    color: $black-color;
+  }
+}
