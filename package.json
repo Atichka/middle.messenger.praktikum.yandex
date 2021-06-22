@@ -4,7 +4,6 @@
   "description": "Веб-приложение \"Чат\"",
   "scripts": {
     "start": "parcel src/tpl/index.pug --port 3000",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "node server.js"
   },
   "repository": {
