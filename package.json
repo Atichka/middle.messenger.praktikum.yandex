@@ -4,7 +4,8 @@
   "description": "Веб-приложение \"Чат\"",
   "scripts": {
     "start": "parcel src/tpl/index.pug --port 3000",
-    "serve": "node server.js"
+    "serve": "node server.js",
+    "build": "parcel build src/tpl/*.pug"
   },
   "repository": {
     "type": "git",
