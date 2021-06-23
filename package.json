@@ -18,9 +18,9 @@
   },
   "homepage": "https://github.com/Atichka/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "@parcel/transformer-pug": "^2.0.0-beta.2",
+    "@parcel/transformer-pug": "^2.0.0-nightly.731",
     "@parcel/transformer-sass": "^2.0.0-beta.2",
     "express": "^4.17.1",
-    "parcel": "^2.0.0-beta.2"
+    "parcel": "^2.0.0-beta.3.1"
   }
 }
