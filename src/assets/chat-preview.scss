@@ -1,0 +1,62 @@
+@import "./common.scss";
+
+.chat-preview {
+  display: flex;
+  gap: 10px;
+  padding: 12px 0;
+
+  border-top: 1px solid $light-grey-border;
+
+  &__avatar {
+    width: 47px;
+    height: 47px;
+    flex-shrink: 0;
+
+    border-radius: 100%;
+    background-color: $light-grey-background;
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__title {
+    margin: 0 0 4px;
+
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  &__text {
+    margin: 4px 0 0;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: $grey-color;
+  }
+
+  &__date {
+    margin: 0;
+
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 13px;
+    color: $grey-color;
+  }
+
+  &__counter {
+    margin-top: 5px;
+    padding: 4px 4px;
+
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 12px;
+    text-align: center;
+    color: $white-color;
+
+    background: $blue-background-color;
+    border-radius: 50%;
+  }
+}

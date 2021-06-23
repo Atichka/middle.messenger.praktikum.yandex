@@ -1,0 +1,7 @@
+include ./chatPreview
+
+mixin chat-list(chats)
+    ul.chat-list
+        each chat in chats
+            li
+                +chat-preview(chat)

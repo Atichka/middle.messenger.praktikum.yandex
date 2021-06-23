@@ -1,0 +1,10 @@
+mixin chat-preview(chat)
+    arcticle.chat-preview
+        div.chat-preview__avatar
+        div.chat-preview__content
+            h3.chat-preview__title #{chat.title}
+            p.chat-preview__text #{chat.content}
+        div.chat-preview__meta
+            time.chat-preview__date #{chat.date}
+            if chat.counter
+                div.chat-preview__counter #{chat.counter}

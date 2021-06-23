@@ -1,0 +1,114 @@
+@import "./common.scss";
+
+.chat-list {
+  height: 100%;
+  padding: 0px;
+
+  list-style-type: none;
+  overflow-y: scroll;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 47px auto 30px;
+  grid-template-rows: 47px;
+  gap: 10px;
+
+  border-top: 1px solid $light-grey-border;
+  border-bottom: 1px solid $light-grey-border;
+  padding: 12px 0;
+
+  &__avatar {
+    width: auto;
+    height: 100%;
+
+    background: $light-grey-background;
+    border-radius: 50%;
+  }
+
+  &__name {
+    margin: auto 0;
+
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+    color: $black-color;
+  }
+
+  &__menu {
+    height: 100%;
+    margin: auto;
+
+    background: url('../../assets/menu.svg') no-repeat 50% 50%;
+    border: 0;
+
+    cursor: url('../../assets/cursor.svg'),pointer;
+  }
+}
+
+.send-form {
+  display: grid;
+  grid-template-columns: 40px auto 40px;
+  width: 100%;
+  margin-bottom: 0px;
+  padding: 11px;
+
+  &__button-add {
+    width: 32px;
+    height: 32px;
+
+    background-image: url(../../assets/addPic.svg);
+    background-color: transparent;
+    border: none;
+  }
+
+  &__input {
+    padding: 10px 20px;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: $grey-color;
+
+    background: $light-grey-background;
+    border-radius: 30px;
+    border: none;
+  }
+
+  &__button-send {
+    color: $white-color;
+
+    background: $blue-background-color;
+    border-radius: 50%;
+  }
+}
+
+.menu {
+  position: absolute;
+  margin: 10px 20px;
+  padding: 12px 71px 12px 28px;
+
+  background: $white-color;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+
+  &__right {
+    right: 0;
+  }
+
+  &__delete-chat {
+    display: flex;
+
+    background-color: transparent;
+    border: none;
+  }
+
+  &__title {
+    margin: auto 0 auto 18px;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: $black-color;
+  }
+}

@@ -1,0 +1,332 @@
+$black-color: #1e1e1e;
+$grey-color: #999;
+$white-color: #fff;
+$red-color: #ff2f2f;
+$white-background-color: #fbfbfb;
+$blue-background-color: #3369f3;
+$dark-background-color: rgba(0,0,0,.5);
+$light-grey-background: #efefef;
+$grey-background: #f8f8f8;
+$dark-grey-background: rgba(82, 82, 82, 0.5);
+$light-blue-background: #e4edfd;
+$black-background: #000;
+$light-grey-border: #eaeaea;
+$light-grey-box: rgba(0, 0, 0, 0.14);
+
+@import url(./page.scss);
+@import url(./search.scss);
+@import url(./chat-preview.scss);
+@import url(./chat-page.scss);
+@import url(./login.scss);
+@import url(./signin.scss);
+@import url(./profile.scss);
+
+body {
+  font-weight: 500;
+  line-height: 1.25;
+  color: $black-color;
+}
+
+.hide {
+  display: none;
+}
+
+.main {
+  text-align: center;
+
+  &__date {
+    padding-top: 48px;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: $grey-color;
+  }
+
+  &__container {
+    margin-top: 30px;
+  }
+
+  &__user {
+    text-align: left;
+  }
+
+  &__message {
+    width: 250px;
+    margin: 0;
+    padding: 11px 11px 0;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: left;
+    color: $black-color;
+  }
+
+  &__background-grey {
+    background: $grey-background;
+  }
+
+  &__time-text {
+    width: 250px;
+    margin: 0;
+    padding: 0 11px 11px;
+
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 9px;
+    text-align: right;
+  }
+
+  &__color-grey {
+    color: $grey-color;
+  }
+
+  &__container-pic {
+    position: relative;
+  }
+
+  &__pic {
+    width: 40%;
+    margin-top: 10px;
+  }
+
+  &__time-pic {
+    position: absolute;
+    bottom: 10px;
+    left: 35%;
+
+    padding: 2px;
+    margin: 0;
+
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 9px;
+    text-align: right;
+    color: $white-color;
+
+    background: $dark-grey-background;
+    border-radius: 30px;
+  }
+
+  &__you {
+    float: right;
+  }
+
+  &__background-blue {
+    background: $light-blue-background;
+  }
+
+  &__color-blue {
+    color: $blue-background-color;
+  }
+}
+
+.form {
+  margin-top: 40px;
+
+  text-align: left;
+
+  &__field-name {
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 9px;
+    text-align: left;
+    color: $grey-color;
+  }
+
+  &__input {
+    width: 100%;
+    height: 28px;
+    padding: 5px 0 13px;
+
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: $black-color;
+
+    border: 0;
+    border-bottom: 1px solid $blue-background-color;
+    box-sizing: border-box;
+  }
+
+  &__button {
+    width: 100%;
+    height: 37px;
+
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    color: $white-color;
+
+    background: $blue-background-color;
+    border-radius: 8px;
+  }
+
+  &__top-login {
+    margin-top: 169px;
+  }
+
+  &__top-signin {
+    margin-top: 47px;
+  }
+
+  &__signup-button {
+    width: 100%;
+    margin-top: 14px;
+
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 11px;
+    color: $blue-background-color;
+
+    border: none;
+    background: none;
+  }
+}
+
+.text {
+
+  &__grey {
+    color: $grey-color;
+  }
+
+  &__blue {
+    margin-top: 13px;
+    margin-bottom: 13px;
+
+    text-decoration: none;
+    color: $blue-background-color;
+  }
+
+  &__red {
+    margin-top: 13px;
+    margin-bottom: 13px;
+
+    text-decoration: none;
+    color: $red-color;
+  }
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: $dark-background-color;
+
+  &__content {
+    position: relative;
+
+    width: 340px;
+    min-height: 257px;
+    margin: 220px auto 0;
+    padding: 34px 36px;
+
+    border-radius: 10px;
+    box-sizing: border-box;
+    background: $white-color;
+    box-shadow: 0px 0px 6px $light-grey-box;
+    border-radius: 12px;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: center;
+    color: $light-grey-border;
+  }
+
+  &__link {
+    display: block;
+    margin-top: 43px;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    text-decoration-line: underline;
+    color: $blue-background-color;
+  }
+
+  &__button {
+    width: 280px;
+    height: 37px;
+    margin-top: 45px;
+
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: center;
+    color: $white-color;
+
+    background: $blue-background-color;
+    border-radius: 8px;
+  }
+
+  &__error {
+    display: block;
+    margin-top: 14px;
+
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 11px;
+    text-align: center;
+    color: $red-color;
+  }
+}
+
+.error {
+  display: block;
+  margin-top: 7px;
+
+  font-weight: normal;
+  font-size: 8px;
+  line-height: 8px;
+  text-align: left;
+  color: $red-color;
+
+  box-sizing: border-box;
+
+  &__number {
+    margin-top: 280px;
+
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: $black-color;
+  }
+
+  &__message {
+    margin-top: 20px;
+
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: $black-color;
+  }
+
+  &__link {
+    display: block;
+
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 11px;
+    text-decoration: none;
+    text-align: center;
+    color: $blue-background-color;
+
+    cursor: url('../../assets/cursor.svg'),pointer;
+  }
+}

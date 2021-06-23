@@ -1,0 +1,35 @@
+@import "./common.scss";
+
+.search {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: auto 54px;
+  margin-top: 21px;
+
+  &__form {
+    display: inline-flex;
+    padding: 10px;
+
+    background: $light-grey-background;
+    border-radius: 5px;
+  }
+
+  &__field {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    align-items: center;
+    color: $grey-color;
+
+    border: 0;
+    background: $light-grey-background;
+  }
+
+  &__button {
+    border-radius: 8px;
+    background: url(../../assets/search.svg) no-repeat 50% 50%;
+    background-color: $blue-background-color;
+
+    cursor: url('../../assets/cursor.svg'),pointer;
+  }
+}

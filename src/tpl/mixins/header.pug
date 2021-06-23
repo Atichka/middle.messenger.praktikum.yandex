@@ -1,0 +1,9 @@
+mixin header(user)
+    header.header
+        div.header__avatar
+        h1.header__name #{user.name}
+        button.header__menu
+    div.menu.menu__right.hide
+        button.menu__delete-chat
+            img.menu__icon(src='../../../assets/delete.svg')
+            p.menu__title Удалить чат

@@ -1,0 +1,41 @@
+@import "./common.scss";
+.page {
+  display: flex;
+  height: 100vh;
+
+  &__aside {
+    width: 310px;
+    flex-shrink: 0; // блок не должен уменьшаться
+    padding: 21px 10px 0;
+
+    background-color: $white-background-color;
+  }
+
+  &__content {
+    width: 100%;
+    max-height: 100vh;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  &__nav {
+    text-align: right;
+    color: $grey-color;
+  }
+
+  &__link {
+    text-align: right;
+    text-decoration: none;
+    color: $grey-color;
+  }
+
+  &__not-chat {
+    margin: 50vh 0;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    color: $grey-color;
+  }
+}
