@@ -4,7 +4,7 @@
   "description": "Веб-приложение \"Чат\"",
   "scripts": {
     "start": "parcel src/tpl/index.pug --port 3000",
-    "serve": "node server.js",
+    "serve": "parcel src/tpl/index.pug --port 3000 node server.js",
     "build": "parcel build src/tpl/*.pug"
   },
   "repository": {
@@ -21,7 +21,9 @@
     "@parcel/transformer-pug": "^2.0.0-beta.3.1",
     "@parcel/transformer-sass": "^2.0.0-beta.3.1",
     "express": "^4.17.1",
-    "parcel": "^2.0.0-beta.3.1"
+    "parcel": "^2.0.0-beta.3.1",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4"
   },
   "dependencies": {
     "normalize-scss": "^7.0.1"
