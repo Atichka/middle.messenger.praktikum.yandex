@@ -14,22 +14,22 @@ for (const form of forms) {
     form.addEventListener("submit", onSubmit);
 }
 
-function onSubmit(event) {
+function onSubmit(event: Event): void {
     event.preventDefault();
-    const element = event.target;
-    const formData = new FormData(element);
-    let hasErrors = false;
+    const element = <HTMLFormElement>event.target;
+    const formData: any = new FormData(element);
+    let isErrors = false;
 
     const fields = document.querySelectorAll('.form__field-name');
     for (const field of fields) {
-        const input = field.querySelector('input');
+        const input = <HTMLInputElement>field.querySelector('input');
         const isValid = validateInput(input, field);
         if (!isValid) {
-            hasErrors = true;
+            isErrors = true;
         }
     }
 
-    if (!hasErrors) {
+    if (!isErrors) {
         for (const [name, value] of formData) {
             console.log(`${name}: ${value}`);
         }
