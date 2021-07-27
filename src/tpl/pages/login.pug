@@ -6,15 +6,15 @@ block main
             h1.login__title Вход
             form.form(id='formlogin', name='formlogin')
                 label.form__field-name(for='userLogin') Логин
-                input.form__input(id='userLogin',
-                    type='text',
-                    name='login',
-                    minlength=2,
-                    maxlength=30,
-                    required,
-                    placeholder='ivanivanov')
-                span.error(id='error-login') неверный логин
-                label.form__field-name(for='userPassword') Логин
+                    input.form__input(id='userLogin',
+                        type='text',
+                        name='login',
+                        minlength=2,
+                        maxlength=30,
+                        required,
+                        placeholder='ivanivanov')
+                    span.error(id='error-login') неверный логин
+                label.form__field-name(for='userPassword') Пароль
                     input.form__input(id='userPassword',
                         type='password',
                         name='password',
