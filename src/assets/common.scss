@@ -330,3 +330,7 @@ body {
     cursor: url('../../assets/cursor.svg'),pointer;
   }
 }
+
+.field-error .error {
+  display: block;
+}
