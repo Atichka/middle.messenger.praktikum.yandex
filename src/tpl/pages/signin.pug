@@ -22,6 +22,7 @@ block main
                         maxlength=30,
                         required,
                         placeholder='ivanivanov')
+                    span.error(id='error-login') некорректный ввод
                 label.form__field-name(for='newName') Имя
                     input.form__input(id='newName',
                         type='text',
@@ -30,6 +31,7 @@ block main
                         maxlength=30,
                         required,
                         placeholder='Имя')
+                    span.error(id='error-name') некорректный ввод
                 label.form__field-name(for='newSecondName') Фамилия
                     input.form__input(id='newSecondName',
                         type='text',
@@ -38,6 +40,7 @@ block main
                         maxlength=30,
                         required,
                         placeholder='Фамилия')
+                    span.error(id='error-second-name') некорректный ввод
                 label.form__field-name(for='phone') Телефон
                     input.form__input(id='phone',
                         type='tel',
