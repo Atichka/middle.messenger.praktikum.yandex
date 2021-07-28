@@ -1,8 +1,10 @@
-const forms = Array.from(document.forms);
+const forms: HTMLFormElement[] = Array.from(document.forms);
 
 const validations = {
     password: /\w+/,
     text: /\w+/,
+    email: /^\S+@\S+$/i,
+    tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
 };
 
 for (const form of forms) {
