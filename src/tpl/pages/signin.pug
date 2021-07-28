@@ -6,14 +6,14 @@ block main
             h1.signin__title Регистрация
             form.form(id='form', name='formsignin')
                 label.form__field-name(for='userEmail') Email
-                input.form__input(id='userEmail',
-                    type='email',
-                    name='email',
-                    minlength=2,
-                    maxlength=30,
-                    required,
-                    placeholder='Email')
-                span.error(id='error-email') Неправильный формат email
+                    input.form__input(id='userEmail',
+                        type='email',
+                        name='email',
+                        minlength=2,
+                        maxlength=30,
+                        required,
+                        placeholder='Email')
+                    span.error(id='error-email') неправильный формат email
                 label.form__field-name(for='userLogin') Логин
                     input.form__input(id='userLogin',
                         type='text',
@@ -46,7 +46,7 @@ block main
                         maxlength=18,
                         required,
                         placeholder='+7 (909) 967 30 30')
-                    span.error Телефон в формате: +7 (909) 967 30 30
+                    span.error неправильный формат телефона
                 label.form__field-name(for='userPassword') Пароль
                     input.form__input(id='userPassword',
                         type='password',
