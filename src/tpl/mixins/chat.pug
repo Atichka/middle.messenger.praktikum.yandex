@@ -23,5 +23,7 @@ mixin chat(chats)
                 p.menu__title Файл
         form.send-form(id='formmessage', name='formmessage')
             button.send-form__button-add(type='button')
-            input.send-form__input(type='text', name='message', placeholder="Сообщение")
+            div.form__field-name
+                input.send-form__input(type='text', name='message', placeholder="Сообщение")
+                span.error(id='error-message') введите сообщение
             button.send-form__button-send(type='submit') →
