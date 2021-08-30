@@ -1,6 +1,6 @@
 ul Ссылки на страницы
     li
-        button.login(type='submit') login
+        button.login(type='submit', onclick="renderTemplate('login')") login
     li
         a(href='./pages/signin.pug') signin
     li
@@ -15,4 +15,3 @@ ul Ссылки на страницы
         a(href='./pages/error404.pug') error 404
     li
         a(href='./pages/error500.pug') error 500
-script(src='./pages/login.ts')
