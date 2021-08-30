@@ -1,6 +1,6 @@
 import {renderTemplate} from '../index'
 
-const loginLink = document.querySelector('.login');
+const loginLink = document.querySelector('.loginLink');
 
 loginLink.addEventListener('click', () => {
     renderTemplate('login')
