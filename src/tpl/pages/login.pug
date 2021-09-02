@@ -4,7 +4,7 @@ block main
     div.login
         div.login__container
             h1.login__title Вход
-            form.form(id='formlogin', name='formlogin')
+            form.form(id='formlogin', name='formlogin', onsubmit="sendData(this); return false;")
                 label.form__field-name(for='userLogin') Логин
                     input.form__input(id='userLogin',
                         type='text',
