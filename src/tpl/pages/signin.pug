@@ -4,7 +4,7 @@ block main
     div.main
         div.signin
             h1.signin__title Регистрация
-            form.form(id='form', name='formsignin')
+            form.form(id='form', name='formsignin', onsubmit="sendData(this); return false;")
                 label.form__field-name(for='userEmail') Email
                     input.form__input(id='userEmail',
                         type='email',
