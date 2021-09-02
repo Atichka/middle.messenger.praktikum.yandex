@@ -21,7 +21,7 @@ mixin chat(chats)
             button.menu__delete-chat
                 img.menu__icon(src='../../../assets/fileAdd.svg')
                 p.menu__title Файл
-        form.send-form(id='formmessage', name='formmessage')
+        form.send-form(id='formmessage', name='formmessage', onsubmit="sendData(this)")
             button.send-form__button-add(type='button')
             div.form__field-name
                 input.send-form__input(type='text', name='message', placeholder="Сообщение")
