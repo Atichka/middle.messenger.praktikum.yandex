@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Веб-приложение \"Чат\"",
   "scripts": {
-    "start": "parcel index.html --port 3000",
+    "start": "parcel index.html --port 3000 --no-cache",
     "serve": "parcel src/tpl/index.pug --port 3000 node server.js",
     "build": "parcel build src/tpl/*.pug"
   },

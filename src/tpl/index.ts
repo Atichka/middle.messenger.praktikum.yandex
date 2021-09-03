@@ -22,3 +22,5 @@ export function renderTemplate(name: any, locals: object = {}, parent: HTMLEleme
     const template = TEMPLATES[name];
     parent.innerHTML = template(locals);
 }
+
+window.renderTemplate = renderTemplate

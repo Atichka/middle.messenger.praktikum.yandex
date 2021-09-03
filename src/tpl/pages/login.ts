@@ -6,8 +6,7 @@ loginLink.addEventListener('click', () => {
     renderTemplate('login')
 });
 
-function sendData() {
-    const form = document.querySelector('.form');
+function sendData(form) {
     const formData: any = new FormData(form);
     let obj: Record<string, unknown> = {};
     for (let [name, value] of formData) {
