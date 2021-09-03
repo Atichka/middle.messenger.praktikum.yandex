@@ -5,7 +5,7 @@ block main
         div.login__container
             h1.login__title Вход
             form.form(id='formlogin', name='formlogin', onsubmit="sendData(this); return false;")
-                label.form__field-name(for='userLogin') Логин
+                label.form__field-name(for='userLogin', onclick="addBlurFocusListener(this)") Логин
                     input.form__input(id='userLogin',
                         type='text',
                         name='login',
@@ -14,7 +14,7 @@ block main
                         required,
                         placeholder='ivanivanov')
                     span.error(id='error-login') неверный логин
-                label.form__field-name(for='userPassword') Пароль
+                label.form__field-name(for='userPassword', onclick="addBlurFocusListener(this)") Пароль
                     input.form__input(id='userPassword',
                         type='password',
                         name='password',
