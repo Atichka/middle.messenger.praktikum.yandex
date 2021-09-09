@@ -15,8 +15,8 @@ loginLink.addEventListener('click', () => {
 
 function sendData(form) {
     const formData: any = new FormData(form);
-    let obj: Record<string, unknown> = {};
-    for (let [name, value] of formData) {
+    const obj: Record<string, unknown> = {};
+    for (const [name, value] of formData) {
         obj[name] = value;
     }
     console.log(obj);
