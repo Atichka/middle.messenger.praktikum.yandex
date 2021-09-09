@@ -31,7 +31,7 @@ export class Block<T extends TProps> {
             props
         };
 
-        this.props = this._makePropsProxy(props);
+        this.props = this._makePropsProxy(props as T);
 
         this.eventBus = eventBus;
 
