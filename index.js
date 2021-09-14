@@ -5,7 +5,7 @@ const app = document.getElementById('app');
 app.innerHTML = compileTemplate({  });
 
 const button = new Button({
-    text: 'Click me!',
+    text: 'Click me',
 });
 
 app.appendChild(button.getContent());
