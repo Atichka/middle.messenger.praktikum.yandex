@@ -1,4 +1,4 @@
-import {Block} from "../tpl/classes/block";
+import {Block} from "./block";
 
 export function compile(tmpl: (ctx: Record<string, any>) => string, context: Record<string, any>): DocumentFragment {
     const fragment = document.createElement('template');
@@ -10,14 +10,14 @@ export function compile(tmpl: (ctx: Record<string, any>) => string, context: Rec
             const id = uuid();
 
             components[id] = value; // сохраняем компонент
-            context[key] = `<div id="${id}"></div>`; // делаем заглушку
+            context[key] = `<div id="id-${id}"></div>`; // делаем заглушку
         }
     });
 
     fragment.innerHTML = tmpl(context); // или Handlebars.compile(tmpl, context), если tmpl — строка
 
     Object.entries(components).forEach(([id, component]) => {
-        const stub = fragment.content.querySelector(`#${id}`);
+        const stub = fragment.content.querySelector(`#id-${id}`);
 
         stub.replaceWith(component.render()); // render должен вернуть HTMLElement
     });

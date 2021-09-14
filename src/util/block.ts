@@ -1,4 +1,6 @@
 import { EventBus } from './event-bus';
+import {nanoid} from 'nanoid';
+
 export type TProps = {
     [key: string]: string | number | boolean | Function | undefined,
 };
@@ -11,6 +13,7 @@ export class Block<T extends TProps> {
         FLOW_RENDER: "flow:render",
         FLOW_CDU: "flow:component-did-update",
     };
+    protected id = nanoid(6);
 
     _element: HTMLElement;
     _meta: any;
@@ -78,15 +81,15 @@ export class Block<T extends TProps> {
         return true;
     }
 
-    setProps(nextProps: T) {
-        if (!nextProps) {
-            return;
-        }
-        nextProps = this._makePropsProxy(nextProps);
-        Object.assign(this.props, nextProps);
-        this.eventBus.emit(Block.EVENTS.FLOW_CDU);
-        this._render();
-    };
+    // setProps(nextProps: T) {
+    //     if (!nextProps) {
+    //         return;
+    //     }
+    //     nextProps = this._makePropsProxy(nextProps);
+    //     Object.assign(this.props, nextProps);
+    //     this.eventBus.emit(Block.EVENTS.FLOW_CDU);
+    //     this._render();
+    // };
 
     get element() {
         return this._element;
