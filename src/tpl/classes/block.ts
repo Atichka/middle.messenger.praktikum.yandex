@@ -49,6 +49,7 @@ export class Block<T extends TProps> {
     _createResources() {
         const { tagName } = this._meta;
         this._element = this._createDocumentElement(tagName);
+        console.log('this._element', this._element);
     }
 
     init(): void {
@@ -92,16 +93,17 @@ export class Block<T extends TProps> {
     }
 
     _render(): void {
-        const block = this.render();
+        // const block = this.render();
+        this.render();
         // Этот небезопасный метод для упрощения логики
         // Используйте шаблонизатор из npm или напишите свой безопасный
         // Нужно не в строку компилировать (или делать это правильно),
         // либо сразу в DOM-элементы возвращать из compile DOM-ноду
-        this._element.innerHTML = block;
+        // this._element.innerHTML = block;
     }
 
     // Может переопределять пользователь, необязательно трогать
-    render(): string { return ""; }
+    render(): any { return this._element; }
 
     getContent() {
         return this._element;
