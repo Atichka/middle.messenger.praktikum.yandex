@@ -52,6 +52,12 @@ export class HomePage extends Block {
                 click: () => renderTemplate('error404')
             },
         });
+        const buttonError500 = new Button( {
+            text: "error 500",
+            events: {
+                click: () => renderTemplate('error500')
+            },
+        });
         return compile(template,{
             buttonLogin: buttonLogin,
             buttonSignin: buttonSignin,
@@ -60,6 +66,7 @@ export class HomePage extends Block {
             buttonProfileEdit: buttonProfileEdit,
             buttonPasswordEdit: buttonPasswordEdit,
             buttonError404: buttonError404,
+            buttonError500: buttonError500,
         });
     }
 }
