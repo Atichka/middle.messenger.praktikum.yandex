@@ -28,10 +28,17 @@ export class HomePage extends Block {
                 click: () => renderTemplate('chats')
             },
         });
+        const buttonProfile = new Button( {
+            text: "profile",
+            events: {
+                click: () => renderTemplate('profile')
+            },
+        });
         return compile(template,{
             buttonLogin: buttonLogin,
             buttonSignin: buttonSignin,
             buttonChats: buttonChats,
+            buttonProfile: buttonProfile,
         });
     }
 }
