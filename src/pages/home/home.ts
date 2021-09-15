@@ -40,12 +40,19 @@ export class HomePage extends Block {
                 click: () => renderTemplate('profileEdit')
             },
         });
+        const buttonPasswordEdit = new Button( {
+            text: "password edit",
+            events: {
+                click: () => renderTemplate('passwordEdit')
+            },
+        });
         return compile(template,{
             buttonLogin: buttonLogin,
             buttonSignin: buttonSignin,
             buttonChats: buttonChats,
             buttonProfile: buttonProfile,
             buttonProfileEdit: buttonProfileEdit,
+            buttonPasswordEdit: buttonPasswordEdit,
         });
     }
 }
