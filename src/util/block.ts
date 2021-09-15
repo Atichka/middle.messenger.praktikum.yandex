@@ -1,5 +1,5 @@
 import { EventBus } from './event-bus';
-import {nanoid} from 'nanoid';
+import { v4 as uuid } from 'uuid';
 
 export type TProps = {
     [key: string]: string | number | boolean | Function | undefined,
@@ -13,7 +13,7 @@ export class Block<T extends TProps> {
         FLOW_RENDER: "flow:render",
         FLOW_CDU: "flow:component-did-update",
     };
-    protected id = nanoid(6);
+    public id = uuid(6);
 
     _element: HTMLElement;
     _meta: any;
@@ -52,7 +52,6 @@ export class Block<T extends TProps> {
     _createResources() {
         const { tagName } = this._meta;
         this._element = this._createDocumentElement(tagName);
-        console.log('this._element', this._element);
     }
 
     init(): void {
@@ -96,17 +95,24 @@ export class Block<T extends TProps> {
     }
 
     _render(): void {
-        // const block = this.render();
-        this.render();
+        const fragment = this.render();
+
+        this._removeEvents();
+        this._element!.innerHTML = '';
+
+        this._element!.appendChild(fragment);
+        this._addEvents();
+
         // Этот небезопасный метод для упрощения логики
         // Используйте шаблонизатор из npm или напишите свой безопасный
         // Нужно не в строку компилировать (или делать это правильно),
         // либо сразу в DOM-элементы возвращать из compile DOM-ноду
-        // this._element.innerHTML = block;
     }
 
     // Может переопределять пользователь, необязательно трогать
-    render(): any { return this._element; }
+    protected render(): DocumentFragment {
+        return new DocumentFragment();
+    }
 
     getContent() {
         return this._element;
@@ -151,6 +157,30 @@ export class Block<T extends TProps> {
     _createDocumentElement(tagName: HTMLElement) {
         // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
         return document.createElement(tagName);
+    }
+
+    _removeEvents() {
+        const events: Record<string, () => void> = (this.props as any).events;
+
+        if(!events || !this._element) {
+            return;
+        }
+
+        Object.entries(events).forEach(([event, listener]) => {
+            this._element!.addEventListener(event, listener);
+        })
+    }
+
+    _addEvents() {
+        const events: Record<string, () => void> = (this.props as any).events;
+
+        if(!events) {
+            return;
+        }
+
+        Object.entries(events).forEach(([event, listener]) => {
+            this._element!.addEventListener(event, listener);
+        })
     }
 
     show() {

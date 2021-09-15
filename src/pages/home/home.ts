@@ -10,7 +10,7 @@ export class HomePage extends Block {
 
     public render(): DocumentFragment {
         const button = new Button( {
-            text: 'Jump',
+            text: "login",
             events: {
                 click: () => console.log("Clicked")
             },

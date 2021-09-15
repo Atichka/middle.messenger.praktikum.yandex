@@ -19,7 +19,6 @@ function sendData(form) {
     for (const [name, value] of formData) {
         obj[name] = value;
     }
-    console.log(obj);
 
     // Валидация
     let isErrors = false;
