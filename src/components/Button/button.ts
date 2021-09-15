@@ -9,19 +9,6 @@ export class Button extends Block {
     }
 
     render() {
-        // const fragment = compile(
-        //     template,
-        //     {
-        //         text: "text",
-        //
-        //     }
-        // );
-        //
-        // this._element.appendChild(fragment); // this.root — корневой элемент компонента, можно брать просто fragment.firstChild например
-        //
-        // // можем тут навешивать ивенты, дергать lifecycle хуки, манипулировать DOM и тд и тп
-        //
-        // return this._element;
         return compile(template,{ ...this.props });
     }
 }

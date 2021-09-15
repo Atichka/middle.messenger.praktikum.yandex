@@ -2,6 +2,7 @@ import {Block} from "../../util/block"
 import template from "./home.pug"
 import {Button} from "../../components/Button/button"
 import {compile} from "../../util/compile";
+import {renderTemplate} from "../../tpl/index";
 
 export class HomePage extends Block {
     constructor() {
@@ -9,14 +10,21 @@ export class HomePage extends Block {
     }
 
     public render(): DocumentFragment {
-        const button = new Button( {
+        const buttonLogin = new Button( {
             text: "login",
             events: {
-                click: () => console.log("Clicked")
+                click: () => renderTemplate('login')
+            },
+        });
+        const buttonSignin = new Button( {
+            text: "signin",
+            events: {
+                click: () => renderTemplate('signin')
             },
         });
         return compile(template,{
-            button: button,
+            buttonLogin: buttonLogin,
+            buttonSignin: buttonSignin,
         });
     }
 }

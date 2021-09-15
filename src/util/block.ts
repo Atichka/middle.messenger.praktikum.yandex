@@ -80,16 +80,6 @@ export class Block<T extends TProps> {
         return true;
     }
 
-    // setProps(nextProps: T) {
-    //     if (!nextProps) {
-    //         return;
-    //     }
-    //     nextProps = this._makePropsProxy(nextProps);
-    //     Object.assign(this.props, nextProps);
-    //     this.eventBus.emit(Block.EVENTS.FLOW_CDU);
-    //     this._render();
-    // };
-
     get element() {
         return this._element;
     }
@@ -102,11 +92,6 @@ export class Block<T extends TProps> {
 
         this._element!.appendChild(fragment);
         this._addEvents();
-
-        // Этот небезопасный метод для упрощения логики
-        // Используйте шаблонизатор из npm или напишите свой безопасный
-        // Нужно не в строку компилировать (или делать это правильно),
-        // либо сразу в DOM-элементы возвращать из compile DOM-ноду
     }
 
     // Может переопределять пользователь, необязательно трогать
@@ -119,10 +104,6 @@ export class Block<T extends TProps> {
     }
 
     _makePropsProxy(props: T): T {
-        // Можно и так передать this
-        // Такой способ больше не применяется с приходом ES6+
-        // const self = this;
-
         const proxyProps = new Proxy(props, {
             get: function(obj: T, prop: string) {
                 if (typeof obj[prop] === 'function') {
@@ -141,10 +122,6 @@ export class Block<T extends TProps> {
                 }
                 obj[prop] = value;
                 return true;
-                //const prevVal = obj[prop];
-
-                //self.eventBus().emit(Block.EVENTS.FLOW_CDU, prevVal, value);
-                //return obj[prop] = value;
             },
             deleteProperty: function() {
                 throw Error('Нет прав');
