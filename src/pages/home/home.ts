@@ -34,11 +34,18 @@ export class HomePage extends Block {
                 click: () => renderTemplate('profile')
             },
         });
+        const buttonProfileEdit = new Button( {
+            text: "profile edit",
+            events: {
+                click: () => renderTemplate('profileEdit')
+            },
+        });
         return compile(template,{
             buttonLogin: buttonLogin,
             buttonSignin: buttonSignin,
             buttonChats: buttonChats,
             buttonProfile: buttonProfile,
+            buttonProfileEdit: buttonProfileEdit,
         });
     }
 }
