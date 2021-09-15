@@ -22,9 +22,16 @@ export class HomePage extends Block {
                 click: () => renderTemplate('signin')
             },
         });
+        const buttonChats = new Button( {
+            text: "chats",
+            events: {
+                click: () => renderTemplate('chats')
+            },
+        });
         return compile(template,{
             buttonLogin: buttonLogin,
             buttonSignin: buttonSignin,
+            buttonChats: buttonChats,
         });
     }
 }
