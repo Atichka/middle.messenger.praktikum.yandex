@@ -90,7 +90,6 @@ function addBlurFocusListener(field) {
 }
 
 function onFocus(input) {
-    console.log("hvhv", input)
     input.classList.remove('field-error');
 }
 
