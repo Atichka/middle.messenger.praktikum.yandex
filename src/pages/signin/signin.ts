@@ -20,7 +20,7 @@ export class SigninPage extends Block {
         const inputEmail = new Input( {
             classNames: ["form__input"],
             id: "userEmail",
-            type: "text",
+            type: "email",
             name: "email",
             minlength: 2,
             maxlength: 30,
