@@ -2,6 +2,7 @@ import {Block} from "../../util/block";
 import template from "./login.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
+import {Input} from "../../components/Input/input";
 
 const forms: HTMLFormElement[] = Array.from(document.forms);
 
@@ -14,12 +15,37 @@ export class LoginPage extends Block {
         const buttonLogin = new Button( {
             text: "Авторизоваться",
             events: {
-                click: () => sendData()
+                click: () => sendData(),
             },
             classNames: ["form__button", "form__top-login"]
         });
+        const inputLogin = new Input( {
+            classNames: ["form__input"],
+            id: "userLogin",
+            type: "text",
+            name: "login",
+            minlength: 2,
+            maxlength: 30,
+            required: "",
+            placeholder: "ivanivanov",
+            events: {
+                focus: () => onFocus(this),
+            },
+        });
+        const inputPassword = new Input( {
+            classNames: ["form__input"],
+            id: "userPassword",
+            type: "password",
+            name: "password",
+            minlength: 2,
+            maxlength: 30,
+            required: "",
+            placeholder: "пароль",
+        });
         return compile(template,{
             buttonLogin: buttonLogin,
+            inputLogin: inputLogin,
+            inputPassword: inputPassword,
         });
     }
 }
@@ -64,6 +90,7 @@ function addBlurFocusListener(field) {
 }
 
 function onFocus(input) {
+    console.log("hvhv", input)
     input.classList.remove('field-error');
 }
 

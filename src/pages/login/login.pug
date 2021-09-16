@@ -6,20 +6,10 @@ block main
             h1.login__title Вход
             form.form(id='formlogin', name='formlogin', onsubmit="sendData(this); return false;")
                 label.form__field-name(for='userLogin', onclick="addBlurFocusListener(this)") Логин
-                    input.form__input(id='userLogin',
-                        type='text',
-                        name='login',
-                        minlength=2,
-                        maxlength=30,
-                        required,
-                        placeholder='ivanivanov')
+                    | !{inputLogin}
                     span.error(id='error-login') неверный логин
                 label.form__field-name(for='userPassword', onclick="addBlurFocusListener(this)") Пароль
-                    input.form__input(id='userPassword',
-                        type='password',
-                        name='password',
-                        required,
-                        placeholder='пароль')
+                    | !{inputPassword}
                     span.error(id='error-password') неверный пароль
                 | !{buttonLogin}
             button.form__signup-button Нет аккаунта?
