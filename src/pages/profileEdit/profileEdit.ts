@@ -14,18 +14,21 @@ export class ProfileEditPage extends Block {
             events: {
                 click: () => console.log("buttonSave")
             },
+            classNames: ["profile__button"]
         });
         const buttonBack = new Button( {
             text: "←",
             events: {
                 click: () => console.log("buttonBack")
             },
+            classNames: ["profile__button-back"]
         });
         const buttonChange = new Button( {
             text: "Поменять",
             events: {
                 click: () => console.log("buttonChange")
             },
+            classNames: ["profile__button"]
         });
         return compile(template,{
             buttonSave: buttonSave,

@@ -3,7 +3,7 @@ extends ../../tpl/components/page
 block main
     div.profile
         div.profile__container
-            button.profile__button-back(onclick="window.location.href = './chats.pug'") !{buttonBack}
+            | !{buttonBack}
         div.profile__main
             form(id="formData", name="formData", onsubmit="sendData(this); return false;")
                 div.profile__info
@@ -67,7 +67,7 @@ block main
                             maxlength="18",
                             required
                             placeholder="+79099673030")
-                button.profile__button(type="submit") !{buttonSave}
+                | !{buttonSave}
     div.popup.hide
         div.popup__content
             p.popup__text Загрузите файл

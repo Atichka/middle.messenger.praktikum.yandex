@@ -14,6 +14,7 @@ export class ProfilePage extends Block {
             events: {
                 click: () => console.log("profile")
             },
+            classNames: ["profile__button-back"]
         });
         return compile(template,{
             buttonProfile: buttonProfile,
