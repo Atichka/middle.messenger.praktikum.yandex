@@ -14,7 +14,7 @@ export class LoginPage extends Block {
         const buttonLogin = new Button( {
             text: "Авторизоваться",
             events: {
-                click: () => sendData(this)
+                click: () => sendData()
             },
             classNames: ["form__button", "form__top-login"]
         });
@@ -24,17 +24,12 @@ export class LoginPage extends Block {
     }
 }
 
-// const loginLink = document.querySelector('.loginLink');
 const validations = {
     password: /\w+/,
     text: /\w+/,
     email: /^\S+@\S+$/i,
     tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
 };
-
-// loginLink.addEventListener('click', () => {
-//     renderTemplate('login')
-// });
 
 function sendData(form) {
     const formData: any = new FormData(form);
