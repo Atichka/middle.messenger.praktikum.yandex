@@ -9,7 +9,11 @@ export class Button extends Block {
     }
 
     render() {
-        // this._element.add(...this.props.classNames)
+        if(Array.isArray(this.props.classNames)) {
+            this._element.classList.add(...this.props.classNames)
+        } else {
+            this._element.classList.add(this.props.classNames)
+        }
 
         return compile(template,{ ...this.props });
     }

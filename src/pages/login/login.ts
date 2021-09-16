@@ -16,6 +16,7 @@ export class LoginPage extends Block {
             events: {
                 click: () => sendData(this)
             },
+            classNames: ["form__button", "form__top-login"]
         });
         return compile(template,{
             buttonLogin: buttonLogin,
