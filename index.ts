@@ -8,6 +8,8 @@ export function render(query: string, block: Block) {
         throw new Error("Root not found");
     }
 
+    root.innerHTML = '';
+
     root.appendChild(block.getContent());
 
     return root;

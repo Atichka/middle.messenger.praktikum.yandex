@@ -1,8 +1,8 @@
-import {renderTemplate} from '../index'
 import {Block} from "../../util/block";
+import template from "./login.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
-import template from "../../pages/home/login.pug";
+
 const forms: HTMLFormElement[] = Array.from(document.forms);
 
 export class LoginPage extends Block {
@@ -23,7 +23,7 @@ export class LoginPage extends Block {
     }
 }
 
-const loginLink = document.querySelector('.loginLink');
+// const loginLink = document.querySelector('.loginLink');
 const validations = {
     password: /\w+/,
     text: /\w+/,
@@ -31,9 +31,9 @@ const validations = {
     tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
 };
 
-loginLink.addEventListener('click', () => {
-    renderTemplate('login')
-});
+// loginLink.addEventListener('click', () => {
+//     renderTemplate('login')
+// });
 
 function sendData(form) {
     const formData: any = new FormData(form);
