@@ -9,6 +9,8 @@ export class Button extends Block {
     }
 
     render() {
+        // this._element.add(...this.props.classNames)
+
         return compile(template,{ ...this.props });
     }
 }

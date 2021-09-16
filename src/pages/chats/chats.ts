@@ -14,6 +14,7 @@ export class ChatsPage extends Block {
             events: {
                 click: () => console.log("chats")
             },
+            // className: "chats"
         });
         return compile(template,{
             buttonChats: buttonChats,

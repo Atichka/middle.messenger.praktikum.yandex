@@ -5,7 +5,7 @@ import {compile} from "../../util/compile";
 import {render} from "../../../index";
 import {LoginPage} from "../login/index";
 import {SigninPage} from "../signin/index"
-// import {ChatsPage} from "../chats/index"
+import {ChatsPage} from "../chats/index"
 import {ProfilePage} from "../profile/profile"
 import {ProfileEditPage} from "../profileEdit/profileEdit"
 import {PasswordEditPage} from "../passwordEdit/passwordEdit";
@@ -30,12 +30,12 @@ export class HomePage extends Block {
                 click: () => render('#app', new SigninPage())
             },
         });
-        // const buttonChats = new Button( {
-        //     text: "chats",
-        //     events: {
-        //         click: () => render('#app', new ChatsPage())
-        //     },
-        // });
+        const buttonChats = new Button( {
+            text: "chats",
+            events: {
+                click: () => render('#app', new ChatsPage())
+            },
+        });
         const buttonProfile = new Button( {
             text: "profile",
             events: {
@@ -69,7 +69,7 @@ export class HomePage extends Block {
         return compile(template,{
             buttonLogin: buttonLogin,
             buttonSignin: buttonSignin,
-            // buttonChats: buttonChats,
+            buttonChats: buttonChats,
             buttonProfile: buttonProfile,
             buttonProfileEdit: buttonProfileEdit,
             buttonPasswordEdit: buttonPasswordEdit,
