@@ -4,13 +4,6 @@ block main
     div.login
         div.login__container
             h1.login__title Вход
-            form.form(id='formlogin', name='formlogin', onsubmit="sendData(this); return false;")
-                label.form__field-name(for='userLogin', onclick="addBlurFocusListener(this)") Логин
-                    | !{inputLogin}
-                    span.error(id='error-login') неверный логин
-                label.form__field-name(for='userPassword', onclick="addBlurFocusListener(this)") Пароль
-                    | !{inputPassword}
-                    span.error(id='error-password') неверный пароль
-                | !{buttonLogin}
+            | !{formLogin}
             button.form__signup-button Нет аккаунта?
 
