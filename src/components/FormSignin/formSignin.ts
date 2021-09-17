@@ -1,9 +1,8 @@
 import {Block} from "../../util/block";
 import template from "./template.pug";
 import {compile} from "../../util/compile";
-import {Button} from "../Button/button";
 
-export class Form extends Block {
+export class FormSignin extends Block {
     constructor(props) {
         // Создаём враппер дом-элемент button
         super("form", props);

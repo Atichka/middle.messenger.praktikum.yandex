@@ -4,26 +4,5 @@ block main
     div.main
         div.signin
             h1.signin__title Регистрация
-            form.form(id='form', name='formsignin', onsubmit="sendData(this); return false;")
-                label.form__field-name(for='userEmail', onclick="addBlurFocusListener(this)") Email
-                    | !{inputEmail}
-                    span.error(id='error-email') неправильный формат email
-                label.form__field-name(for='userLogin', onclick="addBlurFocusListener(this)") Логин
-                    | !{inputLogin}
-                    span.error(id='error-login') некорректный ввод
-                label.form__field-name(for='newName', onclick="addBlurFocusListener(this)") Имя
-                    | !{inputName}
-                    span.error(id='error-name') некорректный ввод
-                label.form__field-name(for='newSecondName', onclick="addBlurFocusListener(this)") Фамилия
-                    | !{inputSecondName}
-                    span.error(id='error-second-name') некорректный ввод
-                label.form__field-name(for='phone', onclick="addBlurFocusListener(this)") Телефон
-                    | !{inputTel}
-                    span.error неправильный формат телефона
-                label.form__field-name(for='userPassword', onclick="addBlurFocusListener(this)") Пароль
-                    | !{inputPassword}
-                label.form__field-name(for='userPasswordRepeat', onclick="addBlurFocusListener(this)") Пароль (ещё раз)
-                    | !{inputPasswordRepeat}
-                    span.error(id='error-password') Пароли не совпадают
-                | !{buttonSignin}
+            | !{formSignin}
             button.form__signup-button(onclick="window.location.href = './login.html'") Войти

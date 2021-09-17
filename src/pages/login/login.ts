@@ -3,7 +3,7 @@ import template from "./login.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
 import {Input} from "../../components/Input/input";
-import {Form} from "../../components/Form/form"
+import {FormLogin} from "../../components/FormLogin/formLogin"
 
 export class LoginPage extends Block {
     constructor() {
@@ -11,7 +11,7 @@ export class LoginPage extends Block {
     }
 
     public render(): DocumentFragment {
-        const formLogin = new Form( {
+        const formLogin = new FormLogin( {
             classNames: ["form"],
             id: "formlogin",
             name: "formlogin",
