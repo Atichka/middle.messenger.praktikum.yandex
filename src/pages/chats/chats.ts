@@ -2,6 +2,8 @@ import {Block} from "../../util/block";
 import template from "./chats.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
+import {FormChats} from "../../components/FormChats/formChats";
+import {Input} from "../../components/Input/input";
 
 export class ChatsPage extends Block {
     constructor() {
@@ -9,84 +11,44 @@ export class ChatsPage extends Block {
     }
 
     public render(): DocumentFragment {
-        const buttonChats = new Button( {
-            text: "→",
-            events: {
-                click: () => sendData(),
-            },
-            classNames: ["send-form__button-send"]
+        const formChats = new FormChats( {
+            classNames: ["send-form"],
+            id: "formmessage",
+            name: "formmessage",
+            buttonChats: new Button( {
+                text: "→",
+                events: {
+                    click: (e) => this.sendData(e),
+                },
+                classNames: ["send-form__button-send"]
+            }),
+            inputMessage: new Input( {
+                classNames: ["send-form__input"],
+                id: "message",
+                type: "text",
+                name: "message",
+                minlength: 2,
+                maxlength: 30,
+                required: "",
+                placeholder: "Сообщение",
+            }),
         });
         return compile(template,{
-            buttonChats: buttonChats,
+            formChats: formChats,
         });
     }
-}
 
-const validations = {
-    password: /\w+/,
-    text: /\w+/,
-    email: /^\S+@\S+$/i,
-    tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
-};
-
-function sendData(form) {
-    const formData: any = new FormData(form);
-    const obj: Record<string, unknown> = {};
-    for (const [name, value] of formData) {
-        obj[name] = value;
-    }
-
-    // Валидация
-    let isErrors = false;
-
-    const fields = document.querySelectorAll('.form__field-name');
-    for (const field of fields) {
-        const input = <HTMLInputElement>field.querySelector('input');
-        const isValid = validateInput(input, field);
-        if (!isValid) {
-            isErrors = true;
-        }
-    }
-
-    if (!isErrors) {
-        for (const [name, value] of formData) {
-            console.log(`${name}: ${value}`);
+    sendData(e) {
+        e.preventDefault();
+        const input = document.querySelector('.send-form__input');
+        const name = input.name;
+        console.log(input.value);
+        const span = this._element.querySelector(`#error-${name}`)
+        if(input.value.length > 0) {
+            span.classList.add("error-hide");
+        } else {
+            span.classList.remove('error-hide');
         }
     }
 }
-
-function addBlurFocusListener(field) {
-    const input = field.querySelector('.form__input');
-    input.addEventListener("focus", () => onFocus(input));
-    input.addEventListener("blur", e => onBlur(e, field));
-}
-
-function onFocus(input) {
-    input.classList.remove('field-error');
-}
-
-function onBlur(event, field) {
-    validateInput(event.target, field);
-}
-
-function validateInput(input, field) {
-    const type = input.type;
-    const value = input.value;
-
-    let regexp = /\w+/;
-    if (type in validations) {
-        regexp = validations[type];
-    }
-
-    const isValid = regexp.test(value);
-    if (!isValid) {
-
-        field.classList.add("field-error");
-        return false;
-    }
-    return true;
-}
-
-window.sendData = sendData
-window.addBlurFocusListener = addBlurFocusListener
 
