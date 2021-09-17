@@ -37,6 +37,8 @@ export class LoginPage extends Block {
                 events: {
                     // blur: this.validateInput.bind(this),
                     // focus: () => onFocus.bind(this),
+                    // focus: (e) => this.onFocus(e),
+                    blur: (e) => this.onBlur(e),
                     focus: (e) => this.onFocus(e),
                 },
             }),
@@ -52,8 +54,9 @@ export class LoginPage extends Block {
                 events: {
                     // blur: this.validateInput.bind(this),
                     // focus: () => onFocus.bind(this),
-                    focus: (e) => this.onFocus(e),
+                    // focus: (e) => this.onFocus(e),
                     blur: (e) => this.onBlur(e),
+                    focus: (e) => this.onFocus(e),
                 },
             }),
         });
@@ -64,16 +67,24 @@ export class LoginPage extends Block {
 
     validateInput(event) {
         const input = event.target;
+        const name = input.name;
         const type = input.type;
         const value = input.value;
+        const validations = {
+            password: /\w+/,
+            text: /\w+/,
+            email: /^\S+@\S+$/i,
+            tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
+        };
 
-        const span = this._element.querySelector('#error-login');
+        const span = this._element.querySelector(`#error-${name}`)
         let regexp = /\w+/;
         if (type in validations) {
             regexp = validations[type];
         }
 
         const isValid = regexp.test(value);
+        console.log('span', span);
         if (!isValid) {
 
             span.classList.add("error-hide");
@@ -83,14 +94,18 @@ export class LoginPage extends Block {
     }
 
     onFocus(event) {
+        console.log('onFocus')
         const input = event.target;
+        const name = input.name;
         // console.log('input', input.parentElement);
-        // const span = this._element.querySelector('.error')
-        // span.classList.remove('error-hide');
-        input.classList.remove('field-error');
+        const span = this._element.querySelector(`#error-${name}`)
+        // span.classList.add("error-hide");
+        span.classList.remove('error-hide');
+        // input.classList.remove('field-error');
     }
 
     onBlur(event) {
+        console.log('onBlur')
         const input = event.target;
         validateInput(input, input.parentElement);
     }
@@ -98,58 +113,58 @@ export class LoginPage extends Block {
 
 }
 
-const validations = {
-    password: /\w+/,
-    text: /\w+/,
-    email: /^\S+@\S+$/i,
-    tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
-};
-
-function validateInput(input, field) {
-    const type = input.type;
-    const value = input.value;
-
-    let regexp = /\w+/;
-    if (type in validations) {
-        regexp = validations[type];
-    }
-
-    const isValid = regexp.test(value);
-    if (!isValid) {
-
-        field.classList.add("field-error");
-        return false;
-    }
-    return true;
-}
-
-function sendData(e) {
-    e.preventDefault();
-    const form = document.querySelector('.form');
-    const formData: any = new FormData(form);
-    const obj: Record<string, unknown> = {};
-    for (const [name, value] of formData) {
-        obj[name] = value;
-    }
-
-    // Валидация
-    let isErrors = false;
-
-    const fields = document.querySelectorAll('.form__field-name');
-    for (const field of fields) {
-        const input = <HTMLInputElement>field.querySelector('input');
-        const isValid = validateInput(input, field);
-        if (!isValid) {
-            isErrors = true;
-        }
-    }
-
-    if (!isErrors) {
-        for (const [name, value] of formData) {
-            console.log(`${name}: ${value}`);
-        }
-    }
-}
+// const validations = {
+//     password: /\w+/,
+//     text: /\w+/,
+//     email: /^\S+@\S+$/i,
+//     tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
+// };
+//
+// function validateInput(input, field) {
+//     const type = input.type;
+//     const value = input.value;
+//
+//     let regexp = /\w+/;
+//     if (type in validations) {
+//         regexp = validations[type];
+//     }
+//
+//     const isValid = regexp.test(value);
+//     if (!isValid) {
+//
+//         field.classList.add("field-error");
+//         return false;
+//     }
+//     return true;
+// }
+//
+// function sendData(e) {
+//     e.preventDefault();
+//     const form = document.querySelector('.form');
+//     const formData: any = new FormData(form);
+//     const obj: Record<string, unknown> = {};
+//     for (const [name, value] of formData) {
+//         obj[name] = value;
+//     }
+//
+//     // Валидация
+//     let isErrors = false;
+//
+//     const fields = document.querySelectorAll('.form__field-name');
+//     for (const field of fields) {
+//         const input = <HTMLInputElement>field.querySelector('input');
+//         const isValid = validateInput(input, field);
+//         if (!isValid) {
+//             isErrors = true;
+//         }
+//     }
+//
+//     if (!isErrors) {
+//         for (const [name, value] of formData) {
+//             console.log(`${name}: ${value}`);
+//         }
+//     }
+// }
 
 // function onFocus() {
 //     // console.log('this', this);
