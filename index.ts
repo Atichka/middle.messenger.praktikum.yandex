@@ -16,3 +16,11 @@ export function render(query: string, block: Block) {
 }
 
 render('#app', new HomePage())
+
+export function addClass(_element, props) {
+    if(Array.isArray(props.classNames)) {
+        return _element.classList.add(...props.classNames)
+    } else {
+        return _element.classList.add(props.classNames)
+    }
+}

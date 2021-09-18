@@ -1,6 +1,7 @@
 import {Block} from "../../util/block";
 import template from "./template.pug";
 import {compile} from "../../util/compile";
+import {addClass} from "../../../index";
 
 export class FormLogin extends Block {
     constructor(props) {
@@ -8,11 +9,7 @@ export class FormLogin extends Block {
     }
 
     public render(): DocumentFragment {
-        if(Array.isArray(this.props.classNames)) {
-            this._element.classList.add(...this.props.classNames)
-        } else {
-            this._element.classList.add(this.props.classNames)
-        }
+        addClass(this._element, this.props)
         this._element.setAttribute('id', this.props.id);
         this._element.setAttribute('name', this.props.name);
         return compile(template,
