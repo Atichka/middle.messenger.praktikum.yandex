@@ -15,7 +15,7 @@ export class Button extends Block {
             this._element.classList.add(this.props.classNames)
         }
 
-        return compile(template,{ ...this.props });
+        return compile(template,{...this.props});
     }
 }
 

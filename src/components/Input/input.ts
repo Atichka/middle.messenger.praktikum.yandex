@@ -22,7 +22,7 @@ export class Input extends Block {
         this._element.setAttribute('required', this.props.required);
         this._element.setAttribute('placeholder', this.props.placeholder);
 
-        return compile(template,{ ...this.props });
+        return compile(template,{...this.props});
     }
 }
 

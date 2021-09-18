@@ -17,7 +17,7 @@ export class FormChats extends Block {
         this._element.setAttribute('id', this.props.id);
         this._element.setAttribute('name', this.props.name);
         return compile(template,
-            { ...this.props }
+            {...this.props}
         );
     }
 }
