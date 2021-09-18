@@ -4,7 +4,6 @@ import template from "./template.pug";
 
 export class Button extends Block {
     constructor(props) {
-        // Создаём враппер дом-элемент button
         super("button", props);
     }
 

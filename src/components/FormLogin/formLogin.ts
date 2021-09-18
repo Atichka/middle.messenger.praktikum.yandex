@@ -4,7 +4,6 @@ import {compile} from "../../util/compile";
 
 export class FormLogin extends Block {
     constructor(props) {
-        // Создаём враппер дом-элемент button
         super("form", props);
     }
 
