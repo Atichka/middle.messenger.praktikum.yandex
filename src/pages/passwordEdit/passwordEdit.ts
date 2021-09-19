@@ -22,13 +22,6 @@ export class PasswordEditPage extends Block {
                 },
                 classNames: ["profile__button"]
             }),
-            buttonBack: new Button( {
-                text: "←",
-                events: {
-                    click: () => console.log("buttonBack")
-                },
-                classNames: ["profile__button-back"]
-            }),
             inputOldPassword: new Input( {
                 classNames: ["profile__input", "text__grey", "profile__text"],
                 id: "oldPassword",
@@ -54,8 +47,16 @@ export class PasswordEditPage extends Block {
                 placeholder: "Пароль",
             }),
         });
+        const buttonBack = new Button( {
+            text: "←",
+            events: {
+                click: () => console.log("buttonBack")
+            },
+            classNames: ["profile__button-back"]
+        });
         return compile(template,{
             formPasswordEdit: formPasswordEdit,
+            buttonBack: buttonBack,
         });
     }
 
