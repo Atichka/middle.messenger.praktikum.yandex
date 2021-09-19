@@ -5,7 +5,7 @@ block main
         div.profile__container
             button.profile__button-back(onclick="window.location.href = './chats.pug'") ←
         div.profile__main
-            form(id="formData", name="formData")
+            form(id="formData", name="formData", onsubmit="sendData(this); return false;")
                 div.profile__info
                     button.profile__button-pic
                     div.profile__row

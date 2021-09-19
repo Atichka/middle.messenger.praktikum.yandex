@@ -1,17 +1,17 @@
 ul Ссылки на страницы
     li
-        a(href='./pages/login.pug') login
+        button.loginLink(type='submit', onclick="renderTemplate('login')") login
     li
-        a(href='./pages/signin.pug') signin
+        button.signinLink(type='submit', onclick="renderTemplate('signin')") signin
     li
-        a(href='./pages/chatPage.pug') chats
+        button.chatsLink(type='submit', onclick="renderTemplate('chats')") chats
     li
-        a(href='./pages/profile.pug') profile
+        button.profileLink(type='submit', onclick="renderTemplate('profile')") profile
     li
-        a(href='./pages/profileEdit.pug') profile edit
+        button.profileEditLink(type='submit', onclick="renderTemplate('profileEdit')") profile edit
     li
-        a(href='./pages/passwordEdit.pug') password edit
+        button.passwordEditLink(type='submit', onclick="renderTemplate('passwordEdit')") password edit
     li
-        a(href='./pages/error404.pug') error 404
+        button.error404Link(type='submit', onclick="renderTemplate('error404')") error 404
     li
-        a(href='./pages/error500.pug') error 500
+        button.error500Link(type='submit', onclick="renderTemplate('error500')") error 500

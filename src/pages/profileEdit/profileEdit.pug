@@ -1,0 +1,14 @@
+extends ../../tpl/components/page
+
+block main
+    div.profile
+        div.profile__container
+            | !{buttonBack}
+        div.profile__main
+            | !{formProfileEdit}
+    div.popup.hide
+        div.popup__content
+            p.popup__text Загрузите файл
+            a.popup__link Выбрать файл на компьютере
+            | !{buttonChange}
+            span.popup__error Нужно выбрать файл

@@ -1,0 +1,36 @@
+extends ../../tpl/components/page
+
+block main
+    div.profile
+        div.profile__container
+            | !{buttonProfile}
+        div.profile__main
+            div.profile__photo
+                img.profile__pic
+            div.profile__info
+                div.profile__row
+                    p.profile__text Почта
+                    p.text__grey.profile__text pochta@yandex.ru
+                div.profile__row
+                    p.profile__text Логин
+                    p.text__grey.profile__text ivanivanov
+                div.profile__row
+                    p.profile__text Имя
+                    p.text__grey.profile__text Иван
+                div.profile__row
+                    p.profile__text Фамилия
+                    p.text__grey.profile__text Иванов
+                div.profile__row
+                    p.profile__text Имя в чате
+                    p.text__grey.profile__text Иван
+                div.profile__row
+                    p.profile__text Телефон
+                    p.text__grey.profile__text +7 (909) 967 30 30
+            div.profile__setting
+                div.profile__info
+                    div.profile__row
+                        a.text__blue.profile__text(onclick="window.location.href='./profileEdit.html'") Изменить данные
+                    div.profile__row
+                        a.text__blue.profile__text(onclick="window.location.href='./passwordEdit.html'") Изменить пароль
+                    div.profile__row
+                        a.text__red.profile__text(onclick="window.location.href='./profile.html'") Выйти
