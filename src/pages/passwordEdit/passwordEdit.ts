@@ -2,8 +2,10 @@ import {Block} from "../../util/block";
 import template from "./passwordEdit.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
+import {render} from "../../../index";
 import {Input} from "../../components/Input/input";
 import {FormPasswordEdit} from "../../components/FormPasswordEdit/formPasswordEdit";
+import {ChatsPage} from "../chats/chats";
 
 export class PasswordEditPage extends Block {
     constructor() {
@@ -50,7 +52,7 @@ export class PasswordEditPage extends Block {
         const buttonBack = new Button( {
             text: "←",
             events: {
-                click: () => console.log("buttonBack")
+                click: () => render('#app', new ChatsPage())
             },
             classNames: ["profile__button-back"]
         });

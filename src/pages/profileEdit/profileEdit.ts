@@ -2,8 +2,10 @@ import {Block} from "../../util/block";
 import template from "./profileEdit.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
+import {render} from "../../../index";
 import {Input} from "../../components/Input/input";
 import {FormProfileEdit} from "../../components/FormProfileEdit/formProfileEdit";
+import {ChatsPage} from "../chats/chats";
 
 export class ProfileEditPage extends Block {
     constructor() {
@@ -21,13 +23,6 @@ export class ProfileEditPage extends Block {
                     click: (e) => this.sendData(e),
                 },
                 classNames: ["profile__button"]
-            }),
-            buttonBack: new Button( {
-                text: "←",
-                events: {
-                    click: () => console.log("buttonBack")
-                },
-                classNames: ["profile__button-back"]
             }),
             buttonChange: new Button( {
                 text: "Поменять",
@@ -96,8 +91,16 @@ export class ProfileEditPage extends Block {
                 required: "",
                 placeholder: "+79099673030",
             })
-        })
+        });
+        const buttonBack = new Button( {
+            text: "←",
+            events: {
+                click: () => render('#app', new ChatsPage())
+            },
+            classNames: ["profile__button-back"]
+        });
         return compile(template,{
+            buttonBack: buttonBack,
             formProfileEdit: formProfileEdit,
         });
     }
