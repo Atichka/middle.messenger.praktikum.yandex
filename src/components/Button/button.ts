@@ -9,7 +9,7 @@ export class Button extends Block {
     }
 
     render() {
-        addClass(this._element, this.props)
+        addClass(this._element, this.props);
 
         return compile(template,{...this.props});
     }

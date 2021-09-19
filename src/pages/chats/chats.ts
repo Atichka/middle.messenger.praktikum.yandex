@@ -7,7 +7,7 @@ import {Input} from "../../components/Input/input";
 
 export class ChatsPage extends Block {
     constructor() {
-        super('div')
+        super('div');
     }
 
     public render(): DocumentFragment {
@@ -20,7 +20,7 @@ export class ChatsPage extends Block {
                 events: {
                     click: (e) => this.sendData(e),
                 },
-                classNames: ["send-form__button-send"]
+                classNames: ["send-form__button-send"],
             }),
             inputMessage: new Input( {
                 classNames: ["send-form__input"],
@@ -42,7 +42,7 @@ export class ChatsPage extends Block {
         e.preventDefault();
         const input = document.querySelector('.send-form__input');
         const name = input.name;
-        const span = this._element.querySelector(`#error-${name}`)
+        const span = this._element.querySelector(`#error-${name}`);
         if(input.value.length > 0) {
             span.classList.add("error-hide");
             console.log("Message: ", input.value);

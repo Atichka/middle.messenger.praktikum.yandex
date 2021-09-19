@@ -13,5 +13,5 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
   },
-  "lib": ["dom"]
+  "lib": ["dom"],
 }

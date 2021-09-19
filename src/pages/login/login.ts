@@ -67,7 +67,7 @@ export class LoginPage extends Block {
             tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
         };
 
-        const span = this._element.querySelector(`#error-${name}`)
+        const span = this._element.querySelector(`#error-${name}`);
         let regexp = /\w+/;
         if (type in validations) {
             regexp = validations[type];
@@ -85,7 +85,7 @@ export class LoginPage extends Block {
     onFocus(event) {
         const input = event.target;
         const name = input.name;
-        const span = this._element.querySelector(`#error-${name}`)
+        const span = this._element.querySelector(`#error-${name}`);
         span.classList.remove('error-hide');
     }
 

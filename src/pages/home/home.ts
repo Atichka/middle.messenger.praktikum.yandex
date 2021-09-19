@@ -14,56 +14,56 @@ import {Error500Page} from "../error500/error500"
 
 export class HomePage extends Block {
     constructor() {
-        super('div')
+        super('div');
     }
 
     public render(): DocumentFragment {
         const buttonLogin = new Button( {
             text: "login",
             events: {
-                click: () => render('#app', new LoginPage())
+                click: () => render('#app', new LoginPage()),
             },
         });
         const buttonSignin = new Button( {
             text: "signin",
             events: {
-                click: () => render('#app', new SigninPage())
+                click: () => render('#app', new SigninPage()),
             },
         });
         const buttonChats = new Button( {
             text: "chats",
             events: {
-                click: () => render('#app', new ChatsPage())
+                click: () => render('#app', new ChatsPage()),
             },
         });
         const buttonProfile = new Button( {
             text: "profile",
             events: {
-                click: () => render('#app', new ProfilePage())
+                click: () => render('#app', new ProfilePage()),
             },
         });
         const buttonProfileEdit = new Button( {
             text: "profile edit",
             events: {
-                click: () => render('#app', new ProfileEditPage())
+                click: () => render('#app', new ProfileEditPage()),
             },
         });
         const buttonPasswordEdit = new Button( {
             text: "password edit",
             events: {
-                click: () => render('#app', new PasswordEditPage())
+                click: () => render('#app', new PasswordEditPage()),
             },
         });
         const buttonError404 = new Button( {
             text: "error 404",
             events: {
-                click: () => render('#app', new Error404Page())
+                click: () => render('#app', new Error404Page()),
             },
         });
         const buttonError500 = new Button( {
             text: "error 500",
             events: {
-                click: () => render('#app', new Error500Page())
+                click: () => render('#app', new Error500Page()),
             },
         });
         return compile(template,{

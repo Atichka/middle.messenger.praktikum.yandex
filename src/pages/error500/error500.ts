@@ -4,7 +4,7 @@ import {compile} from "../../util/compile";
 
 export class Error500Page extends Block {
     constructor() {
-        super('div')
+        super('div');
     }
 
     public render(): DocumentFragment {

@@ -9,7 +9,7 @@ export class Input extends Block {
     }
 
     render() {
-        addClass(this._element, this.props)
+        addClass(this._element, this.props);
         this._element.setAttribute('id', this.props.id);
         this._element.setAttribute('type', this.props.type);
         this._element.setAttribute('name', this.props.name);
