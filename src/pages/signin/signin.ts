@@ -47,7 +47,7 @@ export class SigninPage extends Block {
                 classNames: ["form__input"],
                 id: "newName",
                 type: "text",
-                name: "firstName",
+                name: "first_name",
                 minlength: 2,
                 maxlength: 30,
                 required: "",
@@ -100,10 +100,6 @@ export class SigninPage extends Block {
                 name: "passwordRepeat",
                 required: "",
                 placeholder: "Пароль",
-                events: {
-                    blur: (e) => this.onBlur(e),
-                    focus: (e) => this.onFocus(e),
-                },
             }),
             buttonSignin: new Button( {
                 text: "Зарегистрироваться",
@@ -158,29 +154,40 @@ export class SigninPage extends Block {
 
     sendData(e) {
         e.preventDefault();
-        const form = document.querySelector('.form');
-        const formData: any = new FormData(form);
-        const obj: Record<string, unknown> = {};
-        for (const [name, value] of formData) {
-            obj[name] = value;
-        }
+        const inputPassword = document.querySelector('#userPassword');
+        const inputPasswordRepeat = document.querySelector('#userPasswordRepeat');
+        const name = inputPasswordRepeat.name;
+        const spanPasswordRepeat = this._element.querySelector(`#error-${name}`);
 
-        // Валидация
-        let isErrors = false;
-
-        const fields = document.querySelectorAll('.form__field-name');
-        for (const field of fields) {
-            const input = <HTMLInputElement>field.querySelector('input');
-            const isValid = this.validateInput(input);
-            if (!isValid) {
-                isErrors = true;
-            }
-        }
-
-        if (!isErrors) {
+        if(inputPassword.value === inputPasswordRepeat.value) {
+            spanPasswordRepeat.classList.add("error-hide");
+            const form = document.querySelector('.form');
+            const formData: any = new FormData(form);
+            const obj: Record<string, unknown> = {};
             for (const [name, value] of formData) {
-                console.log(`${name}: ${value}`);
+                obj[name] = value;
             }
+
+            // Валидация
+            let isErrors = false;
+
+            const fields = document.querySelectorAll('.form__field');
+            for (const field of fields) {
+                const input = <HTMLInputElement>field.querySelector('input');
+                const isValid = this.validateInput(input);
+                if (!isValid) {
+                    isErrors = true;
+                }
+            }
+
+            if (!isErrors) {
+                for (const [name, value] of formData) {
+                    console.log(`${name}: ${value}`);
+                }
+            }
+
+        } else {
+            spanPasswordRepeat.classList.remove('error-hide');
         }
     }
 }
