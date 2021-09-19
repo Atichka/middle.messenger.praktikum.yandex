@@ -7,14 +7,14 @@ import {ChatsPage} from "../chats/chats";
 
 export class ProfilePage extends Block {
     constructor() {
-        super('div')
+        super('div');
     }
 
     public render(): DocumentFragment {
         const buttonProfile = new Button( {
             text: "←",
             events: {
-                click: () => render('#app', new ChatsPage())
+                click: () => render('#app', new ChatsPage()),
             },
             classNames: ["profile__button-back"]
         });

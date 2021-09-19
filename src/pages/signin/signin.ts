@@ -7,7 +7,7 @@ import {FormSignin} from "../../components/FormSignin/formSignin";
 
 export class SigninPage extends Block {
     constructor() {
-        super('div')
+        super('div');
     }
 
     public render(): DocumentFragment {
@@ -106,7 +106,7 @@ export class SigninPage extends Block {
                 events: {
                     click: (e) => this.sendData(e),
                 },
-                classNames: ["form__button", "form__top-signin"]
+                classNames: ["form__button", "form__top-signin"],
             }),
         });
         return compile(template,{
@@ -125,7 +125,7 @@ export class SigninPage extends Block {
             tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
         };
 
-        const span = this._element.querySelector(`#error-${name}`)
+        const span = this._element.querySelector(`#error-${name}`);
         let regexp = /\w+/;
         if (type in validations) {
             regexp = validations[type];
@@ -143,7 +143,7 @@ export class SigninPage extends Block {
     onFocus(event) {
         const input = event.target;
         const name = input.name;
-        const span = this._element.querySelector(`#error-${name}`)
+        const span = this._element.querySelector(`#error-${name}`);
         span.classList.remove('error-hide');
     }
 

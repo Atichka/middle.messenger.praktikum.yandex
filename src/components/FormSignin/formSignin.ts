@@ -9,7 +9,7 @@ export class FormSignin extends Block {
     }
 
     public render(): DocumentFragment {
-        addClass(this._element, this.props)
+        addClass(this._element, this.props);
         this._element.setAttribute('id', this.props.id);
         this._element.setAttribute('name', this.props.name);
         return compile(template,

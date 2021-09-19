@@ -9,7 +9,7 @@ import {ChatsPage} from "../chats/chats";
 
 export class ProfileEditPage extends Block {
     constructor() {
-        super('div')
+        super('div');
     }
 
     public render(): DocumentFragment {
@@ -22,14 +22,14 @@ export class ProfileEditPage extends Block {
                 events: {
                     click: (e) => this.sendData(e),
                 },
-                classNames: ["profile__button"]
+                classNames: ["profile__button"],
             }),
             buttonChange: new Button( {
                 text: "Поменять",
                 events: {
                     click: (e) => this.sendData(e),
                 },
-                classNames: ["profile__button"]
+                classNames: ["profile__button"],
             }),
             inputEmail: new Input( {
                 classNames: ["profile__input", "text__grey", "profile__text"],
@@ -95,9 +95,9 @@ export class ProfileEditPage extends Block {
         const buttonBack = new Button( {
             text: "←",
             events: {
-                click: () => render('#app', new ChatsPage())
+                click: () => render('#app', new ChatsPage()),
             },
-            classNames: ["profile__button-back"]
+            classNames: ["profile__button-back"],
         });
         return compile(template,{
             buttonBack: buttonBack,

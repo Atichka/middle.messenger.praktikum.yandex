@@ -31,7 +31,7 @@ export class Block<T extends TProps> {
         const eventBus = new EventBus();
         this._meta = {
             tagName,
-            props
+            props,
         };
 
         this.props = this._makePropsProxy(props as T);
@@ -65,7 +65,7 @@ export class Block<T extends TProps> {
     }
 
     // Может переопределять пользователь, необязательно трогать
-    componentDidMount(): void {}
+    componentDidMount(): void {};
 
     _componentDidUpdate(oldProps: T, newProps: T) {
         const response = this.componentDidUpdate(oldProps, newProps);
