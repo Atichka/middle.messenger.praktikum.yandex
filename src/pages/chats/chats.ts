@@ -42,10 +42,10 @@ export class ChatsPage extends Block {
         e.preventDefault();
         const input = document.querySelector('.send-form__input');
         const name = input.name;
-        console.log(input.value);
         const span = this._element.querySelector(`#error-${name}`)
         if(input.value.length > 0) {
             span.classList.add("error-hide");
+            console.log("Message: ", input.value);
         } else {
             span.classList.remove('error-hide');
         }
