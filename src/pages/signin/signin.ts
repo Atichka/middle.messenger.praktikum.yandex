@@ -136,6 +136,7 @@ export class SigninPage extends Block {
             span.classList.add("error-hide");
             return true;
         }
+        span.classList.remove('error-hide');
         return false;
 
     }
@@ -144,7 +145,7 @@ export class SigninPage extends Block {
         const input = event.target;
         const name = input.name;
         const span = this._element.querySelector(`#error-${name}`);
-        span.classList.remove('error-hide');
+        span.classList.add("error-hide");
     }
 
     onBlur(event) {

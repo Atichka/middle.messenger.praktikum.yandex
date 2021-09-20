@@ -67,16 +67,25 @@ export class PasswordEditPage extends Block {
         const inputNewPassword = document.querySelector('#newPassword');
         const inputNewPasswordRepeat = document.querySelector('#newPasswordRepeat');
         const inputOldPassword = document.querySelector('#oldPassword');
+        const spanOldPassword = this._element.querySelector(`#error-oldPassword`);
         const name = inputNewPasswordRepeat.name;
         const spanNewPasswordRepeat = this._element.querySelector(`#error-${name}`);
-        if(inputNewPassword.value === inputNewPasswordRepeat.value) {
-            spanNewPasswordRepeat.classList.add("error-hide");
+        if(inputNewPassword.value && inputNewPasswordRepeat.value && inputOldPassword.value) {
+            if(inputNewPassword.value === inputNewPasswordRepeat.value) {
+                spanNewPasswordRepeat.classList.add("error-hide");
+                spanOldPassword.classList.add("error-hide");
+                console.log(inputOldPassword.value);
+                console.log(inputNewPassword.value);
+                console.log(inputNewPasswordRepeat.value);
+            } else {
+                spanNewPasswordRepeat.classList.remove('error-hide');
+                spanOldPassword.classList.add("error-hide");
+            }
+
         } else {
-            spanNewPasswordRepeat.classList.remove('error-hide');
+            spanNewPasswordRepeat.classList.add('error-hide');
+            spanOldPassword.classList.remove("error-hide");
         }
-        console.log(inputOldPassword.value);
-        console.log(inputNewPassword.value);
-        console.log(inputNewPasswordRepeat.value);
     }
 }
 
