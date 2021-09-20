@@ -31,11 +31,33 @@ export class ChatsPage extends Block {
                 maxlength: 30,
                 required: "",
                 placeholder: "Сообщение",
+                events: {
+                    blur: (e) => this.onBlur(e),
+                    focus: (e) => this.onFocus(e),
+                },
             }),
         });
         return compile(template,{
             formChats: formChats,
         });
+    }
+
+    onBlur(event) {
+        const input = event.target;
+        const name = input.name;
+        const span = this._element.querySelector(`#error-${name}`);
+        if(input.value.length > 0) {
+            span.classList.add("error-hide");
+        } else {
+            span.classList.remove('error-hide');
+        }
+    }
+
+    onFocus(event) {
+        const input = event.target;
+        const name = input.name;
+        const span = this._element.querySelector(`#error-${name}`);
+        span.classList.add("error-hide");
     }
 
     sendData(e) {
