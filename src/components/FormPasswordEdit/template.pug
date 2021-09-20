@@ -1,0 +1,13 @@
+div.profile__info
+    div.profile__row
+        p.profile__text Старый пароль
+        | !{inputOldPassword}
+    div.profile__row
+        p.profile__text Новый пароль
+        | !{inputNewPassword}
+    div.profile__row
+        p.profile__text Повторить новый пароль
+        | !{inputNewPasswordRepeat}
+    span.profile__error.error-hide(id='error-newPasswordRepeat') Пароли не совпадают
+    span.profile__error.error-hide(id='error-oldPassword') Все поля должны быть заполнены
+| !{buttonSave}

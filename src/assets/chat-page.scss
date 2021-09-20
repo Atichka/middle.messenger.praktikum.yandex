@@ -63,6 +63,7 @@
   }
 
   &__input {
+    width: 90%;
     padding: 10px 20px;
 
     font-weight: 500;
@@ -80,6 +81,7 @@
 
     background: $blue-background-color;
     border-radius: 50%;
+    height: 40px;
   }
 }
 

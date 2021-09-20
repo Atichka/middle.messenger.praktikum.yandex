@@ -1,0 +1,22 @@
+label.form__field.form__field-name(for='userEmail') Email
+    | !{inputEmail}
+    span.error(id='error-email') неправильный формат email
+label.form__field.form__field-name(for='userLogin') Логин
+    | !{inputLogin}
+    span.error(id='error-login') некорректный ввод
+label.form__field.form__field-name(for='newName') Имя
+    | !{inputName}
+    span.error(id='error-first_name') некорректный ввод
+label.form__field.form__field-name(for='newSecondName') Фамилия
+    | !{inputSecondName}
+    span.error(id='error-second_name') некорректный ввод
+label.form__field.form__field-name(for='phone') Телефон
+    | !{inputTel}
+    span.error(id='error-phone') неправильный формат телефона
+label.form__field-name(for='userPassword') Пароль
+    | !{inputPassword}
+label.form__field-name(for='userPasswordRepeat') Пароль (ещё раз)
+    | !{inputPasswordRepeat}
+    span.error.error-hide(id='error-passwordRepeat') Пароли не совпадают
+| !{buttonSignin}
+

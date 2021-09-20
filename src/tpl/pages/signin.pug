@@ -4,17 +4,17 @@ block main
     div.main
         div.signin
             h1.signin__title Регистрация
-            form.form(id='form', name='formsignin')
-                label.form__field-name(for='userEmail') Email
-                input.form__input(id='userEmail',
-                    type='email',
-                    name='email',
-                    minlength=2,
-                    maxlength=30,
-                    required,
-                    placeholder='Email')
-                span.error(id='error-email') Неправильный формат email
-                label.form__field-name(for='userLogin') Логин
+            form.form(id='form', name='formsignin', onsubmit="sendData(this); return false;")
+                label.form__field-name(for='userEmail', onclick="addBlurFocusListener(this)") Email
+                    input.form__input(id='userEmail',
+                        type='email',
+                        name='email',
+                        minlength=2,
+                        maxlength=30,
+                        required,
+                        placeholder='Email')
+                    span.error(id='error-email') неправильный формат email
+                label.form__field-name(for='userLogin', onclick="addBlurFocusListener(this)") Логин
                     input.form__input(id='userLogin',
                         type='text',
                         name='login',
@@ -22,7 +22,8 @@ block main
                         maxlength=30,
                         required,
                         placeholder='ivanivanov')
-                label.form__field-name(for='newName') Имя
+                    span.error(id='error-login') некорректный ввод
+                label.form__field-name(for='newName', onclick="addBlurFocusListener(this)") Имя
                     input.form__input(id='newName',
                         type='text',
                         name='first_name',
@@ -30,7 +31,8 @@ block main
                         maxlength=30,
                         required,
                         placeholder='Имя')
-                label.form__field-name(for='newSecondName') Фамилия
+                    span.error(id='error-name') некорректный ввод
+                label.form__field-name(for='newSecondName', onclick="addBlurFocusListener(this)") Фамилия
                     input.form__input(id='newSecondName',
                         type='text',
                         name='second_name',
@@ -38,7 +40,8 @@ block main
                         maxlength=30,
                         required,
                         placeholder='Фамилия')
-                label.form__field-name(for='phone') Телефон
+                    span.error(id='error-second-name') некорректный ввод
+                label.form__field-name(for='phone', onclick="addBlurFocusListener(this)") Телефон
                     input.form__input(id='phone',
                         type='tel',
                         name='phone',
@@ -46,14 +49,14 @@ block main
                         maxlength=18,
                         required,
                         placeholder='+7 (909) 967 30 30')
-                    span.error Телефон в формате: +7 (909) 967 30 30
-                label.form__field-name(for='userPassword') Пароль
+                    span.error неправильный формат телефона
+                label.form__field-name(for='userPassword', onclick="addBlurFocusListener(this)") Пароль
                     input.form__input(id='userPassword',
                         type='password',
                         name='password',
                         required,
                         placeholder='Пароль')
-                label.form__field-name(for='userPasswordRepeat') Пароль (ещё раз)
+                label.form__field-name(for='userPasswordRepeat', onclick="addBlurFocusListener(this)") Пароль (ещё раз)
                     input.form__input(id='userPasswordRepeat',
                         type='password',
                         name='passwordRepeat',
