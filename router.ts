@@ -14,10 +14,10 @@ const router = new Router(".app");
 router
     .use("/", HomePage)
     .use("/login", LoginPage)
-    .use("/signin", SigninPage)
-    .use("/chats", ChatsPage)
+    .use("/sign-up", SigninPage)
+    .use("/messenger", ChatsPage)
     .use("/profile", ProfilePage)
-    .use("/profile-edit", ProfileEditPage)
+    .use("/settings", ProfileEditPage)
     .use("/password-edit", PasswordEditPage)
     .use("/404", Error404Page)
     .use("/500", Error500Page)
