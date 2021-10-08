@@ -2,8 +2,6 @@ import {Block} from "../../util/block"
 import template from "./home.pug"
 import {Button} from "../../components/Button/button"
 import {compile} from "../../util/compile";
-import {render} from "../../../index";
-import {LoginPage} from "../login/index";
 import {SigninPage} from "../signin/index"
 import {ChatsPage} from "../chats/index"
 import {ProfilePage} from "../profile/profile"
@@ -11,6 +9,7 @@ import {ProfileEditPage} from "../profileEdit/profileEdit"
 import {PasswordEditPage} from "../passwordEdit/passwordEdit";
 import {Error404Page} from "../error404/error404"
 import {Error500Page} from "../error500/error500"
+import {Router} from "../../util/router";
 
 export class HomePage extends Block {
     constructor() {
@@ -21,7 +20,10 @@ export class HomePage extends Block {
         const buttonLogin = new Button( {
             text: "login",
             events: {
-                click: () => render('#app', new LoginPage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/login');
+                },
             },
         });
         const buttonSignin = new Button( {
