@@ -4,6 +4,8 @@ import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
 import {render} from "../../../index";
 import {ChatsPage} from "../chats/chats";
+import {Router} from "../../util/router";
+import {Link} from "../../components/Link/link";
 
 export class ProfilePage extends Block {
     constructor() {
@@ -14,12 +16,27 @@ export class ProfilePage extends Block {
         const buttonProfile = new Button( {
             text: "←",
             events: {
-                click: () => render('#app', new ChatsPage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/messenger');
+                }
             },
             classNames: ["profile__button-back"]
         });
+        const linkProfileEdit = new Link( {
+            text: 'Изменить данные',
+            href: '/settings',
+            classNames: ["text__blue", "profile__text"],
+        });
+        const linkPasswordEdit = new Link( {
+            text: 'Изменить пароль',
+            href: '/password-edit',
+            classNames: ["text__blue", "profile__text"],
+        });
         return compile(template,{
             buttonProfile: buttonProfile,
+            linkProfileEdit: linkProfileEdit,
+            linkPasswordEdit: linkPasswordEdit,
         });
     }
 }

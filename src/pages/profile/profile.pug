@@ -29,8 +29,8 @@ block main
             div.profile__setting
                 div.profile__info
                     div.profile__row
-                        a.text__blue.profile__text(onclick="window.location.href='./profileEdit.html'") Изменить данные
+                        | !{linkProfileEdit}
                     div.profile__row
-                        a.text__blue.profile__text(onclick="window.location.href='./passwordEdit.html'") Изменить пароль
+                        | !{linkPasswordEdit}
                     div.profile__row
                         a.text__red.profile__text(onclick="window.location.href='./profile.html'") Выйти

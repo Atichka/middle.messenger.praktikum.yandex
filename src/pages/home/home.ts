@@ -46,7 +46,10 @@ export class HomePage extends Block {
         const buttonProfile = new Button( {
             text: "profile",
             events: {
-                click: () => render('#app', new ProfilePage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/profile');
+                }
             },
         });
         const buttonProfileEdit = new Button( {
