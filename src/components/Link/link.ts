@@ -5,13 +5,12 @@ import {addClass} from "../../../index";
 
 export class Link extends Block {
     constructor(props) {
-        super("link", props);
+        super("a", props);
     }
 
     render() {
         addClass(this._element, this.props);
-        // this._element.setAttribute('href', this.props.href);
-        this._element.href = this.props.href;   Ф
+        this._element.setAttribute('href', this.props.href);
 
         return compile(template,{...this.props});
     }
