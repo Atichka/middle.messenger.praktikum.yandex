@@ -37,8 +37,15 @@ export class ChatsPage extends Block {
                 },
             }),
         });
+        const buttonMenu = new Button( {
+            events: {
+                click: (e) => this.openMenu(),
+            },
+            classNames: ["header__menu"],
+        });
         return compile(template,{
             formChats: formChats,
+            buttonMenu: buttonMenu,
         });
     }
 
@@ -71,6 +78,10 @@ export class ChatsPage extends Block {
         } else {
             span.classList.remove('error-hide');
         }
+    }
+    openMenu() {
+        const menu = document.querySelector(".menu")
+        menu.classList.toggle('hide');
     }
 }
 
