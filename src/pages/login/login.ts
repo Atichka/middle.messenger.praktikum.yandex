@@ -56,7 +56,7 @@ export class LoginPage extends Block {
                 events: {
                     click: (e) => {
                         const router = new Router();
-                        router.go('/signin');
+                        router.go('/sign-up');
                     },
                 },
                 classNames: ["form__signup-button"],

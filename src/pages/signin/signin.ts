@@ -4,6 +4,7 @@ import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
 import {Input} from "../../components/Input/input";
 import {FormSignin} from "../../components/FormSignin/formSignin";
+import {Router} from "../../util/router";
 
 export class SigninPage extends Block {
     constructor() {
@@ -107,6 +108,16 @@ export class SigninPage extends Block {
                     click: (e) => this.sendData(e),
                 },
                 classNames: ["form__button", "form__top-signin"],
+            }),
+            buttonLogin: new Button( {
+                text: "Войти",
+                events: {
+                    click: (e) => {
+                        const router = new Router();
+                        router.go('/login');
+                    }
+                },
+                classNames: ["form__signup-button"],
             }),
         });
         return compile(template,{
