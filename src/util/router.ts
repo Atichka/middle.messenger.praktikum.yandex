@@ -1,4 +1,4 @@
-import {TProps} from "./block";
+import {Block} from "./block";
 
 class Route {
     _pathname: string;
@@ -6,7 +6,7 @@ class Route {
     _block: any;
     _props: any;
 
-    constructor(pathname: string, view: any, props: фтн) {
+    constructor(pathname: string, view: any, props: any) {
         this._pathname = pathname;
         this._blockClass = view;
         this._block = null;
@@ -35,7 +35,7 @@ class Route {
             this._block = new this._blockClass();
         }
 
-        const root = document.querySelector(this.props.rootQuery);
+        const root = document.querySelector(this._props._rootQuery);
 
         if (!root) {
             throw new Error('Root not found');
@@ -50,7 +50,7 @@ export class Router {
     static __instance: Router;
 
     routes: Route[];
-    history: window.history;
+    history = window.history;
     _currentRoute: Route | null;
     _rootQuery: string;
 
@@ -60,10 +60,11 @@ export class Router {
         }
 
         Router.__instance = this;
+        this.routes = []
     }
 
-    use(pathname: string, block: TProps): Router {
-        const route = new Route(pathname, block, {rootQuery: '#app'});
+    use(pathname: string, block: Block): Router {
+        const route = new Route(pathname, block, {_rootQuery: '#app'});
         this.routes.push(route);
         // Возврат this — основа паттерна "Builder" («Строитель»)
         return this;
@@ -110,7 +111,7 @@ export class Router {
     }
 }
 
-export function withRouter(Component: typeof TProps) {
+export function withRouter(Component: typeof Block) {
     return class WithRouter extends Component {
         constructor(props: any) {
             const router = new Router()
