@@ -1,9 +1,11 @@
-import {Block} from "../../util/block";
-import template from "./chats.pug";
-import {Button} from "../../components/Button/button";
-import {compile} from "../../util/compile";
-import {FormChats} from "../../components/FormChats/formChats";
-import {Input} from "../../components/Input/input";
+import {Block} from "../../util/block"
+import template from "./chats.pug"
+import {Button} from "../../components/Button/button"
+import {compile} from "../../util/compile"
+import {FormChats} from "../../components/FormChats/formChats"
+import {Input} from "../../components/Input/input"
+import {Router} from "../../util/router"
+import {Link} from "../../components/Link/link"
 
 export class ChatsPage extends Block {
     constructor() {
@@ -43,9 +45,15 @@ export class ChatsPage extends Block {
             },
             classNames: ["header__menu"],
         });
+        const linkProfile = new Link( {
+            text: 'Профиль &#62;',
+            href: '/profile',
+            classNames: ["page__link"],
+        });
         return compile(template,{
             formChats: formChats,
             buttonMenu: buttonMenu,
+            linkProfile: linkProfile,
         });
     }
 
