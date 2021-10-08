@@ -4,6 +4,7 @@ import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
 import {Input} from "../../components/Input/input";
 import {FormLogin} from "../../components/FormLogin/formLogin"
+import {Router} from "../../util/router";
 
 export class LoginPage extends Block {
     constructor() {
@@ -49,6 +50,16 @@ export class LoginPage extends Block {
                     blur: (e) => this.onBlur(e),
                     focus: (e) => this.onFocus(e),
                 },
+            }),
+            buttonSignin: new Button( {
+                text: "Нет аккаунта?",
+                events: {
+                    click: (e) => {
+                        const router = new Router();
+                        router.go('/signin');
+                    },
+                },
+                classNames: ["form__signup-button"],
             }),
         });
         return compile(template,{
