@@ -37,7 +37,10 @@ export class HomePage extends Block {
         const buttonChats = new Button( {
             text: "chats",
             events: {
-                click: () => render('#app', new ChatsPage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/messenger');
+                }
             },
         });
         const buttonProfile = new Button( {
