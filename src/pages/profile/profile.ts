@@ -2,8 +2,6 @@ import {Block} from "../../util/block";
 import template from "./profile.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
-import {render} from "../../../index";
-import {ChatsPage} from "../chats/chats";
 import {Router} from "../../util/router";
 import {Link} from "../../components/Link/link";
 

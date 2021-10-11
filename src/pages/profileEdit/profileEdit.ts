@@ -6,6 +6,7 @@ import {render} from "../../../index";
 import {Input} from "../../components/Input/input";
 import {FormProfileEdit} from "../../components/FormProfileEdit/formProfileEdit";
 import {ChatsPage} from "../chats/chats";
+import {Router} from "../../util/router";
 
 export class ProfileEditPage extends Block {
     constructor() {
@@ -95,7 +96,10 @@ export class ProfileEditPage extends Block {
         const buttonBack = new Button( {
             text: "←",
             events: {
-                click: () => render('#app', new ChatsPage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/profile');
+                }
             },
             classNames: ["profile__button-back"],
         });

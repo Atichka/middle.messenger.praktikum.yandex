@@ -55,25 +55,37 @@ export class HomePage extends Block {
         const buttonProfileEdit = new Button( {
             text: "profile edit",
             events: {
-                click: () => render('#app', new ProfileEditPage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/settings');
+                }
             },
         });
         const buttonPasswordEdit = new Button( {
             text: "password edit",
             events: {
-                click: () => render('#app', new PasswordEditPage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/password-edit');
+                }
             },
         });
         const buttonError404 = new Button( {
             text: "error 404",
             events: {
-                click: () => render('#app', new Error404Page()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/404');
+                }
             },
         });
         const buttonError500 = new Button( {
             text: "error 500",
             events: {
-                click: () => render('#app', new Error500Page()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/500');
+                }
             },
         });
         return compile(template,{
