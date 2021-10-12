@@ -1,6 +1,6 @@
-import { BaseAPI } from './base-api';
+import BaseAPI from './base-api';
 
-interface SignupData {
+export interface SignupData {
     first_name: string,
     second_name: string,
     login: string,
@@ -9,12 +9,12 @@ interface SignupData {
     phone: string
 }
 
-interface LoginData {
-    email: string,
+export interface LoginData {
+    login: string,
     password: string
 }
 
-type UserData = Omit<SignupData, 'password'> & { avatar: string; display_name: string; };
+export type UserData = Omit<SignupData, 'password'> & { avatar: string; display_name: string; };
 
 export class AuthAPI extends BaseAPI {
     constructor() {
