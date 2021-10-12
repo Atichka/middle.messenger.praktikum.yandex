@@ -5,6 +5,8 @@ import {compile} from "../../util/compile";
 import {Input} from "../../components/Input/input";
 import {FormLogin} from "../../components/FormLogin/formLogin"
 import {Router} from "../../util/router";
+import {LoginData} from "../../api/AuthAPI";
+import AuthController from "../../controllers/AuthController";
 
 export class LoginPage extends Block {
     constructor() {
@@ -108,6 +110,7 @@ export class LoginPage extends Block {
 
     sendData(e) {
         e.preventDefault();
+        const data: LoginData = {};
         const form = document.querySelector('.form');
         const formData: any = new FormData(form);
         const obj: Record<string, unknown> = {};
@@ -130,7 +133,11 @@ export class LoginPage extends Block {
         if (!isErrors) {
             for (const [name, value] of formData) {
                 console.log(`${name}: ${value}`);
+                data[name] = value;
             }
+            AuthController.login(data);
+            const router = new Router();
+            router.go('/');
         }
     }
 
