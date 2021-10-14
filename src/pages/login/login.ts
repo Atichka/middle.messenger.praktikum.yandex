@@ -137,7 +137,7 @@ export class LoginPage extends Block {
             }
             AuthController.login(data);
             const router = new Router();
-            router.go('/');
+            router.go('/messenger');
         }
     }
 
