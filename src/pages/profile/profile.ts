@@ -4,6 +4,7 @@ import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
 import {Router} from "../../util/router";
 import {Link} from "../../components/Link/link";
+import AuthController from "../../controllers/AuthController";
 
 export class ProfilePage extends Block {
     constructor() {
@@ -31,11 +32,25 @@ export class ProfilePage extends Block {
             href: '/password-edit',
             classNames: ["text__blue", "profile__text"],
         });
+        const linkExit = new Link( {
+            text: 'Выйти',
+            events: {
+                click: () => this.exit(),
+            },
+            classNames: ["text__red", "profile__text"],
+        });
         return compile(template,{
             buttonProfile: buttonProfile,
             linkProfileEdit: linkProfileEdit,
             linkPasswordEdit: linkPasswordEdit,
+            linkExit: linkExit,
         });
+    }
+
+    async exit() {
+        await AuthController.logout();
+        const router = new Router();
+        router.go('/login');
     }
 }
 
