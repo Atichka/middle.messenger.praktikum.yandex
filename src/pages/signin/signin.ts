@@ -5,6 +5,8 @@ import {compile} from "../../util/compile";
 import {Input} from "../../components/Input/input";
 import {FormSignin} from "../../components/FormSignin/formSignin";
 import {Router} from "../../util/router";
+import AuthController from "../../controllers/AuthController"
+import {SignupData} from "../../api/AuthAPI"
 
 export class SigninPage extends Block {
     constructor() {
@@ -166,6 +168,7 @@ export class SigninPage extends Block {
 
     sendData(e) {
         e.preventDefault();
+        const data: SignupData = {};
         const inputPassword = document.querySelector('#userPassword');
         const inputPasswordRepeat = document.querySelector('#userPasswordRepeat');
         const name = inputPasswordRepeat.name;
@@ -195,7 +198,11 @@ export class SigninPage extends Block {
             if (!isErrors) {
                 for (const [name, value] of formData) {
                     console.log(`${name}: ${value}`);
+                    data[name] = value;
                 }
+                AuthController.signup(data);
+                const router = new Router();
+                router.go('/');
             }
 
         } else {
