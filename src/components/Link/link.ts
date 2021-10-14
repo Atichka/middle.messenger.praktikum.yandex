@@ -10,7 +10,9 @@ export class Link extends Block {
 
     render() {
         addClass(this._element, this.props);
-        this._element.setAttribute('href', this.props.href);
+        if(this.props.href) {
+            this._element.setAttribute('href', this.props.href);
+        }
 
         return compile(template,{...this.props});
     }
