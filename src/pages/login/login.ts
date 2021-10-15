@@ -108,7 +108,7 @@ export class LoginPage extends Block {
         this.validateInput(input);
     }
 
-    sendData(e) {
+    async sendData(e) {
         e.preventDefault();
         const data: LoginData = {};
         const form = document.querySelector('.form');
@@ -135,7 +135,7 @@ export class LoginPage extends Block {
                 console.log(`${name}: ${value}`);
                 data[name] = value;
             }
-            AuthController.login(data);
+            await AuthController.login(data);
             const router = new Router();
             router.go('/messenger');
         }

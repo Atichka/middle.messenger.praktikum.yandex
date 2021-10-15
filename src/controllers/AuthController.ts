@@ -18,7 +18,7 @@ class AuthController {
 
     async login(data: LoginData) {
         try {
-            await this._api.signup(data);
+            await this._api.login(data);
             await this._fetchUser();
         } catch (e) {
             console.log(e);

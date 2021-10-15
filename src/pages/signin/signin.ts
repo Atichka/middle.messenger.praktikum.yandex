@@ -166,7 +166,7 @@ export class SigninPage extends Block {
         this.validateInput(input);
     }
 
-    sendData(e) {
+    async sendData(e) {
         e.preventDefault();
         const data: SignupData = {};
         const inputPassword = document.querySelector('#userPassword');
@@ -200,7 +200,7 @@ export class SigninPage extends Block {
                     console.log(`${name}: ${value}`);
                     data[name] = value;
                 }
-                AuthController.signup(data);
+                await AuthController.signup(data);
                 const router = new Router();
                 router.go('/');
             }

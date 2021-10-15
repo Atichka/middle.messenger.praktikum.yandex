@@ -26,7 +26,7 @@ export class AuthAPI extends BaseAPI {
     }
 
     login(data: LoginData): Promise<void> {
-        return this.http.post('/login', data)
+        return this.http.post('/signin', data)
     }
 
     logout(): Promise<void> {
