@@ -5,6 +5,7 @@ import {compile} from "../../util/compile";
 import {Router} from "../../util/router";
 import {Link} from "../../components/Link/link";
 import AuthController from "../../controllers/AuthController";
+import UserController from "../../controllers/UserController";
 
 export class ProfilePage extends Block {
     constructor() {
@@ -39,12 +40,18 @@ export class ProfilePage extends Block {
             },
             classNames: ["text__red", "profile__text"],
         });
+        const res = this.getDataUser();
         return compile(template,{
             buttonProfile: buttonProfile,
             linkProfileEdit: linkProfileEdit,
             linkPasswordEdit: linkPasswordEdit,
             linkExit: linkExit,
+            res: res,
         });
+    }
+
+    async getDataUser() {
+        await UserController.getDataUser();
     }
 
     async exit() {

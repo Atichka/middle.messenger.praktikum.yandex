@@ -86,7 +86,7 @@ export class ProfileEditPage extends Block {
                 classNames: ["profile__input", "text__grey", "profile__text"],
                 id: "tel",
                 type: "phone",
-                name: "display_name",
+                name: "phone_name",
                 minlength: 11,
                 maxlength: 18,
                 required: "",
