@@ -80,6 +80,14 @@ export class Block<T extends TProps> {
         return true;
     }
 
+    setProps = (nextProps: T) => {
+        if (!nextProps) {
+            return;
+        }
+
+        Object.assign(this.props, nextProps);
+    };
+
     get element() {
         return this._element;
     }
