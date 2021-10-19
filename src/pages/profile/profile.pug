@@ -6,26 +6,26 @@ block main
             | !{buttonProfile}
         div.profile__main
             div.profile__photo
-                img.profile__pic
+                img.profile__pic(style=`background-image: url(${avatar})`)
             div.profile__info
                 div.profile__row
                     p.profile__text Почта
-                    p.text__grey.profile__text pochta@yandex.ru
+                    p.text__grey.profile__text !{email}
                 div.profile__row
                     p.profile__text Логин
-                    p.text__grey.profile__text ivanivanov
+                    p.text__grey.profile__text !{login}
                 div.profile__row
                     p.profile__text Имя
-                    p.text__grey.profile__text Иван
+                    p.text__grey.profile__text !{firstName}
                 div.profile__row
                     p.profile__text Фамилия
-                    p.text__grey.profile__text Иванов
+                    p.text__grey.profile__text !{secondName}
                 div.profile__row
                     p.profile__text Имя в чате
-                    p.text__grey.profile__text Иван
+                    p.text__grey.profile__text !{displayName}
                 div.profile__row
                     p.profile__text Телефон
-                    p.text__grey.profile__text +7 (909) 967 30 30
+                    p.text__grey.profile__text !{phone}
             div.profile__setting
                 div.profile__info
                     div.profile__row

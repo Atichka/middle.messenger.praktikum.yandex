@@ -10,6 +10,7 @@ import UserController from "../../controllers/UserController";
 export class ProfilePage extends Block {
     constructor() {
         super('div');
+        UserController.getDataUser().then(user => this.setProps({ user: user }));
     }
 
     public render(): DocumentFragment {
@@ -40,13 +41,18 @@ export class ProfilePage extends Block {
             },
             classNames: ["text__red", "profile__text"],
         });
-        const res = this.getDataUser();
         return compile(template,{
             buttonProfile: buttonProfile,
             linkProfileEdit: linkProfileEdit,
             linkPasswordEdit: linkPasswordEdit,
             linkExit: linkExit,
-            res: res,
+            email: this.props.user ? this.props.user.email : '',
+            login: this.props.user ? this.props.user.login : '',
+            firstName: this.props.user ? this.props.user.first_name : '',
+            secondName: this.props.user ? this.props.user.second_name : '',
+            displayName: this.props.user ? this.props.user.display_name : '',
+            phone: this.props.user ? this.props.user.phone : '',
+            avatar: this.props.user && this.props.user.avatar ? this.props.user.avatar : 'https://i.pinimg.com/originals/5d/65/6b/5d656b84a6bc28d19e5220c195ef8f28.png',
         });
     }
 

@@ -9,7 +9,7 @@ class UserController {
 
     async getDataUser() {
         try {
-            await this._fetchUser();
+            return await this._fetchUser();
         } catch (e) {
             console.log(e);
         }
