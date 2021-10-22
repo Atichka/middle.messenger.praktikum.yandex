@@ -10,6 +10,9 @@ export class Button extends Block {
 
     render() {
         addClass(this._element, this.props);
+        if(this.props.avatar) {
+            this._element.setAttribute('style', `background-image: url(${this.props.avatar})`);
+        }
 
         return compile(template,{...this.props});
     }

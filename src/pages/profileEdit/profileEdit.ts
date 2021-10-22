@@ -25,6 +25,13 @@ export class ProfileEditPage extends Block {
             classNames: ["form"],
             id: "formData",
             name: "formData",
+            buttonChangeAvatar: new Button( {
+                events: {
+                    click: () => console.log('!!!'),
+                },
+                classNames: ["profile__button-pic"],
+                style: state.user ? state.user.avatar : ''
+            }),
             buttonSave: new Button( {
                 text: "Сохранить",
                 events: {

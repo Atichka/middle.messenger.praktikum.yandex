@@ -52,7 +52,7 @@ export class ProfilePage extends Block {
             secondName: this.props.user ? this.props.user.second_name : '',
             displayName: this.props.user ? this.props.user.display_name : '',
             phone: this.props.user ? this.props.user.phone : '',
-            avatar: this.props.user && this.props.user.avatar ? this.props.user.avatar : 'https://e7.pngegg.com/pngimages/867/136/png-clipart-computer-icons-graphy-encapsulated-postscript-360-degrees-angle-text.png',
+            avatar: this.props.user && this.props.user.avatar ? this.props.user.avatar : '',
         });
     }
 

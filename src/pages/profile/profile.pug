@@ -6,7 +6,10 @@ block main
             | !{buttonProfile}
         div.profile__main
             div.profile__photo
-                img.profile__pic(style=`background-image: url(${avatar})`)
+                if avatar
+                    img.profile__pic(src=avatar)
+                else
+                    img.profile__pic
             div.profile__info
                 div.profile__row
                     p.profile__text Почта
