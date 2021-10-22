@@ -17,6 +17,12 @@ export class Input extends Block {
         this._element.setAttribute('maxlength', this.props.maxlength);
         this._element.setAttribute('required', this.props.required);
         this._element.setAttribute('placeholder', this.props.placeholder);
+        if(this.props.value) {
+            this._element.setAttribute('value', this.props.value);
+        } else {
+            this._element.setAttribute('value', '');
+        }
+
 
         return compile(template,{...this.props});
     }

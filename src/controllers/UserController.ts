@@ -1,4 +1,5 @@
 import { UserAPI, UserData } from "../api/UserAPI";
+import store from '../util/store';
 
 class UserController {
     private _api: UserAPI;
@@ -9,7 +10,9 @@ class UserController {
 
     async getDataUser() {
         try {
-            return await this._fetchUser();
+            const UserData = await this._fetchUser();
+            store.set('user', UserData)
+            return UserData;
         } catch (e) {
             console.log(e);
         }

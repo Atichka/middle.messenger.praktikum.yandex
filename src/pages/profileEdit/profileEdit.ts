@@ -2,18 +2,25 @@ import {Block} from "../../util/block";
 import template from "./profileEdit.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
-import {render} from "../../../index";
 import {Input} from "../../components/Input/input";
 import {FormProfileEdit} from "../../components/FormProfileEdit/formProfileEdit";
-import {ChatsPage} from "../chats/chats";
 import {Router} from "../../util/router";
+import UserController from "../../controllers/UserController";
+import store from "../../util/store";
 
 export class ProfileEditPage extends Block {
     constructor() {
         super('div');
+        UserController.getDataUser().then(user => this.setProps({ user: user }));
+        store.on('updated', () => this.eventBus().emit('flow:component-did-update'));
     }
 
     public render(): DocumentFragment {
+        const state = store.getState();
+        if(state.user) {
+            console.log('state', state.user.login);
+        }
+
         const formProfileEdit = new FormProfileEdit( {
             classNames: ["form"],
             id: "formData",
@@ -41,6 +48,7 @@ export class ProfileEditPage extends Block {
                 maxlength: 30,
                 required: "",
                 placeholder: "pochta@yandex.ru",
+                value: state.user ? state.user.email : ''
             }),
             inputLogin: new Input( {
                 classNames: ["profile__input", "text__grey", "profile__text"],
@@ -51,6 +59,7 @@ export class ProfileEditPage extends Block {
                 maxlength: 30,
                 required: "",
                 placeholder: "ivanivanov",
+                value: state.user ? state.user.login : ''
             }),
             inputFirstName: new Input( {
                 classNames: ["profile__input", "text__grey", "profile__text"],
@@ -61,6 +70,7 @@ export class ProfileEditPage extends Block {
                 maxlength: 30,
                 required: "",
                 placeholder: "Иван",
+                value: state.user ? state.user.first_name : ''
             }),
             inputSecondName: new Input( {
                 classNames: ["profile__input", "text__grey", "profile__text"],
@@ -71,6 +81,7 @@ export class ProfileEditPage extends Block {
                 maxlength: 30,
                 required: "",
                 placeholder: "Иванов",
+                value: state.user ? state.user.second_name : ''
             }),
             inputDisplayName: new Input( {
                 classNames: ["profile__input", "text__grey", "profile__text"],
@@ -81,6 +92,7 @@ export class ProfileEditPage extends Block {
                 maxlength: 30,
                 required: "",
                 placeholder: "Иван",
+                value: state.user ? state.user.display_name : ''
             }),
             inputPhone: new Input( {
                 classNames: ["profile__input", "text__grey", "profile__text"],
@@ -91,6 +103,7 @@ export class ProfileEditPage extends Block {
                 maxlength: 18,
                 required: "",
                 placeholder: "+79099673030",
+                value: state.user ? state.user.phone : ''
             })
         });
         const buttonBack = new Button( {
@@ -107,6 +120,10 @@ export class ProfileEditPage extends Block {
             buttonBack: buttonBack,
             formProfileEdit: formProfileEdit,
         });
+    }
+
+    async getDataUser() {
+        await UserController.getDataUser();
     }
 
     sendData(e) {
