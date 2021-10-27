@@ -72,30 +72,10 @@
 
     background: $light-grey-background;
     border-radius: 50%;
-    background-image: url(../../assets/not-photo.svg);
     background-repeat: no-repeat;
     background-size: 50% 50%;
     background-position: center;
     border: none;
-
-    cursor: url('../../assets/cursor.svg'),pointer;
-  }
-
-  &__button-pic:hover:after {
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 14px;
-    text-align: center;
-
-    content: 'Поменять аватар';
-  }
-
-  &__button-pic:hover {
-    color: $white-color;
-
-    background: $black-background;
-
-    opacity: 0.5;
   }
 
   &__row {
@@ -131,9 +111,40 @@
 
     background: $light-grey-background;
     border-radius: 50%;
-    background-image: url(../../assets/not-photo.svg);
     background-repeat: no-repeat;
     background-size: 40% 40%;
     background-position: center;
   }
+}
+
+#img-preview {
+  width: 155px;
+  margin: 20px auto;
+}
+#img-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+[type="file"] {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+[type="file"] + label {
+  display: block;
+  width: 280px;
+  height: 37px;
+  margin: 0 auto 60px;
+  align-items: center;
+
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 33px;
+  text-align: center;
+  color: $white-color;
+  vertical-align: middle;
+
+  background: $blue-background-color;
+  border-radius: 8px;
 }

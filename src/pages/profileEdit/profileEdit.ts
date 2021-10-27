@@ -3,6 +3,7 @@ import template from "./profileEdit.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
 import {Input} from "../../components/Input/input";
+import {Image} from "../../components/Image/image"
 import {FormProfileEdit} from "../../components/FormProfileEdit/formProfileEdit";
 import {Router} from "../../util/router";
 import UserController from "../../controllers/UserController";
@@ -17,20 +18,24 @@ export class ProfileEditPage extends Block {
 
     public render(): DocumentFragment {
         const state = store.getState();
-        if(state.user) {
-            console.log('state', state.user.login);
-        }
 
         const formProfileEdit = new FormProfileEdit( {
             classNames: ["form"],
             id: "formData",
             name: "formData",
-            buttonChangeAvatar: new Button( {
-                events: {
-                    click: () => console.log('!!!'),
-                },
+            imageAvatar: new Image( {
                 classNames: ["profile__button-pic"],
-                style: state.user ? state.user.avatar : ''
+                src: state.avatar
+            }),
+            inputChangeAvatar: new Input( {
+                classNames: ["profile__button-pic"],
+                events: {
+                    change: () => this.getImgData(),
+                },
+                id: "choose-file",
+                type: "file",
+                name: "choose-file",
+                accept: "image/*",
             }),
             buttonSave: new Button( {
                 text: "Сохранить",
@@ -123,10 +128,25 @@ export class ProfileEditPage extends Block {
             },
             classNames: ["profile__button-back"],
         });
+
         return compile(template,{
             buttonBack: buttonBack,
             formProfileEdit: formProfileEdit,
         });
+    }
+
+    getImgData() {
+        const chooseFile = document.getElementById("choose-file");
+        const imgPreview = document.getElementById("img-preview");
+        const files = chooseFile.files[0];
+        if (files) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(files);
+            fileReader.addEventListener("load", function () {
+                imgPreview.style.display = "block";
+                imgPreview.innerHTML = '<img class="profile__button-pic" src="' + this.result + '" />';
+            });
+        }
     }
 
     async getDataUser() {

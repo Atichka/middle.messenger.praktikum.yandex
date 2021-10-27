@@ -1,5 +1,8 @@
 div.profile__info
-    | !{buttonChangeAvatar}
+    div(id="img-preview")
+        | !{imageAvatar}
+    | !{inputChangeAvatar}
+    label(for="choose-file") Поменять аватар
     div.profile__row
         p.profile__text Почта
         | !{inputEmail}
