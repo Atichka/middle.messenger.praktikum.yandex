@@ -25,7 +25,8 @@ export class ProfileEditPage extends Block {
             name: "formData",
             imageAvatar: new Image( {
                 classNames: ["profile__button-pic"],
-                src: state.avatar
+                src: state.avatar,
+                id: "userAvatar"
             }),
             inputChangeAvatar: new Input( {
                 classNames: ["profile__button-pic"],
@@ -144,7 +145,7 @@ export class ProfileEditPage extends Block {
             fileReader.readAsDataURL(files);
             fileReader.addEventListener("load", function () {
                 imgPreview.style.display = "block";
-                imgPreview.innerHTML = '<img class="profile__button-pic" src="' + this.result + '" />';
+                imgPreview.innerHTML = '<img id="userAvatar" class="profile__button-pic" src="' + this.result + '" />';
             });
         }
     }
@@ -155,23 +156,13 @@ export class ProfileEditPage extends Block {
 
     sendData(e) {
         e.preventDefault();
-        const userEmail = document.querySelector('#userEmail');
-        console.log('email', userEmail.value);
-
-        const userLogin = document.querySelector('#userLogin');
-        console.log('login', userLogin.value);
-
-        const firstName = document.querySelector('#newFirstName');
-        console.log('firstName', firstName.value);
-
-        const secondName = document.querySelector('#newSecondName');
-        console.log('firstName', secondName.value);
-
-        const displayName = document.querySelector('#newDisplayName');
-        console.log('displayName', displayName.value);
-
-        const phone = document.querySelector('#tel');
-        console.log('phone', phone.value);
+        const form: any = document.forms[0];
+        const formData: any = new FormData(form);
+        let obj: Record<string, unknown> = {};
+        for (let [name, value] of formData) {
+            obj[name] = value;
+        }
+        console.log(obj);
     }
 }
 
