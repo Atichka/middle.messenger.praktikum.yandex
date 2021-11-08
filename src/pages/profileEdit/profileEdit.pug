@@ -5,6 +5,9 @@ block main
         div.profile__container
             | !{buttonBack}
         div.profile__main
+            div(id="img-preview")
+                | !{imageAvatar}
+            | !{formAvatar}
             | !{formProfileEdit}
     div.popup.hide
         div.popup__content

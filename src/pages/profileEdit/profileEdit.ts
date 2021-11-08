@@ -3,11 +3,13 @@ import template from "./profileEdit.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
 import {Input} from "../../components/Input/input";
-import {Image} from "../../components/Image/image"
+// import {Image} from "../../components/Image/image"
 import {FormProfileEdit} from "../../components/FormProfileEdit/formProfileEdit";
+import {FormAvatar} from "../../components/FormAvatar/formAvatar";
 import {Router} from "../../util/router";
 import UserController from "../../controllers/UserController";
 import store from "../../util/store";
+import UsersController from "../../controllers/UsersController";
 
 export class ProfileEditPage extends Block {
     constructor() {
@@ -19,15 +21,27 @@ export class ProfileEditPage extends Block {
     public render(): DocumentFragment {
         const state = store.getState();
 
+        const formAvatar = new FormAvatar( {
+            classNames: ["form"],
+            id: "avatar",
+            name: "avatar",
+            enctype: "multipart/form-data",
+            inputChangeAvatar: new Input( {
+                classNames: ["profile__button-pic"],
+                events: {
+                    change: () => this.getImgData(),
+                },
+                id: "choose-file",
+                type: "file",
+                name: "avatar",
+                accept: "image/*",
+            }),
+        });
+
         const formProfileEdit = new FormProfileEdit( {
             classNames: ["form"],
             id: "formData",
             name: "formData",
-            imageAvatar: new Image( {
-                classNames: ["profile__button-pic"],
-                src: state.avatar,
-                id: "userAvatar"
-            }),
             inputChangeAvatar: new Input( {
                 classNames: ["profile__button-pic"],
                 events: {
@@ -111,7 +125,7 @@ export class ProfileEditPage extends Block {
                 classNames: ["profile__input", "text__grey", "profile__text"],
                 id: "tel",
                 type: "phone",
-                name: "phone_name",
+                name: "phone",
                 minlength: 11,
                 maxlength: 18,
                 required: "",
@@ -132,6 +146,7 @@ export class ProfileEditPage extends Block {
 
         return compile(template,{
             buttonBack: buttonBack,
+            formAvatar: formAvatar,
             formProfileEdit: formProfileEdit,
         });
     }
@@ -156,13 +171,18 @@ export class ProfileEditPage extends Block {
 
     sendData(e) {
         e.preventDefault();
-        const form: any = document.forms[0];
+        const formAvatar: any = document.forms[0];
+        const formSendAvatar: any = new FormData(formAvatar);
+        const form: any = document.forms[1];
         const formData: any = new FormData(form);
         let obj: Record<string, unknown> = {};
         for (let [name, value] of formData) {
             obj[name] = value;
         }
         console.log(obj);
+        console.log('formAvatar', formSendAvatar);
+        UsersController.profileEdit(obj)
+        UsersController.avatarEdit(formSendAvatar)
     }
 }
 
