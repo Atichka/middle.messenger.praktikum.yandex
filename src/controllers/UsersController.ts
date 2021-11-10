@@ -16,7 +16,6 @@ class UsersController {
     }
 
     async avatarEdit(data: AvatarData) {
-        console.log('data', data);
         try {
             await this._api.putAvatar(data);
         } catch (e) {

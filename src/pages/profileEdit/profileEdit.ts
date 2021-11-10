@@ -3,7 +3,7 @@ import template from "./profileEdit.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
 import {Input} from "../../components/Input/input";
-// import {Image} from "../../components/Image/image"
+import {Image} from "../../components/Image/image"
 import {FormProfileEdit} from "../../components/FormProfileEdit/formProfileEdit";
 import {FormAvatar} from "../../components/FormAvatar/formAvatar";
 import {Router} from "../../util/router";
@@ -20,6 +20,10 @@ export class ProfileEditPage extends Block {
 
     public render(): DocumentFragment {
         const state = store.getState();
+        const imageAvatar = new Image({
+            classNames: ["profile__button-pic"],
+            src: state.user ? state.user.avatar : '',
+        });
 
         const formAvatar = new FormAvatar( {
             classNames: ["form"],
@@ -148,21 +152,8 @@ export class ProfileEditPage extends Block {
             buttonBack: buttonBack,
             formAvatar: formAvatar,
             formProfileEdit: formProfileEdit,
+            imageAvatar: imageAvatar,
         });
-    }
-
-    getImgData() {
-        const chooseFile = document.getElementById("choose-file");
-        const imgPreview = document.getElementById("img-preview");
-        const files = chooseFile.files[0];
-        if (files) {
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(files);
-            fileReader.addEventListener("load", function () {
-                imgPreview.style.display = "block";
-                imgPreview.innerHTML = '<img id="userAvatar" class="profile__button-pic" src="' + this.result + '" />';
-            });
-        }
     }
 
     async getDataUser() {
@@ -183,6 +174,17 @@ export class ProfileEditPage extends Block {
         console.log('formAvatar', formSendAvatar);
         UsersController.profileEdit(obj)
         UsersController.avatarEdit(formSendAvatar)
+    }
+
+    getAvatar(user) {
+        const imgPreview = document.getElementById("img-preview");
+
+        if(user) {
+            imgPreview.style.display = "block";
+            imgPreview.innerHTML = '<img id="userAvatar" crossorigin="use-credentials" ' +
+                'class="profile__button-pic" src="' + 'https://ya-praktikum.tech/api/v2/resources' + user.avatar + '" />';
+            console.log('imgPreview', imgPreview);
+        }
     }
 }
 

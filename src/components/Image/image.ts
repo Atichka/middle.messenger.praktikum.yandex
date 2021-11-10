@@ -10,8 +10,8 @@ export class Image extends Block {
 
     render() {
         addClass(this._element, this.props);
-        if(this.props.avatar) {
-            this._element.setAttribute('src', this.props.avatar);
+        if(this.props.src) {
+            this._element.setAttribute('src', 'https://ya-praktikum.tech/api/v2/resources' + this.props.src);
         } else {
             this._element.setAttribute('src', 'https://prote.ua/image/cache/no-photo-img-1024x1024.png')
         }
