@@ -2,12 +2,6 @@ import {Block} from "../../util/block"
 import template from "./home.pug"
 import {Button} from "../../components/Button/button"
 import {compile} from "../../util/compile"
-import {ChatsPage} from "../chats/index"
-import {ProfilePage} from "../profile/profile"
-import {ProfileEditPage} from "../profileEdit/profileEdit"
-import {PasswordEditPage} from "../passwordEdit/passwordEdit"
-import {Error404Page} from "../error404/error404"
-import {Error500Page} from "../error500/error500"
 import {Router} from "../../util/router"
 
 export class HomePage extends Block {

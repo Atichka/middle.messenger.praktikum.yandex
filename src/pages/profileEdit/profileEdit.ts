@@ -23,6 +23,7 @@ export class ProfileEditPage extends Block {
         const imageAvatar = new Image({
             classNames: ["profile__button-pic"],
             src: state.user ? state.user.avatar : '',
+            id: "userAvatar",
         });
 
         const formAvatar = new FormAvatar( {
@@ -39,7 +40,7 @@ export class ProfileEditPage extends Block {
                 type: "file",
                 name: "avatar",
                 accept: "image/*",
-            }),
+            })
         });
 
         const formProfileEdit = new FormProfileEdit( {
@@ -59,14 +60,14 @@ export class ProfileEditPage extends Block {
             buttonSave: new Button( {
                 text: "Сохранить",
                 events: {
-                    click: (e) => this.sendData(e),
+                    click: (e: any) => this.sendData(e),
                 },
                 classNames: ["profile__button"],
             }),
             buttonChange: new Button( {
                 text: "Поменять",
                 events: {
-                    click: (e) => this.sendData(e),
+                    click: (e: any) => this.sendData(e),
                 },
                 classNames: ["profile__button"],
             }),
@@ -156,6 +157,20 @@ export class ProfileEditPage extends Block {
         });
     }
 
+    getImgData() {
+        const chooseFile = document.getElementById("choose-file");
+        const imgPreview = document.getElementById("img-preview");
+        const files = chooseFile.files[0];
+        if (files) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(files);
+            fileReader.addEventListener("load", function () {
+                imgPreview.style.display = "block";
+                imgPreview.innerHTML = '<img id="userAvatar" class="profile__button-pic" src="' + this.result + '" />';
+            });
+        }
+    }
+
     async getDataUser() {
         await UserController.getDataUser();
     }
@@ -163,7 +178,10 @@ export class ProfileEditPage extends Block {
     sendData(e) {
         e.preventDefault();
         const formAvatar: any = document.forms[0];
-        const formSendAvatar: any = new FormData(formAvatar);
+        let formSendAvatar: any;
+        if(document.getElementById("choose-file").value) {
+            formSendAvatar = new FormData(formAvatar);
+        }
         const form: any = document.forms[1];
         const formData: any = new FormData(form);
         let obj: Record<string, unknown> = {};
@@ -171,20 +189,11 @@ export class ProfileEditPage extends Block {
             obj[name] = value;
         }
         console.log(obj);
-        console.log('formAvatar', formSendAvatar);
         UsersController.profileEdit(obj)
-        UsersController.avatarEdit(formSendAvatar)
-    }
-
-    getAvatar(user) {
-        const imgPreview = document.getElementById("img-preview");
-
-        if(user) {
-            imgPreview.style.display = "block";
-            imgPreview.innerHTML = '<img id="userAvatar" crossorigin="use-credentials" ' +
-                'class="profile__button-pic" src="' + 'https://ya-praktikum.tech/api/v2/resources' + user.avatar + '" />';
-            console.log('imgPreview', imgPreview);
+        if(document.getElementById("choose-file").value) {
+            UsersController.avatarEdit(formSendAvatar)
         }
     }
 }
+
 
