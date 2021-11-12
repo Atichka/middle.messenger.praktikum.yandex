@@ -6,6 +6,8 @@ import {Router} from "../../util/router";
 import {Link} from "../../components/Link/link";
 import AuthController from "../../controllers/AuthController";
 import UserController from "../../controllers/UserController";
+import {Image} from "../../components/Image/image";
+import store from "../../util/store";
 
 export class ProfilePage extends Block {
     constructor() {
@@ -14,6 +16,12 @@ export class ProfilePage extends Block {
     }
 
     public render(): DocumentFragment {
+        const state = store.getState();
+        const imageAvatar = new Image({
+            classNames: ["profile__button-pic"],
+            src: state.user ? state.user.avatar : '',
+            id: "userAvatar",
+        });
         const buttonProfile = new Button( {
             text: "←",
             events: {
@@ -46,13 +54,13 @@ export class ProfilePage extends Block {
             linkProfileEdit: linkProfileEdit,
             linkPasswordEdit: linkPasswordEdit,
             linkExit: linkExit,
-            email: this.props.user ? this.props.user.email : '',
-            login: this.props.user ? this.props.user.login : '',
-            firstName: this.props.user ? this.props.user.first_name : '',
-            secondName: this.props.user ? this.props.user.second_name : '',
-            displayName: this.props.user ? this.props.user.display_name : '',
-            phone: this.props.user ? this.props.user.phone : '',
-            avatar: this.props.user && this.props.user.avatar ? this.props.user.avatar : '',
+            email: state.user ? state.user.email : '',
+            login: state.user ? state.user.login : '',
+            firstName: state.user ? state.user.first_name : '',
+            secondName: state.user ? state.user.second_name : '',
+            displayName: state.user ? state.user.display_name : '',
+            phone: state.user ? state.user.phone : '',
+            imageAvatar: imageAvatar,
         });
     }
 

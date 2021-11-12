@@ -5,11 +5,8 @@ block main
         div.profile__container
             | !{buttonProfile}
         div.profile__main
-            div.profile__photo
-                if avatar
-                    img.profile__pic(src=avatar)
-                else
-                    img.profile__pic
+            div(id="img-preview")
+                | !{imageAvatar}
             div.profile__info
                 div.profile__row
                     p.profile__text Почта
