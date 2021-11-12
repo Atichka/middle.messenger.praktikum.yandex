@@ -178,7 +178,6 @@ export class ProfileEditPage extends Block {
     sendData(e) {
         e.preventDefault();
         const formAvatar: any = document.forms[0];
-        let formSendAvatar: any;
         const form: any = document.forms[1];
         const formData: any = new FormData(form);
         let obj: Record<string, unknown> = {};
@@ -188,7 +187,7 @@ export class ProfileEditPage extends Block {
         console.log(obj);
         UsersController.profileEdit(obj)
         if(document.getElementById("choose-file").value) {
-            formSendAvatar = new FormData(formAvatar);
+            let formSendAvatar: any = new FormData(formAvatar);
             UsersController.avatarEdit(formSendAvatar)
         }
     }
