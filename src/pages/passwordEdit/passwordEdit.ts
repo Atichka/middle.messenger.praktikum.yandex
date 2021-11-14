@@ -7,13 +7,23 @@ import {Input} from "../../components/Input/input";
 import {FormPasswordEdit} from "../../components/FormPasswordEdit/formPasswordEdit";
 import {ChatsPage} from "../chats/chats";
 import {Router} from "../../util/router";
+import {Image} from "../../components/Image/image";
+import store from "../../util/store";
+import UserController from "../../controllers/UserController";
 
 export class PasswordEditPage extends Block {
     constructor() {
         super('div');
+        UserController.getDataUser().then(user => this.setProps({ user: user }));
     }
 
     public render(): DocumentFragment {
+        const state = store.getState();
+        const imageAvatar = new Image({
+            classNames: ["profile__button-pic"],
+            src: state.user ? state.user.avatar : '',
+            id: "userAvatar",
+        });
         const formPasswordEdit = new FormPasswordEdit( {
             classNames: ["form"],
             id: "formPassword",
@@ -63,7 +73,12 @@ export class PasswordEditPage extends Block {
         return compile(template,{
             formPasswordEdit: formPasswordEdit,
             buttonBack: buttonBack,
+            imageAvatar: imageAvatar,
         });
+    }
+
+    async getDataUser() {
+        await UserController.getDataUser();
     }
 
     sendData(e) {
