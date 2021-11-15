@@ -1,4 +1,4 @@
-import { UsersAPI, ProfileData, AvatarData } from "../api/UsersAPI";
+import {UsersAPI, ProfileData, AvatarData, PasswordData} from "../api/UsersAPI";
 
 class UsersController {
     private _api: UsersAPI;
@@ -18,6 +18,14 @@ class UsersController {
     async avatarEdit(data: AvatarData) {
         try {
             await this._api.putAvatar(data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async passwordEdit(data: PasswordData) {
+        try {
+            await this._api.putPassword(data);
         } catch (e) {
             console.log(e);
         }

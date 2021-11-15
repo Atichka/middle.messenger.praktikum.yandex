@@ -13,6 +13,11 @@ export interface AvatarData {
     avatar: string
 }
 
+export interface PasswordData {
+    oldPassword: string,
+    newPassword: string
+}
+
 export class UsersAPI extends BaseAPI {
     constructor() {
         super('/user');
@@ -24,6 +29,10 @@ export class UsersAPI extends BaseAPI {
 
     async putAvatar(data: AvatarData): Promise<{ id: number }> {
         return this.http.put('/profile/avatar', data)
+    }
+
+    async putPassword(data: PasswordData): Promise<{ id: number }> {
+        return this.http.put('/password', data)
     }
 
     create: undefined;

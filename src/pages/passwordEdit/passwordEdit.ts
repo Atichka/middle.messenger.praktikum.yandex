@@ -2,14 +2,13 @@ import {Block} from "../../util/block";
 import template from "./passwordEdit.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
-import {render} from "../../../index";
 import {Input} from "../../components/Input/input";
 import {FormPasswordEdit} from "../../components/FormPasswordEdit/formPasswordEdit";
-import {ChatsPage} from "../chats/chats";
 import {Router} from "../../util/router";
 import {Image} from "../../components/Image/image";
 import store from "../../util/store";
 import UserController from "../../controllers/UserController";
+import UsersController from "../../controllers/UsersController";
 
 export class PasswordEditPage extends Block {
     constructor() {
@@ -39,7 +38,7 @@ export class PasswordEditPage extends Block {
                 classNames: ["profile__input", "text__grey", "profile__text"],
                 id: "oldPassword",
                 type: "password",
-                name: "password",
+                name: "oldPassword",
                 required: "",
                 placeholder: "Пароль",
             }),
@@ -93,9 +92,14 @@ export class PasswordEditPage extends Block {
             if(inputNewPassword.value === inputNewPasswordRepeat.value) {
                 spanNewPasswordRepeat.classList.add("error-hide");
                 spanOldPassword.classList.add("error-hide");
-                console.log(inputOldPassword.value);
-                console.log(inputNewPassword.value);
-                console.log(inputNewPasswordRepeat.value);
+                const form: any = document.forms[0];
+                const formData: any = new FormData(form);
+                let obj: Record<string, unknown> = {};
+                for (let [name, value] of formData) {
+                    obj[name] = value;
+                }
+                console.log(obj);
+                UsersController.passwordEdit(obj);
             } else {
                 spanNewPasswordRepeat.classList.remove('error-hide');
                 spanOldPassword.classList.add("error-hide");
