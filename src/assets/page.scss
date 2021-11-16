@@ -3,6 +3,12 @@
   display: flex;
   height: 100vh;
 
+  &__add {
+    color: #fff;
+    background: #3369f3;
+    border-radius: 50%;
+  }
+
   &__aside {
     width: 310px;
     flex-shrink: 0; // блок не должен уменьшаться
@@ -19,8 +25,9 @@
   }
 
   &__nav {
-    text-align: right;
     color: $grey-color;
+    display: flex;
+    justify-content: space-between;
   }
 
   &__link {
