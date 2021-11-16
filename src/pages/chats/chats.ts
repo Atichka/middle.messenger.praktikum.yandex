@@ -45,6 +45,13 @@ export class ChatsPage extends Block {
             },
             classNames: ["header__menu"],
         });
+        const buttonAddChat = new Button( {
+            text: '+',
+            events: {
+                click: () => this.openModalAddChat(),
+            },
+            classNames: ["page__add"],
+        });
         const linkProfile = new Link( {
             text: 'Профиль &#62;',
             href: '/profile',
@@ -54,6 +61,7 @@ export class ChatsPage extends Block {
             formChats: formChats,
             buttonMenu: buttonMenu,
             linkProfile: linkProfile,
+            buttonAddChat: buttonAddChat,
         });
     }
 
@@ -90,6 +98,10 @@ export class ChatsPage extends Block {
     openMenu() {
         const menu = document.querySelector(".menu")
         menu.classList.toggle('hide');
+    }
+    openModalAddChat() {
+        const popup = document.querySelector('.popup');
+        popup.classList.toggle('hide');
     }
 }
 
