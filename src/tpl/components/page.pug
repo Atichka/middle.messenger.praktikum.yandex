@@ -16,3 +16,12 @@ block main
             block aside
         div.page__content
             block content
+    div.popup
+        div.popup__content
+            form.popup__form(id='formInput', name='formInput')
+                input.popup__input(
+                    type="text"
+                    placeholder="Название чата"
+                    name="nameChats")
+                button.popup__button-add Создать
+
