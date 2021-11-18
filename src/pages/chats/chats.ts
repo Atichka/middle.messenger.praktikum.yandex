@@ -116,10 +116,12 @@ export class ChatsPage extends Block {
         e.preventDefault();
         const input: any = document.querySelector('.popup__input');
         if(input.value) {
+            const popup: any = document.querySelector('.popup');
             let obj: Record<string, unknown> = {};
             obj['title'] = input.value
             ChatsController.chats(obj)
             input.value = '';
+            popup.classList.toggle('hide');
         }
     }
 }
