@@ -4,7 +4,7 @@ block main
     section.page
         aside.page__aside
             nav.page__nav
-                | !{buttonAddChat}
+                | !{buttonOpenModalAddChat}
                 | !{linkProfile}
             block.search
                 form.search__form(id="formSearch" name="formSearch")
@@ -23,6 +23,6 @@ block main
                     type="text"
                     placeholder="Название чата"
                     name="nameChats")
-                button.popup__button.background-blue Создать
+                | !{buttonAddChat}
                 button.popup__button Отмена
 

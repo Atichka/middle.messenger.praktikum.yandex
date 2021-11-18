@@ -6,6 +6,7 @@ import {FormChats} from "../../components/FormChats/formChats"
 import {Input} from "../../components/Input/input"
 import {Router} from "../../util/router"
 import {Link} from "../../components/Link/link"
+import ChatsController from "../../controllers/ChatsController";
 
 export class ChatsPage extends Block {
     constructor() {
@@ -45,12 +46,19 @@ export class ChatsPage extends Block {
             },
             classNames: ["header__menu"],
         });
-        const buttonAddChat = new Button( {
+        const buttonOpenModalAddChat = new Button( {
             text: '+',
             events: {
                 click: () => this.openModalAddChat(),
             },
             classNames: ["page__add"],
+        });
+        const buttonAddChat = new Button( {
+            text: 'Создать',
+            events: {
+                click: (e) => this.addChat(e),
+            },
+            classNames: ["popup__button", "background-blue"],
         });
         const linkProfile = new Link( {
             text: 'Профиль &#62;',
@@ -61,6 +69,7 @@ export class ChatsPage extends Block {
             formChats: formChats,
             buttonMenu: buttonMenu,
             linkProfile: linkProfile,
+            buttonOpenModalAddChat: buttonOpenModalAddChat,
             buttonAddChat: buttonAddChat,
         });
     }
@@ -96,12 +105,22 @@ export class ChatsPage extends Block {
         }
     }
     openMenu() {
-        const menu = document.querySelector(".menu")
+        const menu: any = document.querySelector(".menu")
         menu.classList.toggle('hide');
     }
     openModalAddChat() {
-        const popup = document.querySelector('.popup');
+        const popup: any = document.querySelector('.popup');
         popup.classList.toggle('hide');
+    }
+    addChat(e) {
+        e.preventDefault();
+        const input: any = document.querySelector('.popup__input');
+        if(input.value) {
+            let obj: Record<string, unknown> = {};
+            obj['title'] = input.value
+            ChatsController.chats(obj)
+            input.value = '';
+        }
     }
 }
 
