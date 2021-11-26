@@ -7,13 +7,18 @@ import {Input} from "../../components/Input/input"
 import {Router} from "../../util/router"
 import {Link} from "../../components/Link/link"
 import ChatsController from "../../controllers/ChatsController";
+import store from "../../util/store";
 
 export class ChatsPage extends Block {
     constructor() {
         super('div');
+        ChatsController.getDataChats().then(chats => this.setProps({ chats: chats }));
+        store.on('updated', () => this.eventBus().emit('flow:component-did-update'));
     }
 
     public render(): DocumentFragment {
+        const state = store.getState();
+        console.log('state.chats', state.chats);
         const formChats = new FormChats( {
             classNames: ["send-form"],
             id: "formmessage",
@@ -71,6 +76,7 @@ export class ChatsPage extends Block {
             linkProfile: linkProfile,
             buttonOpenModalAddChat: buttonOpenModalAddChat,
             buttonAddChat: buttonAddChat,
+            chats: state.chats ? state.chats : '',
         });
     }
 

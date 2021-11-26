@@ -1,4 +1,5 @@
 import {ChatsAPI, ChatsData} from "../api/ChatsAPI";
+import store from "../util/store";
 
 class ChatsController {
     private _api: ChatsAPI;
@@ -13,6 +14,23 @@ class ChatsController {
         } catch (e) {
             console.log(e);
         }
+    }
+
+    async getDataChats() {
+        try {
+            const ChatsData = await this._fetchChats();
+            store.set('chats', ChatsData)
+            return ChatsData;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async _fetchChats(): Promise<ChatsData> {
+        const chats = await this._api.read();
+        console.log('chats', chats);
+
+        return chats;
     }
 }
 
