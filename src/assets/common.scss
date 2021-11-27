@@ -260,7 +260,6 @@ body {
   &__button {
     width: 280px;
     height: 37px;
-    margin-top: 45px;
 
     font-weight: 500;
     font-size: 13px;
@@ -285,6 +284,7 @@ body {
 
   &__form {
     display: grid;
+    gap: 16px;
   }
 
   &__input {
@@ -292,22 +292,6 @@ body {
     padding: 10px;
     background: #efefef;
     border-radius: 5px;
-  }
-
-  &__button {
-    display: block;
-    width: 280px;
-    height: 37px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 16px;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 13px;
-    text-align: center;
-    color: #fff;
-    background: #3369f3;
-    border-radius: 8px;
   }
 }
 

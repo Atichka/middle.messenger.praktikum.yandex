@@ -28,6 +28,12 @@ export class Input extends Block {
         if(this.props.required){
             this._element.setAttribute('required', this.props.required);
         }
+        if(this.props.min){
+            this._element.setAttribute('required', this.props.min);
+        }
+        if(this.props.max){
+            this._element.setAttribute('required', this.props.max);
+        }
         if(this.props.placeholder){
             this._element.setAttribute('placeholder', this.props.placeholder);
         }

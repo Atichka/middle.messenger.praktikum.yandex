@@ -16,10 +16,28 @@ class ChatsController {
         }
     }
 
+    async addUserInChat(data: ChatsData) {
+        try {
+            await this._api.put(data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     async getDataChats() {
         try {
             const ChatsData = await this._fetchChats();
             store.set('chats', ChatsData)
+            return ChatsData;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async getDataChat(id) {
+        try {
+            const ChatsData = await this._fetchChats();
+            store.set('chats/' + id + '/common', ChatsData)
             return ChatsData;
         } catch (e) {
             console.log(e);

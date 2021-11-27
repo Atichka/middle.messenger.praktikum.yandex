@@ -4,10 +4,10 @@ import {Button} from "../../components/Button/button"
 import {compile} from "../../util/compile"
 import {FormChats} from "../../components/FormChats/formChats"
 import {Input} from "../../components/Input/input"
-import {Router} from "../../util/router"
 import {Link} from "../../components/Link/link"
 import ChatsController from "../../controllers/ChatsController";
 import store from "../../util/store";
+import {FormAddUserInChat} from "../../components/FormAddUserInChat/formAddUserInChat";
 
 export class ChatsPage extends Block {
     constructor() {
@@ -18,7 +18,6 @@ export class ChatsPage extends Block {
 
     public render(): DocumentFragment {
         const state = store.getState();
-        console.log('state.chats', state.chats);
         const formChats = new FormChats( {
             classNames: ["send-form"],
             id: "formmessage",
@@ -45,6 +44,38 @@ export class ChatsPage extends Block {
                 },
             }),
         });
+        const formAddUserInChat = new FormAddUserInChat({
+            classNames: ["popup__form"],
+            id: "formAddUserInChat",
+            name: "formAddUserInChat",
+            inputIdChat: new Input( {
+                classNames: ["popup__input"],
+                id: "chatId",
+                type: "number",
+                name: "chatId",
+                min: 0,
+                max: 30,
+                required: "",
+                placeholder: "Введите id чата",
+            }),
+            inputIdUser: new Input( {
+                classNames: ["popup__input"],
+                id: "idUsers",
+                type: "number",
+                name: "users",
+                min: 0,
+                max: 30,
+                required: "",
+                placeholder: "Введите id пользователя",
+            }),
+            buttonAddUserInChat: new Button( {
+                text: 'Добавить',
+                events: {
+                    click: (e) => this.getDataChat(e),
+                },
+                classNames: ["popup__button", "background-blue"],
+            }),
+        })
         const buttonMenu = new Button( {
             events: {
                 click: (e) => this.openMenu(),
@@ -56,7 +87,14 @@ export class ChatsPage extends Block {
             events: {
                 click: () => this.openModalAddChat(),
             },
-            classNames: ["page__add"],
+            classNames: ["page__button"],
+        });
+        const buttonOpenModalAddUserInChat = new Button( {
+            text: '✎',
+            events: {
+                click: () => this.openModalAddUserInChat(),
+            },
+            classNames: ["page__button"],
         });
         const buttonAddChat = new Button( {
             text: 'Создать',
@@ -72,10 +110,12 @@ export class ChatsPage extends Block {
         });
         return compile(template,{
             formChats: formChats,
+            formAddUserInChat: formAddUserInChat,
             buttonMenu: buttonMenu,
             linkProfile: linkProfile,
             buttonOpenModalAddChat: buttonOpenModalAddChat,
             buttonAddChat: buttonAddChat,
+            buttonOpenModalAddUserInChat: buttonOpenModalAddUserInChat,
             chats: state.chats ? state.chats : '',
         });
     }
@@ -115,20 +155,39 @@ export class ChatsPage extends Block {
         menu.classList.toggle('hide');
     }
     openModalAddChat() {
-        const popup: any = document.querySelector('.popup');
-        popup.classList.toggle('hide');
+        const popupAddChat: any = document.querySelector('.popup__add-chat');
+        popupAddChat.classList.toggle('hide');
+    }
+    openModalAddUserInChat() {
+        const popupEditChat: any = document.querySelector('.popup__edit-chat');
+        popupEditChat.classList.toggle('hide');
     }
     addChat(e) {
         e.preventDefault();
         const input: any = document.querySelector('.popup__input');
         if(input.value) {
-            const popup: any = document.querySelector('.popup');
+            const popupAddChat: any = document.querySelector('.popup__add-chat');
             let obj: Record<string, unknown> = {};
             obj['title'] = input.value
             ChatsController.chats(obj)
             input.value = '';
-            popup.classList.toggle('hide');
+            popupAddChat.classList.toggle('hide');
         }
+    }
+    getDataChat(e) {
+        e.preventDefault();
+        const form: any = document.forms[3];
+        const formData: any = new FormData(form);
+        let obj: Record<string, unknown> = {};
+        for (let [name, value] of formData) {
+                if (name!="chatId") {
+                    obj[name] = [Number(value)];
+                } else {
+                    obj[name] = Number(value);
+                }
+        }
+        console.log(obj);
+        ChatsController.addUserInChat(obj);
     }
 }
 
