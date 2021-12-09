@@ -8,6 +8,7 @@ import {Link} from "../../components/Link/link"
 import ChatsController from "../../controllers/ChatsController";
 import store from "../../util/store";
 import {FormAddUserInChat} from "../../components/FormAddUserInChat/formAddUserInChat";
+import {FormDeleteUserInChat} from "../../components/FormDeleteUserInChat/formDeleteUserInChat"
 
 export class ChatsPage extends Block {
     constructor() {
@@ -55,7 +56,6 @@ export class ChatsPage extends Block {
                 name: "chatId",
                 min: 0,
                 max: 30,
-                required: "",
                 placeholder: "Введите id чата",
             }),
             inputIdUser: new Input( {
@@ -65,7 +65,6 @@ export class ChatsPage extends Block {
                 name: "users",
                 min: 0,
                 max: 30,
-                required: "",
                 placeholder: "Введите id пользователя",
             }),
             buttonAddUserInChat: new Button( {
@@ -74,6 +73,50 @@ export class ChatsPage extends Block {
                     click: (e) => this.getDataChat(e),
                 },
                 classNames: ["popup__button", "background-blue"],
+            }),
+            buttonCancel: new Button( {
+                text: 'Отмена',
+                events: {
+                    click: (e) => this.openModalAddUserInChat(),
+                },
+                classNames: ["popup__button"]
+            }),
+        });
+        const formDeleteUserInChat = new FormDeleteUserInChat({
+            classNames: ["popup__form"],
+            id: "formDeleteUserInChat",
+            name: "formDeleteUserInChat",
+            inputIdChat: new Input( {
+                classNames: ["popup__input"],
+                id: "chatId",
+                type: "number",
+                name: "chatId",
+                min: 0,
+                max: 30,
+                placeholder: "Введите id чата",
+            }),
+            inputIdUser: new Input( {
+                classNames: ["popup__input"],
+                id: "idUsers",
+                type: "number",
+                name: "users",
+                min: 0,
+                max: 30,
+                placeholder: "Введите id пользователя",
+            }),
+            buttonDeleteUserInChat: new Button( {
+                text: 'Удалить',
+                events: {
+                    click: (e) => this.getDeleteUser(e),
+                },
+                classNames: ["popup__button", "background-blue"],
+            }),
+            buttonCancel: new Button( {
+                text: 'Отмена',
+                events: {
+                    click: (e) => this.openModalDeleteUserInChat(),
+                },
+                classNames: ["popup__button"]
             }),
         })
         const buttonMenu = new Button( {
@@ -90,9 +133,16 @@ export class ChatsPage extends Block {
             classNames: ["page__button"],
         });
         const buttonOpenModalAddUserInChat = new Button( {
-            text: '✎',
+            text: '☺+',
             events: {
                 click: () => this.openModalAddUserInChat(),
+            },
+            classNames: ["page__button"],
+        });
+        const buttonOpenModalDeleteUserInChat = new Button( {
+            text: '☺-',
+            events: {
+                click: () => this.openModalDeleteUserInChat(),
             },
             classNames: ["page__button"],
         });
@@ -111,11 +161,13 @@ export class ChatsPage extends Block {
         return compile(template,{
             formChats: formChats,
             formAddUserInChat: formAddUserInChat,
+            formDeleteUserInChat: formDeleteUserInChat,
             buttonMenu: buttonMenu,
             linkProfile: linkProfile,
             buttonOpenModalAddChat: buttonOpenModalAddChat,
             buttonAddChat: buttonAddChat,
             buttonOpenModalAddUserInChat: buttonOpenModalAddUserInChat,
+            buttonOpenModalDeleteUserInChat: buttonOpenModalDeleteUserInChat,
             chats: state.chats ? state.chats : '',
         });
     }
@@ -162,6 +214,10 @@ export class ChatsPage extends Block {
         const popupEditChat: any = document.querySelector('.popup__edit-chat');
         popupEditChat.classList.toggle('hide');
     }
+    openModalDeleteUserInChat() {
+        const popupDeeleteUser: any = document.querySelector('.popup__delete-user');
+        popupDeeleteUser.classList.toggle('hide');
+    }
     addChat(e) {
         e.preventDefault();
         const input: any = document.querySelector('.popup__input');
@@ -188,6 +244,21 @@ export class ChatsPage extends Block {
         }
         console.log(obj);
         ChatsController.addUserInChat(obj);
+    }
+    getDeleteUser(e) {
+        e.preventDefault();
+        const form: any = document.forms[4];
+        const formData: any = new FormData(form);
+        let obj: Record<string, unknown> = {};
+        for (let [name, value] of formData) {
+            if (name!="chatId") {
+                obj[name] = [Number(value)];
+            } else {
+                obj[name] = Number(value);
+            }
+        }
+        console.log(obj);
+        ChatsController.deleteUserInChat(obj);
     }
 }
 

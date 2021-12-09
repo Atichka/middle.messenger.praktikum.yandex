@@ -1,4 +1,4 @@
-import {ChatsAPI, ChatsData} from "../api/ChatsAPI";
+import {ChatsAPI, ChatsData, TokenData} from "../api/ChatsAPI";
 import store from "../util/store";
 
 class ChatsController {
@@ -16,9 +16,26 @@ class ChatsController {
         }
     }
 
+    async getToken(data: TokenData) {
+        try {
+            await this._api.getToken(data);
+            store.set('token', data)
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     async addUserInChat(data: ChatsData) {
         try {
             await this._api.put(data);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async deleteUserInChat(data: ChatsData) {
+        try {
+            await this._api.deleteUser(data);
         } catch (e) {
             console.log(e);
         }

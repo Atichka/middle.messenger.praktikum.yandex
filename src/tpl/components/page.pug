@@ -7,6 +7,7 @@ block main
                 div
                     | !{buttonOpenModalAddChat}
                     | !{buttonOpenModalAddUserInChat}
+                    | !{buttonOpenModalDeleteUserInChat}
                 | !{linkProfile}
             block.search
                 form.search__form(id="formSearch" name="formSearch")
@@ -30,4 +31,7 @@ block main
     div.popup.popup__edit-chat.hide
         div.popup__content
             | !{formAddUserInChat}
+    div.popup.popup__delete-user.hide
+        div.popup__content
+            | !{formDeleteUserInChat}
 
