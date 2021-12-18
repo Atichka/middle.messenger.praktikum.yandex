@@ -1,4 +1,5 @@
 import { AuthAPI, SignupData, LoginData, UserData } from "../api/AuthAPI";
+import store from "../util/store";
 
 class AuthController {
     private _api: AuthAPI;
@@ -35,6 +36,7 @@ class AuthController {
 
     private async _fetchUser(): Promise<UserData> {
         const user = await this._api.read();
+        store.set(store.getState(), 'user', user);
         console.log('user', user);
 
         return user;

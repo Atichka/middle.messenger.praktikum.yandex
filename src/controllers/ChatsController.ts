@@ -1,5 +1,6 @@
 import {ChatsAPI, ChatsData, TokenData} from "../api/ChatsAPI";
 import store from "../util/store";
+import {ChatService} from "../util/сhatService";
 
 class ChatsController {
     private _api: ChatsAPI;
@@ -18,8 +19,8 @@ class ChatsController {
 
     async getToken(data: TokenData) {
         try {
-            await this._api.getToken(data);
-            store.set('token', data)
+            const token = await this._api.getToken(data);
+            return token;
         } catch (e) {
             console.log(e);
         }
@@ -44,7 +45,19 @@ class ChatsController {
     async getDataChats() {
         try {
             const ChatsData = await this._fetchChats();
-            store.set('chats', ChatsData)
+            store.set(store.getState(), 'chats', ChatsData);
+            const state = store.getState();
+            for(let i = 0; i<state.chats.length; i++) {
+                await this.getToken(`chats.${i}.id`).then(function (token) {
+                    store.set(store.getState(), `chats.${i}.token`, token.token)
+                })
+                const chat = new ChatService("wss://ya-praktikum.tech/ws/chats/" +
+                    state.user.id +
+                    state.chats[i].id + "/" +
+                    state.chats[i].token, state.chats[i].id, state.chats[i].token);
+                chat.on('message', () => this.eventBus().emit('flow:component-did-update'));
+            }
+            console.log('state.user', state.user);
             return ChatsData;
         } catch (e) {
             console.log(e);

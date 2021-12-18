@@ -7,6 +7,7 @@ import {FormLogin} from "../../components/FormLogin/formLogin"
 import {Router} from "../../util/router";
 import {LoginData} from "../../api/AuthAPI";
 import AuthController from "../../controllers/AuthController";
+import store from "../../util/store";
 
 export class LoginPage extends Block {
     constructor() {

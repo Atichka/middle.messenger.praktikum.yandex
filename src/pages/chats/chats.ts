@@ -14,11 +14,13 @@ export class ChatsPage extends Block {
     constructor() {
         super('div');
         ChatsController.getDataChats().then(chats => this.setProps({ chats: chats }));
+        ChatsController.getToken(581);
         store.on('updated', () => this.eventBus().emit('flow:component-did-update'));
     }
 
     public render(): DocumentFragment {
         const state = store.getState();
+        console.log('state', state);
         const formChats = new FormChats( {
             classNames: ["send-form"],
             id: "formmessage",
