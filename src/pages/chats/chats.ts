@@ -212,7 +212,7 @@ export class ChatsPage extends Block {
         if(input.value.length > 0) {
             span.classList.add("error-hide");
             console.log("Message: ", input.value);
-            ChatsController.sendMessage(input.value);
+            ChatsController.sendMessage(store.getState().chatId, input.value);
         } else {
             span.classList.remove('error-hide');
         }

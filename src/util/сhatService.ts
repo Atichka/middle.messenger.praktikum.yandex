@@ -10,37 +10,36 @@ export class ChatService extends EventBus {
 
         this.openSocket();
     }
-
-    public sendMessage(message, chatId) {
-        this.socket = new WebSocket(this.url, this.id, this.token);
-
+    public openChat() {
+        this.socket = new WebSocket(this.url);
+        this.socket.addEventListener('message', this.onMessage);
         this.socket.addEventListener('open', () => {
-            console.log('Соединение установлено');
+            console.log('Чат открыт');
 
             this.socket.send(JSON.stringify({
-                content: message,
-                type: 'message',
+                content: "0",
+                type: "get old"
             }));
         });
-        if(!store.getState().messages) {
-            store.set(store.getState(), `messages.${chatId}`, [message])
-        } else {
-            const messages = store.getState().messages[chatId] || [];
-            store.set(store.getState(), `messages.${chatId}`, [message, ...messages])
-        }
 
+    }
 
-        console.log('store.getState()', store.getState());
+    sendMessage(message) {
+        this.socket.send(JSON.stringify({
+            type: 'message',
+            content: message
+        }));
     }
 
     private onMessage(message) {
         // нужно обрабатывать разные типы сообщений
-
-        this.emit('message', message); // оповещаем о том, что пришло сообщение
+        store.set(store.getState(), `messages`, [message])
+        // this.emit('message', message); // оповещаем о том, что пришло сообщение
+        console.log('message', message);
     }
 
     private openSocket() {
-        this.socket = new WebSocket(this.url, this.id, this.token);
+        this.socket = new WebSocket(this.url);
 
         this.socket.addEventListener('message', this.onMessage.bind(this));
     }

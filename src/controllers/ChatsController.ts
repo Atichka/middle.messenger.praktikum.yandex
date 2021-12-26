@@ -4,9 +4,11 @@ import {ChatService} from "../util/сhatService";
 
 class ChatsController {
     private _api: ChatsAPI;
+    public services;
 
     constructor() {
         this._api = new ChatsAPI()
+        this.services = {}
     }
 
     async chats(data: ChatsData) {
@@ -47,7 +49,7 @@ class ChatsController {
             const ChatsData = await this._fetchChats();
             store.set(store.getState(), 'chats', ChatsData);
             const state = store.getState();
-            for(let i = 0; i<state.chats.length; i++) {
+            for (let i = 0; i < state.chats.length; i++) {
                 await this.getToken(`chats.${i}.id`).then(function (token) {
                     store.set(store.getState(), `chats.${i}.token`, token.token)
                 })
@@ -55,7 +57,7 @@ class ChatsController {
                     state.user.id +
                     state.chats[i].id + "/" +
                     state.chats[i].token, state.chats[i].id, state.chats[i].token);
-                chat.on('message', () => this.eventBus().emit('flow:component-did-update'));
+                this.services[state.chats[i].id] = chat
             }
             return ChatsData;
         } catch (e) {
@@ -63,29 +65,23 @@ class ChatsController {
         }
     }
 
-    async sendMessage(message) {
-        try {
-            const ChatsData = await this._fetchChats();
-            const state = store.getState();
-            if(state.currentChat) {
-                const chat = new ChatService("wss://ya-praktikum.tech/ws/chats/" +
-                    state.user.id +
-                    state.currentChat.id + "/" +
-                    state.currentChat.token, state.currentChat.id, state.currentChat.token);
-                chat.sendMessage(message, state.currentChat.id);
-                return ChatsData;
-            } else {
-                alert('Выберите чат')
-            }
-        } catch (e) {
-            console.log(e);
-        }
+    openChat(chatId: number) {
+        store.set(store.getState(), 'chatId', chatId)
+        const currentChat = this.services[chatId];
+
+        currentChat.openChat();
+    }
+
+    sendMessage(chatId, message) {
+        const service = this.services[chatId];
+
+        service.sendMessage(message);
     }
 
     async getDataChat(id) {
         try {
             const ChatsData = await this._fetchChats();
-            store.set(store.getState(),'chats/' + id + '/common', ChatsData)
+            store.set(store.getState(), 'chats/' + id + '/common', ChatsData)
             return ChatsData;
         } catch (e) {
             console.log(e);
