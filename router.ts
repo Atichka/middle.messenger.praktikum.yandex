@@ -8,17 +8,26 @@ import { ProfileEditPage } from "./src/pages/profileEdit/profileEdit"
 import { PasswordEditPage } from "./src/pages/passwordEdit/passwordEdit"
 import { Error404Page } from "./src/pages/error404/error404"
 import { Error500Page } from "./src/pages/error500/error500"
+import AuthController from "./src/controllers/AuthController";
 
-const router = new Router(".app");
-
-router
-    .use("/", HomePage)
-    .use("/login", LoginPage)
-    .use("/sign-up", SigninPage)
-    .use("/messenger", ChatsPage)
+const router = new Router()
+    .use('/login', LoginPage)
+    .use('/sign-up', SigninPage)
+    .use('/messenger', ChatsPage) // регистрируем роуты, но роутер пока не запускаем
     .use("/profile", ProfilePage)
     .use("/settings", ProfileEditPage)
     .use("/password-edit", PasswordEditPage)
     .use("/404", Error404Page)
     .use("/500", Error500Page)
-    .start();
+
+async function start(){
+    try {
+        await AuthController.fetchUser(); // запрашиваем пользователя и сетим в стейт, если успешно
+        router.start(); // пользователь окажется на странице, на которую хотел
+    } catch (e) {
+        router.go('/login');
+        router.start(); // запрос не прошел, значит пользователь не авторизован, перенаправляем на /login и запускаем роутер
+    }
+}
+
+start().then();

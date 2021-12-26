@@ -57,8 +57,26 @@ class ChatsController {
                     state.chats[i].token, state.chats[i].id, state.chats[i].token);
                 chat.on('message', () => this.eventBus().emit('flow:component-did-update'));
             }
-            console.log('state.user', state.user);
             return ChatsData;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async sendMessage(message) {
+        try {
+            const ChatsData = await this._fetchChats();
+            const state = store.getState();
+            if(state.currentChat) {
+                const chat = new ChatService("wss://ya-praktikum.tech/ws/chats/" +
+                    state.user.id +
+                    state.currentChat.id + "/" +
+                    state.currentChat.token, state.currentChat.id, state.currentChat.token);
+                chat.sendMessage(message, state.currentChat.id);
+                return ChatsData;
+            } else {
+                alert('Выберите чат')
+            }
         } catch (e) {
             console.log(e);
         }
@@ -67,7 +85,7 @@ class ChatsController {
     async getDataChat(id) {
         try {
             const ChatsData = await this._fetchChats();
-            store.set('chats/' + id + '/common', ChatsData)
+            store.set(store.getState(),'chats/' + id + '/common', ChatsData)
             return ChatsData;
         } catch (e) {
             console.log(e);

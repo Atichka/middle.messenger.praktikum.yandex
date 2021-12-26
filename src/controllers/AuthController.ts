@@ -11,7 +11,7 @@ class AuthController {
     async signup(data: SignupData) {
         try {
             await this._api.signup(data);
-            await this._fetchUser();
+            await this.fetchUser();
         } catch (e) {
             console.log(e);
         }
@@ -20,7 +20,7 @@ class AuthController {
     async login(data: LoginData) {
         try {
             await this._api.login(data);
-            await this._fetchUser();
+            await this.fetchUser();
         } catch (e) {
             console.log(e);
         }
@@ -34,12 +34,16 @@ class AuthController {
         }
     }
 
-    private async _fetchUser(): Promise<UserData> {
-        const user = await this._api.read();
-        store.set(store.getState(), 'user', user);
-        console.log('user', user);
+    async fetchUser(): Promise<UserData> {
+        try {
+            const user = await this._api.read();
+            store.set(store.getState(), 'user', user);
+            console.log('user', user);
 
-        return user;
+            return user;
+        } catch (e) {
+            console.log(e);
+        }
     }
 }
 

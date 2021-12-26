@@ -5,22 +5,32 @@ import {compile} from "../../util/compile"
 import {FormChats} from "../../components/FormChats/formChats"
 import {Input} from "../../components/Input/input"
 import {Link} from "../../components/Link/link"
+import {List} from "../../components/List/list"
 import ChatsController from "../../controllers/ChatsController";
 import store from "../../util/store";
 import {FormAddUserInChat} from "../../components/FormAddUserInChat/formAddUserInChat";
-import {FormDeleteUserInChat} from "../../components/FormDeleteUserInChat/formDeleteUserInChat"
+import {FormDeleteUserInChat} from "../../components/FormDeleteUserInChat/formDeleteUserInChat";
+import {Chat} from "../../components/Chat/chat"
 
 export class ChatsPage extends Block {
     constructor() {
         super('div');
         ChatsController.getDataChats().then(chats => this.setProps({ chats: chats }));
-        ChatsController.getToken(581);
         store.on('updated', () => this.eventBus().emit('flow:component-did-update'));
     }
 
     public render(): DocumentFragment {
         const state = store.getState();
         console.log('state', state);
+        const listChats: [] = [];
+        if(state.chats) {
+            state.chats.forEach(chat => {
+                listChats.push(new List(chat));
+            });
+        }
+        // const chat = new Chat( {
+        //     classNames: ["main"],
+        // });
         const formChats = new FormChats( {
             classNames: ["send-form"],
             id: "formmessage",
@@ -166,6 +176,8 @@ export class ChatsPage extends Block {
             formDeleteUserInChat: formDeleteUserInChat,
             buttonMenu: buttonMenu,
             linkProfile: linkProfile,
+            listChats: listChats,
+            // chat: chat,
             buttonOpenModalAddChat: buttonOpenModalAddChat,
             buttonAddChat: buttonAddChat,
             buttonOpenModalAddUserInChat: buttonOpenModalAddUserInChat,
@@ -200,6 +212,7 @@ export class ChatsPage extends Block {
         if(input.value.length > 0) {
             span.classList.add("error-hide");
             console.log("Message: ", input.value);
+            ChatsController.sendMessage(input.value);
         } else {
             span.classList.remove('error-hide');
         }
@@ -263,4 +276,5 @@ export class ChatsPage extends Block {
         ChatsController.deleteUserInChat(obj);
     }
 }
+
 

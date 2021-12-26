@@ -11,7 +11,7 @@ class UserController {
     async getDataUser() {
         try {
             const UserData = await this._fetchUser();
-            store.set('user', UserData)
+            store.set(store.getState(),'user', UserData)
             return UserData;
         } catch (e) {
             console.log(e);

@@ -1,0 +1,11 @@
+arcticle.chat-preview
+    div.chat-preview__avatar
+    div.chat-preview__content
+        h3.chat-preview__title #{title}
+        if last_message
+            p.chat-preview__text #{last_message.content}
+    div.chat-preview__meta
+        if last_message
+            time.chat-preview__date #{last_message.time}
+        if unread_count
+            div.chat-preview__counter #{unread_count}

@@ -4,11 +4,14 @@ include ../../tpl/mixins/header
 include ../../tpl/mixins/chatList
 
 block aside
-    +chat-list(chats)
+    ul.chat-list
+         each chat in listChats
+            | !{chat}
 block content
     h3.page__not-chat.hide Выберите чат чтобы отправить сообщение
     div
         +header({name: 'Вадим'})
+        //| !{chat}
         +chat({
             content: {
                 date: '19 июня',
