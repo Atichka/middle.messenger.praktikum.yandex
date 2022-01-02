@@ -2,16 +2,10 @@ import {Block} from "../../util/block";
 import {compile} from "../../util/compile";
 import template from "./template.pug";
 import {addClass} from "../../../index";
-import ChatsController from "../../controllers/ChatsController";
 
-export class List extends Block {
+export class NotSelectChat extends Block {
     constructor(props) {
-        super('li', {
-            ...props,
-            events: {
-                click: () => ChatsController.openChat(this.props.id)
-            }
-        });
+        super("h3", props);
     }
 
     render() {

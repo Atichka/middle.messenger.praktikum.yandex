@@ -11,6 +11,7 @@ import store from "../../util/store";
 import {FormAddUserInChat} from "../../components/FormAddUserInChat/formAddUserInChat";
 import {FormDeleteUserInChat} from "../../components/FormDeleteUserInChat/formDeleteUserInChat";
 import {Chat} from "../../components/Chat/chat"
+import {NotSelectChat} from "../../components/NotSelectChat/notSelectChat";
 
 export class ChatsPage extends Block {
     constructor() {
@@ -28,9 +29,16 @@ export class ChatsPage extends Block {
                 listChats.push(new List(chat));
             });
         }
-        // const chat = new Chat( {
-        //     classNames: ["main"],
-        // });
+        const messages = new Chat( {
+            user: state.user,
+            messages: state.messages,
+            buttonMenu: new Button( {
+                events: {
+                    click: (e) => this.openMenu(),
+                },
+                classNames: ["header__menu"],
+            }),
+        });
         const formChats = new FormChats( {
             classNames: ["send-form"],
             id: "formmessage",
@@ -131,12 +139,6 @@ export class ChatsPage extends Block {
                 classNames: ["popup__button"]
             }),
         })
-        const buttonMenu = new Button( {
-            events: {
-                click: (e) => this.openMenu(),
-            },
-            classNames: ["header__menu"],
-        });
         const buttonOpenModalAddChat = new Button( {
             text: '+',
             events: {
@@ -170,19 +172,23 @@ export class ChatsPage extends Block {
             href: '/profile',
             classNames: ["page__link"],
         });
+        const notSelectChat = new NotSelectChat( {
+            text: 'Выберите чат чтобы отправить сообщение',
+            classNames: ["page__not-chat"],
+        });
         return compile(template,{
             formChats: formChats,
             formAddUserInChat: formAddUserInChat,
             formDeleteUserInChat: formDeleteUserInChat,
-            buttonMenu: buttonMenu,
             linkProfile: linkProfile,
             listChats: listChats,
-            // chat: chat,
+            showMessages: state.currentChatId ? messages : notSelectChat,
             buttonOpenModalAddChat: buttonOpenModalAddChat,
             buttonAddChat: buttonAddChat,
             buttonOpenModalAddUserInChat: buttonOpenModalAddUserInChat,
             buttonOpenModalDeleteUserInChat: buttonOpenModalDeleteUserInChat,
             chats: state.chats ? state.chats : '',
+            user: state.user ? state.user : '',
         });
     }
 
@@ -212,7 +218,7 @@ export class ChatsPage extends Block {
         if(input.value.length > 0) {
             span.classList.add("error-hide");
             console.log("Message: ", input.value);
-            ChatsController.sendMessage(store.getState().chatId, input.value);
+            ChatsController.sendMessage(store.getState().currentChatId, input.value);
         } else {
             span.classList.remove('error-hide');
         }

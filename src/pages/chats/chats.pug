@@ -1,6 +1,5 @@
 extends ../../tpl/components/page
 include ../../tpl/mixins/chat
-include ../../tpl/mixins/header
 include ../../tpl/mixins/chatList
 
 block aside
@@ -8,35 +7,4 @@ block aside
          each chat in listChats
             | !{chat}
 block content
-    h3.page__not-chat.hide Выберите чат чтобы отправить сообщение
-    div
-        +header({name: 'Вадим'})
-        //| !{chat}
-        +chat({
-            content: {
-                date: '19 июня',
-                messages: [
-                    {
-                        owner: '1',
-                        message: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.',
-                        imageUrl: '',
-                        clock: '11:56',
-                    }, {
-                        owner: '1',
-                        message: 'Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.',
-                        imageUrl: '',
-                        clock: '11:56',
-                    }, {
-                        owner: '1',
-                        message: '',
-                        imageUrl: 'https://i.pinimg.com/originals/5d/65/6b/5d656b84a6bc28d19e5220c195ef8f28.png',
-                        clock: '11:56',
-                    }, {
-                        owner: '2',
-                        message: 'Круто!',
-                        imageUrl: '',
-                        clock: '12:00',
-                    }
-                ]
-            },
-        })
+    | !{showMessages}

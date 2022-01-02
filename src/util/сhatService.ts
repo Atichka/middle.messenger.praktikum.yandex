@@ -10,18 +10,11 @@ export class ChatService extends EventBus {
 
         this.openSocket();
     }
-    public openChat() {
-        this.socket = new WebSocket(this.url);
-        this.socket.addEventListener('message', this.onMessage);
-        this.socket.addEventListener('open', () => {
-            console.log('Чат открыт');
-
-            this.socket.send(JSON.stringify({
+    public getOldMessages() {
+        this.socket.send(JSON.stringify({
                 content: "0",
                 type: "get old"
-            }));
-        });
-
+        }));
     }
 
     sendMessage(message) {
@@ -32,10 +25,21 @@ export class ChatService extends EventBus {
     }
 
     private onMessage(message) {
-        // нужно обрабатывать разные типы сообщений
-        store.set(store.getState(), `messages`, [message])
         // this.emit('message', message); // оповещаем о том, что пришло сообщение
-        console.log('message', message);
+        const data = JSON.parse(message.data);
+        console.log('data', data);
+            const messagesState = store.getState().messages || {};
+            const messages = messagesState[data.chat_id] || [];
+
+            if(data.type==='message') {
+                store.set(store.getState(), `messages.${data.chat_id}`, [...messages, data]);
+            }
+            if(Array.isArray(data) && data.length>0) {
+                const firstMessage = data[0];
+                store.set(store.getState(), `messages.${firstMessage.chat_id}`, [...messages, ...data]);
+            }
+
+        console.log('store.getState()', store.getState());
     }
 
     private openSocket() {
