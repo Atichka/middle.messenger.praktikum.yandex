@@ -8,22 +8,23 @@ header.header
 //        p.menu__title Удалить чат
 time.main__date
     div.main__container
-          // each message in messages
-          //     if message.owner != '2'
-          //         div.main__user
-//                     if message.message != ''
-//                         p.main__message.main__background-grey #{message.message}
-//                         p.main__time-text.main__background-grey.main__color-grey #{message.clock}
-//                     else
-//                         div.main__container-pic
-//                             img.main__pic(src=message.imageUrl, alt='Картинка')
-//                             time.main__time-pic #{message.clock}
-//             else
-//                 div.main__you
-//                     p.main__message.main__background-blue #{message.message}
-//                     p.main__time-text.main__background-blue.main__color-blue #{message.clock}
-// div.menu.hide
-//     button.menu__delete-chat
-//         img.menu__icon(crossorigin='anonymous', src='assets/fileAdd.svg')
-//         p.menu__title Файл
-// | !{formChats}
+        if messages
+            each message in messages
+                if message.user_id != user.id
+                    div.main__user
+                    if message.content != ''
+                        p.main__message.main__background-grey #{message.content}
+                        p.main__time-text.main__background-grey.main__color-grey #{message.time}
+                    else
+                        div.main__container-pic
+                            img.main__pic(src=message.file, alt='Картинка')
+                            time.main__time-pic #{message.time}
+                else
+                    div.main__you
+                    p.main__message.main__background-blue #{message.content}
+                    p.main__time-text.main__background-blue.main__color-blue #{message.time}
+//div.menu.hide
+//    button.menu__delete-chat
+//        img.menu__icon(crossorigin='anonymous', src='assets/fileAdd.svg')
+//        p.menu__title Файл
+| !{formChats}

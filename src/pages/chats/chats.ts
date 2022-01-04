@@ -31,38 +31,38 @@ export class ChatsPage extends Block {
         }
         const messages = new Chat( {
             user: state.user,
-            messages: state.messages,
+            messages: state.currentChatId && state.messages ? state.messages[state.currentChatId] : [],
             buttonMenu: new Button( {
                 events: {
                     click: (e) => this.openMenu(),
                 },
                 classNames: ["header__menu"],
             }),
-        });
-        const formChats = new FormChats( {
-            classNames: ["send-form"],
-            id: "formmessage",
-            name: "formmessage",
-            buttonChats: new Button( {
-                text: "→",
-                events: {
-                    click: (e) => this.sendData(e),
-                },
-                classNames: ["send-form__button-send"],
-            }),
-            inputMessage: new Input( {
-                classNames: ["send-form__input"],
-                id: "message",
-                type: "text",
-                name: "message",
-                minlength: 2,
-                maxlength: 30,
-                required: "",
-                placeholder: "Сообщение",
-                events: {
-                    blur: (e) => this.onBlur(e),
-                    focus: (e) => this.onFocus(e),
-                },
+            formChats: new FormChats( {
+                classNames: ["send-form"],
+                id: "formmessage",
+                name: "formmessage",
+                buttonChats: new Button( {
+                    text: "→",
+                    events: {
+                        click: (e) => this.sendData(e),
+                    },
+                    classNames: ["send-form__button-send"],
+                }),
+                inputMessage: new Input( {
+                    classNames: ["send-form__input"],
+                    id: "message",
+                    type: "text",
+                    name: "message",
+                    minlength: 2,
+                    maxlength: 30,
+                    required: "",
+                    placeholder: "Сообщение",
+                    events: {
+                        blur: (e) => this.onBlur(e),
+                        focus: (e) => this.onFocus(e),
+                    },
+                }),
             }),
         });
         const formAddUserInChat = new FormAddUserInChat({
@@ -177,7 +177,6 @@ export class ChatsPage extends Block {
             classNames: ["page__not-chat"],
         });
         return compile(template,{
-            formChats: formChats,
             formAddUserInChat: formAddUserInChat,
             formDeleteUserInChat: formDeleteUserInChat,
             linkProfile: linkProfile,
