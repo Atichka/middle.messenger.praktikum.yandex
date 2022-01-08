@@ -63,14 +63,14 @@ export class Router {
         this.routes = []
     }
 
-    use(pathname: string, block: Block): Router {
+    public use(pathname: string, block: typeof Block): Router {
         const route = new Route(pathname, block, {_rootQuery: '#app'});
         this.routes.push(route);
         // Возврат this — основа паттерна "Builder" («Строитель»)
         return this;
     }
 
-    start(): void {
+    public start(): void {
         // Реагируем на изменения в адресной строке и вызываем перерисовку
         window.onpopstate = () => {
             this._onRoute(window.location.pathname);
@@ -79,7 +79,7 @@ export class Router {
         this._onRoute(window.location.pathname);
     }
 
-    _onRoute(pathname: string) {
+    private _onRoute(pathname: string) {
         const route: any = this.getRoute(pathname);
         if (!route) {
             return;
@@ -93,26 +93,27 @@ export class Router {
         route.render(route, pathname);
     }
 
-    go(pathname: string) {
+    public go(pathname: string) {
         this.history.pushState({}, "", pathname);
         this._onRoute(pathname);
     }
 
-    back() {
+    public back() {
         this.history.back()
     }
 
-    forward() {
+    public forward() {
         this.history.forward()
     }
 
-    getRoute(pathname: string) {
+    private getRoute(pathname: string) {
         return this.routes.find(route => route.match(pathname));
     }
 }
 
 export function withRouter(Component: typeof Block) {
-    return class WithRouter extends Component {
+    return // @ts-ignore
+        class WithRouter extends Component {
         constructor(props: any) {
             const router = new Router()
 

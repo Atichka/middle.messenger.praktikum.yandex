@@ -1,5 +1,4 @@
 import { Router } from "./src/util/Router";
-import { HomePage } from "./src/pages/home/home"
 import { LoginPage } from "./src/pages/login/login"
 import { SigninPage } from "./src/pages/signin/signin"
 import { ChatsPage } from "./src/pages/chats/chats"
