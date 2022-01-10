@@ -23,6 +23,9 @@ async function start(){
     try {
         await AuthController.fetchUser(); // запрашиваем пользователя и сетим в стейт, если успешно
         router.start(); // пользователь окажется на странице, на которую хотел
+        if (location.pathname === '/') {
+            router.go('/messenger');
+        }
     } catch (e) {
         router.go('/login');
         router.start(); // запрос не прошел, значит пользователь не авторизован, перенаправляем на /login и запускаем роутер
