@@ -1,7 +1,7 @@
 import {Block, TProps} from "../../util/block";
 import template from "./template.pug";
 import {compile} from "../../util/compile";
-import {addClass} from "../../../index";
+import {addClass} from "../../util/funcForComponents";
 
 export class FormPasswordEdit extends Block<TProps> {
     constructor(props: any) {

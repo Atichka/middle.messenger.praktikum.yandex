@@ -1,7 +1,7 @@
 import {Block, TProps} from "../../util/block";
 import {compile} from "../../util/compile";
 import template from "./template.pug";
-import {addClass} from "../../../index";
+import {addClass} from "../../util/funcForComponents";
 
 export class NotSelectChat extends Block<TProps> {
     constructor(props: any) {
