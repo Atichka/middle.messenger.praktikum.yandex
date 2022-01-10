@@ -1,5 +1,4 @@
-// @ts-ignore
-import {UsersAPI, ProfileData, AvatarData, PasswordData} from "../api/UsersAPI";
+import {UsersAPI, ProfileData, AvatarData, PasswordData} from "../api/UsersApi";
 
 class UsersController {
     private _api: UsersAPI;
