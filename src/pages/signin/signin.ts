@@ -9,9 +9,9 @@ import AuthController from "../../controllers/AuthController"
 import {SignupData} from "../../api/AuthAPI"
 
 export class SigninPage extends Block<TProps> {
-    getContent(): any {
-        throw new Error("Method not implemented.");
-    }
+    // getContent(): any {
+    //     throw new Error("Method not implemented.");
+    // }
     constructor() {
         super('div');
     }

@@ -1,8 +1,11 @@
 import {beforeEach} from "mocha";
 import {Router} from "../../util/router";
-import {expect} from "chai";
+import {expect, use} from "chai";
 import {JSDOM} from "jsdom";
 import {SigninPage} from "./signin";
+import chaiDom from 'chai-dom';
+
+use(chaiDom);
 
 describe.only('render', () => {
     beforeEach(() => {
@@ -29,7 +32,7 @@ describe.only('render', () => {
     it.only('should render new block', () => {
         const signin = new SigninPage();
         const element = signin.getContent();
-
-        expect(element).to.have.class('form__button');
+        expect(element).to.be.instanceof(window.HTMLElement);
+        expect(element.querySelector('.login')).to.null;
     });
 });

@@ -7,7 +7,11 @@ function compile(module, filename) {
         filename: filename
     })
 
-    module.exports = templateFun
+    module.exports = new Function([], `
+        ${templateFun};
+        
+        return template;
+    `)();
 }
 
 if (require.extensions) {
