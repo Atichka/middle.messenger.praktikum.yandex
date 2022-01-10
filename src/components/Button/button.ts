@@ -1,10 +1,10 @@
-import {Block} from "../../util/block";
+import {Block, TProps} from "../../util/block";
 import {compile} from "../../util/compile";
 import template from "./template.pug";
 import {addClass} from "../../../index";
 
-export class Button extends Block {
-    constructor(props) {
+export class Button extends Block<TProps> {
+    constructor(props: any) {
         super("button", props);
     }
 

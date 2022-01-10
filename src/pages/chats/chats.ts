@@ -1,4 +1,4 @@
-import {Block} from "../../util/block"
+import {Block, TProps} from "../../util/block"
 import template from "./chats.pug"
 import {Button} from "../../components/Button/button"
 import {compile} from "../../util/compile"
@@ -13,10 +13,12 @@ import {FormDeleteUserInChat} from "../../components/FormDeleteUserInChat/formDe
 import {Chat} from "../../components/Chat/chat"
 import {NotSelectChat} from "../../components/NotSelectChat/notSelectChat";
 
-export class ChatsPage extends Block {
+export class ChatsPage extends Block<TProps> {
     constructor() {
         super('div');
+        // @ts-ignore
         ChatsController.getDataChats().then(chats => this.setProps({ chats: chats }));
+        // @ts-ignore
         store.on('updated', () => this.eventBus().emit('flow:component-did-update'));
     }
 
@@ -25,7 +27,8 @@ export class ChatsPage extends Block {
         console.log('state', state);
         const listChats: [] = [];
         if(state.chats) {
-            state.chats.forEach(chat => {
+            state.chats.forEach((chat: any) => {
+                // @ts-ignore
                 listChats.push(new List(chat));
             });
         }
@@ -34,7 +37,7 @@ export class ChatsPage extends Block {
             messages: state.currentChatId && state.messages ? state.messages[state.currentChatId] : [],
             buttonMenu: new Button( {
                 events: {
-                    click: (e) => this.openMenu(),
+                    click: () => this.openMenu(),
                 },
                 classNames: ["header__menu"],
             }),
@@ -45,7 +48,7 @@ export class ChatsPage extends Block {
                 buttonChats: new Button( {
                     text: "→",
                     events: {
-                        click: (e) => this.sendData(e),
+                        click: (e: any) => this.sendData(e),
                     },
                     classNames: ["send-form__button-send"],
                 }),
@@ -59,8 +62,8 @@ export class ChatsPage extends Block {
                     required: "",
                     placeholder: "Сообщение",
                     events: {
-                        blur: (e) => this.onBlur(e),
-                        focus: (e) => this.onFocus(e),
+                        blur: (e: any) => this.onBlur(e),
+                        focus: (e: any) => this.onFocus(e),
                     },
                 }),
             }),
@@ -90,14 +93,14 @@ export class ChatsPage extends Block {
             buttonAddUserInChat: new Button( {
                 text: 'Добавить',
                 events: {
-                    click: (e) => this.getDataChat(e),
+                    click: (e: any) => this.getDataChat(e),
                 },
                 classNames: ["popup__button", "background-blue"],
             }),
             buttonCancel: new Button( {
                 text: 'Отмена',
                 events: {
-                    click: (e) => this.openModalAddUserInChat(),
+                    click: () => this.openModalAddUserInChat(),
                 },
                 classNames: ["popup__button"]
             }),
@@ -127,14 +130,14 @@ export class ChatsPage extends Block {
             buttonDeleteUserInChat: new Button( {
                 text: 'Удалить',
                 events: {
-                    click: (e) => this.getDeleteUser(e),
+                    click: (e: any) => this.getDeleteUser(e),
                 },
                 classNames: ["popup__button", "background-blue"],
             }),
             buttonCancel: new Button( {
                 text: 'Отмена',
                 events: {
-                    click: (e) => this.openModalDeleteUserInChat(),
+                    click: () => this.openModalDeleteUserInChat(),
                 },
                 classNames: ["popup__button"]
             }),
@@ -163,7 +166,7 @@ export class ChatsPage extends Block {
         const buttonAddChat = new Button( {
             text: 'Создать',
             events: {
-                click: (e) => this.addChat(e),
+                click: (e: any) => this.addChat(e),
             },
             classNames: ["popup__button", "background-blue"],
         });
@@ -191,10 +194,10 @@ export class ChatsPage extends Block {
         });
     }
 
-    onBlur(event) {
+    onBlur(event: any) {
         const input = event.target;
         const name = input.name;
-        const span = this._element.querySelector(`#error-${name}`);
+        const span: any = this._element.querySelector(`#error-${name}`);
         if(input.value.length > 0) {
             span.classList.add("error-hide");
         } else {
@@ -202,18 +205,18 @@ export class ChatsPage extends Block {
         }
     }
 
-    onFocus(event) {
+    onFocus(event: any) {
         const input = event.target;
         const name = input.name;
-        const span = this._element.querySelector(`#error-${name}`);
+        const span: any = this._element.querySelector(`#error-${name}`);
         span.classList.add("error-hide");
     }
 
-    sendData(e) {
+    sendData(e: any) {
         e.preventDefault();
-        const input = document.querySelector('.send-form__input');
+        const input: any = document.querySelector('.send-form__input');
         const name = input.name;
-        const span = this._element.querySelector(`#error-${name}`);
+        const span: any = this._element.querySelector(`#error-${name}`);
         if(input.value.length > 0) {
             span.classList.add("error-hide");
             console.log("Message: ", input.value);
@@ -238,19 +241,20 @@ export class ChatsPage extends Block {
         const popupDeeleteUser: any = document.querySelector('.popup__delete-user');
         popupDeeleteUser.classList.toggle('hide');
     }
-    addChat(e) {
+    addChat(e: any) {
         e.preventDefault();
         const input: any = document.querySelector('.popup__input');
         if(input.value) {
             const popupAddChat: any = document.querySelector('.popup__add-chat');
             let obj: Record<string, unknown> = {};
-            obj['title'] = input.value
-            ChatsController.chats(obj)
+            obj['title'] = input.value;
+            // @ts-ignore
+            ChatsController.chats(obj);
             input.value = '';
             popupAddChat.classList.toggle('hide');
         }
     }
-    getDataChat(e) {
+    getDataChat(e: any) {
         e.preventDefault();
         const form: any = document.forms[3];
         const formData: any = new FormData(form);
@@ -263,9 +267,10 @@ export class ChatsPage extends Block {
                 }
         }
         console.log(obj);
+        // @ts-ignore
         ChatsController.addUserInChat(obj);
     }
-    getDeleteUser(e) {
+    getDeleteUser(e: any) {
         e.preventDefault();
         const form: any = document.forms[4];
         const formData: any = new FormData(form);
@@ -278,6 +283,7 @@ export class ChatsPage extends Block {
             }
         }
         console.log(obj);
+        // @ts-ignore
         ChatsController.deleteUserInChat(obj);
     }
 }

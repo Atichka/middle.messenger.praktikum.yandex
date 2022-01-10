@@ -4,7 +4,7 @@ import {ChatService} from "../util/сhatService";
 
 class ChatsController {
     private _api: ChatsAPI;
-    public services;
+    public services: any;
 
     constructor() {
         this._api = new ChatsAPI()
@@ -51,6 +51,7 @@ class ChatsController {
             const state = store.getState();
             for (let i = 0; i < state.chats.length; i++) {
                 await this.getToken(state.chats[i].id).then(function (token) {
+                    // @ts-ignore
                     store.set(store.getState(), `chats.${i}.token`, token.token)
                 })
                 const chat = new ChatService("wss://ya-praktikum.tech/ws/chats/" +
@@ -72,13 +73,13 @@ class ChatsController {
         currentChat.getOldMessages();
     }
 
-    sendMessage(chatId, message) {
+    sendMessage(chatId: string | number, message: any) {
         const service = this.services[chatId];
 
         service.sendMessage(message);
     }
 
-    async getDataChat(id) {
+    async getDataChat(id: string) {
         try {
             const ChatsData = await this._fetchChats();
             store.set(store.getState(), 'chats/' + id + '/common', ChatsData)

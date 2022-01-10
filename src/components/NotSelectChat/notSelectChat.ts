@@ -1,10 +1,10 @@
-import {Block} from "../../util/block";
+import {Block, TProps} from "../../util/block";
 import {compile} from "../../util/compile";
 import template from "./template.pug";
 import {addClass} from "../../../index";
 
-export class NotSelectChat extends Block {
-    constructor(props) {
+export class NotSelectChat extends Block<TProps> {
+    constructor(props: any) {
         super("h3", props);
     }
 

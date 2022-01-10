@@ -1,17 +1,17 @@
-import {Block} from "../../util/block";
+import {Block, TProps} from "../../util/block";
 import template from "./template.pug";
 import {compile} from "../../util/compile";
 import {addClass} from "../../../index";
 
-export class FormLogin extends Block {
-    constructor(props) {
+export class FormLogin extends Block<TProps> {
+    constructor(props: any) {
         super("form", props);
     }
 
     public render(): DocumentFragment {
         addClass(this._element, this.props)
-        this._element.setAttribute('id', this.props.id);
-        this._element.setAttribute('name', this.props.name);
+        this._element.setAttribute('id', <string>this.props.id);
+        this._element.setAttribute('name', <string>this.props.name);
         return compile(template,
             {...this.props}
         );

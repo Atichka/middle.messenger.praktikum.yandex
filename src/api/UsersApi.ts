@@ -18,6 +18,7 @@ export interface PasswordData {
     newPassword: string
 }
 
+// @ts-ignore
 export class UsersAPI extends BaseAPI {
     constructor() {
         super('/user');

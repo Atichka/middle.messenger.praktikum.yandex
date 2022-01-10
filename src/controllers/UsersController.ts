@@ -1,3 +1,4 @@
+// @ts-ignore
 import {UsersAPI, ProfileData, AvatarData, PasswordData} from "../api/UsersAPI";
 
 class UsersController {

@@ -1,8 +1,8 @@
-import {Block} from "./block";
+import {Block, TProps} from "./block";
 
 export function compile(tmpl: (ctx: Record<string, any>) => string, props: any): DocumentFragment {
     const fragment = document.createElement('template');
-    const components: Record<string, Block> = {};
+    const components: Record<string, Block<TProps>> = {};
 
     Object.entries(props).forEach(([name, value]) => {
         // Определяем, какие из переменных контекста — компоненты. Можно так не запариваться и просто передавать их отдельным параметром функции

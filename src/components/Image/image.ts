@@ -1,10 +1,10 @@
-import {Block} from "../../util/block";
+import {Block, TProps} from "../../util/block";
 import {compile} from "../../util/compile";
 import template from "./template.pug";
 import {addClass} from "../../../index";
 
-export class Image extends Block {
-    constructor(props) {
+export class Image extends Block<TProps> {
+    constructor(props: any) {
         super("img", props);
     }
 
@@ -15,7 +15,7 @@ export class Image extends Block {
         } else {
             this._element.setAttribute('src', 'https://prote.ua/image/cache/no-photo-img-1024x1024.png')
         }
-        this._element.setAttribute('id', this.props.id);
+        this._element.setAttribute('id', <string>this.props.id);
 
         return compile(template,{...this.props});
     }

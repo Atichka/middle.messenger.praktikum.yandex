@@ -13,6 +13,7 @@ export interface TokenData {
 
 // export type UserData = Omit<SignupData, 'password'> & { avatar: string; display_name: string; };
 
+// @ts-ignore
 export class ChatsAPI extends BaseAPI {
     constructor() {
         super('/');
@@ -40,7 +41,7 @@ export class ChatsAPI extends BaseAPI {
         return this.http.get('chats')
     }
 
-    getChat(id): Promise<ChatsData> {
+    getChat(id: any): Promise<ChatsData> {
         return this.http.get('chats/' + id + '/common')
     }
 

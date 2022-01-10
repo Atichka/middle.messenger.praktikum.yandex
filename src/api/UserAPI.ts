@@ -11,6 +11,7 @@ export interface SignupData {
 
 export type UserData = Omit<SignupData, 'password'> & { avatar: string; display_name: string; };
 
+// @ts-ignore
 export class UserAPI extends BaseAPI {
     constructor() {
         super('/auth/user');

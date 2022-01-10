@@ -1,4 +1,4 @@
-import {Block} from "../../util/block";
+import {Block, TProps} from "../../util/block";
 import template from "./passwordEdit.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
@@ -10,9 +10,10 @@ import store from "../../util/store";
 import UserController from "../../controllers/UserController";
 import UsersController from "../../controllers/UsersController";
 
-export class PasswordEditPage extends Block {
+export class PasswordEditPage extends Block<TProps> {
     constructor() {
         super('div');
+        // @ts-ignore
         UserController.getDataUser().then(user => this.setProps({ user: user }));
     }
 
@@ -30,7 +31,7 @@ export class PasswordEditPage extends Block {
             buttonSave: new Button( {
                 text: "Сохранить",
                 events: {
-                    click: (e) => this.sendData(e),
+                    click: (e: any) => this.sendData(e),
                 },
                 classNames: ["profile__button"],
             }),
@@ -80,14 +81,14 @@ export class PasswordEditPage extends Block {
         await UserController.getDataUser();
     }
 
-    sendData(e) {
+    sendData(e: any) {
         e.preventDefault();
-        const inputNewPassword = document.querySelector('#newPassword');
-        const inputNewPasswordRepeat = document.querySelector('#newPasswordRepeat');
-        const inputOldPassword = document.querySelector('#oldPassword');
-        const spanOldPassword = this._element.querySelector(`#error-oldPassword`);
+        const inputNewPassword: any = document.querySelector('#newPassword');
+        const inputNewPasswordRepeat: any = document.querySelector('#newPasswordRepeat');
+        const inputOldPassword: any = document.querySelector('#oldPassword');
+        const spanOldPassword: any = this._element.querySelector(`#error-oldPassword`);
         const name = inputNewPasswordRepeat.name;
-        const spanNewPasswordRepeat = this._element.querySelector(`#error-${name}`);
+        const spanNewPasswordRepeat: any = this._element.querySelector(`#error-${name}`);
         if(inputNewPassword.value && inputNewPasswordRepeat.value && inputOldPassword.value) {
             if(inputNewPassword.value === inputNewPasswordRepeat.value) {
                 spanNewPasswordRepeat.classList.add("error-hide");
@@ -99,6 +100,7 @@ export class PasswordEditPage extends Block {
                     obj[name] = value;
                 }
                 console.log(obj);
+                // @ts-ignore
                 UsersController.passwordEdit(obj);
             } else {
                 spanNewPasswordRepeat.classList.remove('error-hide');

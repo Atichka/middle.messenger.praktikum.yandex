@@ -1,4 +1,4 @@
-import {Block} from "../../util/block";
+import {Block, TProps} from "../../util/block";
 import template from "./profile.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
@@ -9,9 +9,10 @@ import UserController from "../../controllers/UserController";
 import {Image} from "../../components/Image/image";
 import store from "../../util/store";
 
-export class ProfilePage extends Block {
+export class ProfilePage extends Block<TProps> {
     constructor() {
         super('div');
+        // @ts-ignore
         UserController.getDataUser().then(user => this.setProps({ user: user }));
     }
 

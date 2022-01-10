@@ -1,4 +1,4 @@
-import {Block} from "../../util/block";
+import {Block, TProps} from "../../util/block";
 import template from "./profileEdit.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
@@ -11,10 +11,12 @@ import UserController from "../../controllers/UserController";
 import store from "../../util/store";
 import UsersController from "../../controllers/UsersController";
 
-export class ProfileEditPage extends Block {
+export class ProfileEditPage extends Block<TProps> {
     constructor() {
         super('div');
+        // @ts-ignore
         UserController.getDataUser().then(user => this.setProps({ user: user }));
+        // @ts-ignore
         store.on('updated', () => this.eventBus().emit('flow:component-did-update'));
     }
 
@@ -160,12 +162,15 @@ export class ProfileEditPage extends Block {
     getImgData() {
         const chooseFile = document.getElementById("choose-file");
         const imgPreview = document.getElementById("img-preview");
+        // @ts-ignore
         const files = chooseFile.files[0];
         if (files) {
             const fileReader = new FileReader();
             fileReader.readAsDataURL(files);
             fileReader.addEventListener("load", function () {
+                // @ts-ignore
                 imgPreview.style.display = "block";
+                // @ts-ignore
                 imgPreview.innerHTML = '<img id="userAvatar" class="profile__button-pic" src="' + this.result + '" />';
             });
         }
@@ -175,7 +180,7 @@ export class ProfileEditPage extends Block {
         await UserController.getDataUser();
     }
 
-    sendData(e) {
+    sendData(e: any) {
         e.preventDefault();
         const formAvatar: any = document.forms[0];
         const form: any = document.forms[1];
@@ -185,7 +190,9 @@ export class ProfileEditPage extends Block {
             obj[name] = value;
         }
         console.log(obj);
+        // @ts-ignore
         UsersController.profileEdit(obj)
+        // @ts-ignore
         if(document.getElementById("choose-file").value) {
             let formSendAvatar: any = new FormData(formAvatar);
             UsersController.avatarEdit(formSendAvatar)

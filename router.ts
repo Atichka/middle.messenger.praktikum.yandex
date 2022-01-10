@@ -1,4 +1,4 @@
-import { Router } from "./src/util/Router";
+import { Router } from "./src/util/router";
 import { LoginPage } from "./src/pages/login/login"
 import { SigninPage } from "./src/pages/signin/signin"
 import { ChatsPage } from "./src/pages/chats/chats"
@@ -10,14 +10,14 @@ import { Error500Page } from "./src/pages/error500/error500"
 import AuthController from "./src/controllers/AuthController";
 
 const router = new Router()
-    .use('/login', LoginPage)
-    .use('/sign-up', SigninPage)
-    .use('/messenger', ChatsPage) // регистрируем роуты, но роутер пока не запускаем
-    .use("/profile", ProfilePage)
-    .use("/settings", ProfileEditPage)
-    .use("/password-edit", PasswordEditPage)
-    .use("/404", Error404Page)
-    .use("/500", Error500Page)
+    .use('/login', LoginPage as any) // TypeScript не понимает, что typeof LoginPage наследует typeof Block
+    .use('/sign-up', SigninPage as any)
+    .use('/messenger', ChatsPage as any) // регистрируем роуты, но роутер пока не запускаем
+    .use("/profile", ProfilePage as any)
+    .use("/settings", ProfileEditPage as any)
+    .use("/password-edit", PasswordEditPage as any)
+    .use("/404", Error404Page as any)
+    .use("/500", Error500Page as any)
 
 async function start(){
     try {

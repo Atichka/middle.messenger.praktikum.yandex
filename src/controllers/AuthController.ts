@@ -34,6 +34,7 @@ class AuthController {
         }
     }
 
+    // @ts-ignore
     async fetchUser(): Promise<UserData> {
         try {
             const user = await this._api.read();
