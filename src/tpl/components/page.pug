@@ -4,7 +4,11 @@ block main
     section.page
         aside.page__aside
             nav.page__nav
-                a.page__link(href='') Профиль &#62;
+                div
+                    | !{buttonOpenModalAddChat}
+                    | !{buttonOpenModalAddUserInChat}
+                    | !{buttonOpenModalDeleteUserInChat}
+                | !{linkProfile}
             block.search
                 form.search__form(id="formSearch" name="formSearch")
                         input.search__field(
@@ -15,3 +19,19 @@ block main
             block aside
         div.page__content
             block content
+    div.popup.popup__add-chat.hide
+        div.popup__content
+            form.popup__form(id='formInput', name='formInput')
+                input.popup__input(
+                    type="text"
+                    placeholder="Название чата"
+                    name="nameChats")
+                | !{buttonAddChat}
+                button.popup__button Отмена
+    div.popup.popup__edit-chat.hide
+        div.popup__content
+            | !{formAddUserInChat}
+    div.popup.popup__delete-user.hide
+        div.popup__content
+            | !{formDeleteUserInChat}
+

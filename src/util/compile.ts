@@ -1,14 +1,24 @@
-import {Block} from "./block";
+import {Block, TProps} from "./block";
 
 export function compile(tmpl: (ctx: Record<string, any>) => string, props: any): DocumentFragment {
     const fragment = document.createElement('template');
-    const components: Record<string, Block> = {};
+    const components: Record<string, Block<TProps>> = {};
 
     Object.entries(props).forEach(([name, value]) => {
         // Определяем, какие из переменных контекста — компоненты. Можно так не запариваться и просто передавать их отдельным параметром функции
         if (value instanceof Block) {
             components[value.id] = value; // сохраняем компонент
             props[name] = `<div id="id-${value.id}"></div>`; // делаем заглушку
+        }
+        if (Array.isArray(value)) {
+            props[name] = value.map(item => {
+                if (item instanceof Block) {
+                    components[item.id] = item;
+                    return `<div id="id-${item.id}"></div>`;
+                }
+
+                return item;
+            });
         }
     });
 

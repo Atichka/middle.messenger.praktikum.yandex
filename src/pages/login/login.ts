@@ -1,11 +1,14 @@
-import {Block} from "../../util/block";
+import {Block, TProps} from "../../util/block";
 import template from "./login.pug";
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
 import {Input} from "../../components/Input/input";
-import {FormLogin} from "../../components/FormLogin/formLogin"
+import {FormLogin} from "../../components/FormLogin/formLogin";
+import {Router} from "../../util/router";
+import {LoginData} from "../../api/AuthAPI";
+import AuthController from "../../controllers/AuthController";
 
-export class LoginPage extends Block {
+export class LoginPage extends Block<TProps> {
     constructor() {
         super('div')
     }
@@ -18,7 +21,7 @@ export class LoginPage extends Block {
             buttonLogin: new Button( {
                 text: "Авторизоваться",
                 events: {
-                    click: (e) => this.sendData(e),
+                    click: (e: any) => this.sendData(e),
                 },
                 classNames: ["form__button", "form__top-login"],
             }),
@@ -32,8 +35,8 @@ export class LoginPage extends Block {
                 required: "",
                 placeholder: "ivanivanov",
                 events: {
-                    blur: (e) => this.onBlur(e),
-                    focus: (e) => this.onFocus(e),
+                    blur: (e: any) => this.onBlur(e),
+                    focus: (e: any) => this.onFocus(e),
                 },
             }),
             inputPassword: new Input( {
@@ -46,9 +49,19 @@ export class LoginPage extends Block {
                 required: "",
                 placeholder: "пароль",
                 events: {
-                    blur: (e) => this.onBlur(e),
-                    focus: (e) => this.onFocus(e),
+                    blur: (e: any) => this.onBlur(e),
+                    focus: (e: any) => this.onFocus(e),
                 },
+            }),
+            buttonSignin: new Button( {
+                text: "Нет аккаунта?",
+                events: {
+                    click: () => {
+                        const router = new Router();
+                        router.go('/sign-up');
+                    },
+                },
+                classNames: ["form__signup-button"],
             }),
         });
         return compile(template,{
@@ -56,7 +69,7 @@ export class LoginPage extends Block {
         });
     }
 
-    validateInput(input) {
+    validateInput(input: any) {
         const name = input.name;
         const type = input.type;
         const value = input.value;
@@ -67,9 +80,10 @@ export class LoginPage extends Block {
             tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
         };
 
-        const span = this._element.querySelector(`#error-${name}`);
+        const span: any = this._element.querySelector(`#error-${name}`);
         let regexp = /\w+/;
         if (type in validations) {
+            // @ts-ignore
             regexp = validations[type];
         }
 
@@ -83,21 +97,24 @@ export class LoginPage extends Block {
 
     }
 
-    onFocus(event) {
+    onFocus(event: any) {
         const input = event.target;
         const name = input.name;
-        const span = this._element.querySelector(`#error-${name}`);
+        const span: any = this._element.querySelector(`#error-${name}`);
         span.classList.add("error-hide");
     }
 
-    onBlur(event) {
+    onBlur(event: any) {
         const input = event.target;
         this.validateInput(input);
     }
 
-    sendData(e) {
+    async sendData(e: any) {
         e.preventDefault();
+        // @ts-ignore
+        const data: LoginData = {};
         const form = document.querySelector('.form');
+        // @ts-ignore
         const formData: any = new FormData(form);
         const obj: Record<string, unknown> = {};
         for (const [name, value] of formData) {
@@ -118,8 +135,12 @@ export class LoginPage extends Block {
 
         if (!isErrors) {
             for (const [name, value] of formData) {
-                console.log(`${name}: ${value}`);
+                // @ts-ignore
+                data[name] = value;
             }
+            await AuthController.login(data);
+            const router = new Router();
+            router.go('/messenger');
         }
     }
 

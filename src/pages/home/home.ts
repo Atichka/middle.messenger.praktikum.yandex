@@ -1,16 +1,8 @@
 import {Block} from "../../util/block"
 import template from "./home.pug"
 import {Button} from "../../components/Button/button"
-import {compile} from "../../util/compile";
-import {render} from "../../../index";
-import {LoginPage} from "../login/index";
-import {SigninPage} from "../signin/index"
-import {ChatsPage} from "../chats/index"
-import {ProfilePage} from "../profile/profile"
-import {ProfileEditPage} from "../profileEdit/profileEdit"
-import {PasswordEditPage} from "../passwordEdit/passwordEdit";
-import {Error404Page} from "../error404/error404"
-import {Error500Page} from "../error500/error500"
+import {compile} from "../../util/compile"
+import {Router} from "../../util/router"
 
 export class HomePage extends Block {
     constructor() {
@@ -21,49 +13,73 @@ export class HomePage extends Block {
         const buttonLogin = new Button( {
             text: "login",
             events: {
-                click: () => render('#app', new LoginPage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/login');
+                },
             },
         });
         const buttonSignin = new Button( {
             text: "signin",
             events: {
-                click: () => render('#app', new SigninPage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/sign-up');
+                }
             },
         });
         const buttonChats = new Button( {
             text: "chats",
             events: {
-                click: () => render('#app', new ChatsPage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/messenger');
+                }
             },
         });
         const buttonProfile = new Button( {
             text: "profile",
             events: {
-                click: () => render('#app', new ProfilePage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/profile');
+                }
             },
         });
         const buttonProfileEdit = new Button( {
             text: "profile edit",
             events: {
-                click: () => render('#app', new ProfileEditPage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/settings');
+                }
             },
         });
         const buttonPasswordEdit = new Button( {
             text: "password edit",
             events: {
-                click: () => render('#app', new PasswordEditPage()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/password-edit');
+                }
             },
         });
         const buttonError404 = new Button( {
             text: "error 404",
             events: {
-                click: () => render('#app', new Error404Page()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/404');
+                }
             },
         });
         const buttonError500 = new Button( {
             text: "error 500",
             events: {
-                click: () => render('#app', new Error500Page()),
+                click: () => {
+                    const router = new Router();
+                    router.go('/500');
+                }
             },
         });
         return compile(template,{

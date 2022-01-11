@@ -1,0 +1,30 @@
+header.header
+    div.header__avatar
+    h1.header__name #{user.display_name}
+    //| !{buttonMenu}
+//div.menu.menu__right.hide
+//    button.menu__delete-chat
+//        p.menu__title Х
+//        p.menu__title Удалить чат
+time.main__date
+    div.main__container
+        if messages
+            each message in messages
+                if message.user_id != user.id
+                    div.main__user
+                    if message.content != ''
+                        p.main__message.main__background-grey #{message.content}
+                        p.main__time-text.main__background-grey.main__color-grey #{message.time}
+                    else
+                        div.main__container-pic
+                            img.main__pic(src=message.file, alt='Картинка')
+                            time.main__time-pic #{message.time}
+                else
+                    div.main__you
+                    p.main__message.main__background-blue #{message.content}
+                    p.main__time-text.main__background-blue.main__color-blue #{message.time}
+//div.menu.hide
+//    button.menu__delete-chat
+//        img.menu__icon(crossorigin='anonymous', src='assets/fileAdd.svg')
+//        p.menu__title Файл
+| !{formChats}

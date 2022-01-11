@@ -1,11 +1,14 @@
-import {Block} from "../../util/block";
-import template from "./signin.pug";
+import {Block, TProps} from "../../util/block";
+import template from './signin.pug';
 import {Button} from "../../components/Button/button";
 import {compile} from "../../util/compile";
 import {Input} from "../../components/Input/input";
 import {FormSignin} from "../../components/FormSignin/formSignin";
+import {Router} from '../../util/router';
+import AuthController from "../../controllers/AuthController";
+import {SignupData} from "../../api/AuthAPI";
 
-export class SigninPage extends Block {
+export class SigninPage extends Block<TProps> {
     constructor() {
         super('div');
     }
@@ -25,8 +28,8 @@ export class SigninPage extends Block {
                 required: "",
                 placeholder: "Email",
                 events: {
-                    blur: (e) => this.onBlur(e),
-                    focus: (e) => this.onFocus(e),
+                    blur: (e: any) => this.onBlur(e),
+                    focus: (e: any) => this.onFocus(e),
                 },
             }),
             inputLogin: new Input( {
@@ -39,8 +42,8 @@ export class SigninPage extends Block {
                 required: "",
                 placeholder: "ivanivanov",
                 events: {
-                    blur: (e) => this.onBlur(e),
-                    focus: (e) => this.onFocus(e),
+                    blur: (e: any) => this.onBlur(e),
+                    focus: (e: any) => this.onFocus(e),
                 },
             }),
             inputName: new Input( {
@@ -53,8 +56,8 @@ export class SigninPage extends Block {
                 required: "",
                 placeholder: "Имя",
                 events: {
-                    blur: (e) => this.onBlur(e),
-                    focus: (e) => this.onFocus(e),
+                    blur: (e: any) => this.onBlur(e),
+                    focus: (e: any) => this.onFocus(e),
                 },
             }),
             inputSecondName: new Input( {
@@ -67,8 +70,8 @@ export class SigninPage extends Block {
                 required: "",
                 placeholder: "Фамилия",
                 events: {
-                    blur: (e) => this.onBlur(e),
-                    focus: (e) => this.onFocus(e),
+                    blur: (e: any) => this.onBlur(e),
+                    focus: (e: any) => this.onFocus(e),
                 },
             }),
             inputTel: new Input( {
@@ -81,8 +84,8 @@ export class SigninPage extends Block {
                 required: "",
                 placeholder: "+7 (909) 967 30 30",
                 events: {
-                    blur: (e) => this.onBlur(e),
-                    focus: (e) => this.onFocus(e),
+                    blur: (e: any) => this.onBlur(e),
+                    focus: (e: any) => this.onFocus(e),
                 },
             }),
             inputPassword: new Input( {
@@ -104,9 +107,19 @@ export class SigninPage extends Block {
             buttonSignin: new Button( {
                 text: "Зарегистрироваться",
                 events: {
-                    click: (e) => this.sendData(e),
+                    click: (e: any) => this.sendData(e),
                 },
                 classNames: ["form__button", "form__top-signin"],
+            }),
+            buttonLogin: new Button( {
+                text: "Войти",
+                events: {
+                    click: () => {
+                        const router = new Router();
+                        router.go('/login');
+                    }
+                },
+                classNames: ["form__signup-button"],
             }),
         });
         return compile(template,{
@@ -114,7 +127,7 @@ export class SigninPage extends Block {
         });
     }
 
-    validateInput(input) {
+    validateInput(input: any) {
         const name = input.name;
         const type = input.type;
         const value = input.value;
@@ -125,9 +138,10 @@ export class SigninPage extends Block {
             tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
         };
 
-        const span = this._element.querySelector(`#error-${name}`);
-        let regexp = /\w+/;
+        const span: any = this._element.querySelector(`#error-${name}`);
+        let regexp: any = /\w+/;
         if (type in validations) {
+            // @ts-ignore
             regexp = validations[type];
         }
 
@@ -141,28 +155,31 @@ export class SigninPage extends Block {
 
     }
 
-    onFocus(event) {
+    onFocus(event: any) {
         const input = event.target;
         const name = input.name;
-        const span = this._element.querySelector(`#error-${name}`);
+        const span: any = this._element.querySelector(`#error-${name}`);
         span.classList.add("error-hide");
     }
 
-    onBlur(event) {
+    onBlur(event: any) {
         const input = event.target;
         this.validateInput(input);
     }
 
-    sendData(e) {
+    async sendData(e: any) {
         e.preventDefault();
-        const inputPassword = document.querySelector('#userPassword');
-        const inputPasswordRepeat = document.querySelector('#userPasswordRepeat');
+        // @ts-ignore
+        const data: SignupData = {};
+        const inputPassword: any = document.querySelector('#userPassword');
+        const inputPasswordRepeat: any = document.querySelector('#userPasswordRepeat');
         const name = inputPasswordRepeat.name;
-        const spanPasswordRepeat = this._element.querySelector(`#error-${name}`);
+        const spanPasswordRepeat: any = this._element.querySelector(`#error-${name}`);
 
         if(inputPassword.value === inputPasswordRepeat.value) {
             spanPasswordRepeat.classList.add("error-hide");
             const form = document.querySelector('.form');
+            // @ts-ignore
             const formData: any = new FormData(form);
             const obj: Record<string, unknown> = {};
             for (const [name, value] of formData) {
@@ -183,8 +200,12 @@ export class SigninPage extends Block {
 
             if (!isErrors) {
                 for (const [name, value] of formData) {
-                    console.log(`${name}: ${value}`);
+                    // @ts-ignore
+                    data[name] = value;
                 }
+                await AuthController.signup(data);
+                const router = new Router();
+                router.go('/');
             }
 
         } else {

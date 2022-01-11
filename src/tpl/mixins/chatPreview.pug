@@ -3,8 +3,10 @@ mixin chat-preview(chat)
         div.chat-preview__avatar
         div.chat-preview__content
             h3.chat-preview__title #{chat.title}
-            p.chat-preview__text #{chat.content}
+            if chat.last_message
+                p.chat-preview__text #{chat.last_message.content}
         div.chat-preview__meta
-            time.chat-preview__date #{chat.date}
-            if chat.counter
-                div.chat-preview__counter #{chat.counter}
+            if chat.last_message
+                time.chat-preview__date #{chat.last_message.time}
+            if chat.unread_count
+                div.chat-preview__counter #{chat.unread_count}

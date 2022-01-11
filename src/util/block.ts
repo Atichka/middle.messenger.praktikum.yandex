@@ -34,9 +34,9 @@ export class Block<T extends TProps> {
             props,
         };
 
-        this.props = this._makePropsProxy(props as T);
+        this.props = this._makePropsProxy(props || {} as T);
 
-        this.eventBus = eventBus;
+        this.eventBus = () => eventBus;
 
         this._registerEvents(eventBus);
         eventBus.emit(Block.EVENTS.INIT);
@@ -56,29 +56,37 @@ export class Block<T extends TProps> {
 
     init(): void {
         this._createResources();
-        this.eventBus.emit(Block.EVENTS.FLOW_CDM);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
     _componentDidMount(): void {
         this.componentDidMount();
-        this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
     // Может переопределять пользователь, необязательно трогать
-    componentDidMount(): void {};
+    componentDidMount(oldProps): void {}
 
     _componentDidUpdate(oldProps: T, newProps: T) {
         const response = this.componentDidUpdate(oldProps, newProps);
 
         if (response) {
-            this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+            this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
 
     // Может переопределять пользователь, необязательно трогать
-    componentDidUpdate(): Boolean {
+    componentDidUpdate(oldProps, newProps) {
         return true;
     }
+
+    setProps = (nextProps: T) => {
+        if (!nextProps) {
+            return;
+        }
+
+        Object.assign(this.props, nextProps);
+    };
 
     get element() {
         return this._element;
@@ -103,32 +111,26 @@ export class Block<T extends TProps> {
         return this._element;
     }
 
-    _makePropsProxy(props: T): T {
-        const proxyProps = new Proxy(props, {
-            get: function(obj: T, prop: string) {
-                if (typeof obj[prop] === 'function') {
-                    return obj[prop].bind(props);
-                } else {
-                    if (prop.indexOf('_') !== 0) {
-                        return obj[prop];
-                    } else {
-                        throw Error('Нет прав');
-                    }
-                }
+    _makePropsProxy(props: any): any {
+        // Можно и так передать this
+        // Такой способ больше не применяется с приходом ES6+
+        return new Proxy(props, {
+            get(target, prop) {
+                const value = target[prop];
+                return typeof value === "function" ? value.bind(target) : value;
             },
-            set: function(obj: T, prop: string, value) {
-                if (prop.indexOf('_') === 0) {
-                    throw Error('Нет прав');
-                }
-                obj[prop] = value;
+            set: (target, prop, value) => {
+                target[prop] = value;
+
+                // Запускаем обновление компоненты
+                // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
+                this.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
                 return true;
             },
-            deleteProperty: function() {
-                throw Error('Нет прав');
+            deleteProperty() {
+                throw new Error("Нет доступа");
             }
         });
-
-        return proxyProps;
     }
 
     _createDocumentElement(tagName: HTMLElement) {

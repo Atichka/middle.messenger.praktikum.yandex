@@ -19,6 +19,7 @@ const TEMPLATES = {
 };
 
 export function renderTemplate(name: any, locals: object = {}, parent: HTMLElement = document.body) {
+    // @ts-ignore
     const template = TEMPLATES[name];
     parent.innerHTML = template(locals);
 }
