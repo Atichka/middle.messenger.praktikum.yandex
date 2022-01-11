@@ -99,7 +99,6 @@ export class PasswordEditPage extends Block<TProps> {
                 for (let [name, value] of formData) {
                     obj[name] = value;
                 }
-                console.log(obj);
                 // @ts-ignore
                 UsersController.passwordEdit(obj);
             } else {

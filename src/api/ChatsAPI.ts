@@ -1,10 +1,8 @@
 import BaseAPI from './base-api';
 
 export interface ChatsData {
-    "users": [
-        0
-    ],
-    "chatId": 0
+    "users": number[],
+    "chatId": number
 }
 
 export interface TokenData {
@@ -28,12 +26,10 @@ export class ChatsAPI extends BaseAPI {
     }
 
     async put(data: ChatsData): Promise<{ id: number }> {
-        console.log('data', data);
         return this.http.put('chats/users', data)
     }
 
     deleteUser(data: ChatsData): Promise<{ id: number }> {
-        console.log('data', data);
         return this.http.delete('chats/users', data)
     }
 

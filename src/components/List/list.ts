@@ -5,7 +5,7 @@ import {addClass} from "../../util/funcForComponents";
 import ChatsController from "../../controllers/ChatsController";
 
 export class List extends Block<TProps> {
-    constructor(props: any) {
+    constructor(props: {}) {
         super('li', {
             ...props,
             events: {

@@ -4,7 +4,7 @@ import template from "./template.pug";
 import {addClass} from "../../util/funcForComponents";
 
 export class NotSelectChat extends Block<TProps> {
-    constructor(props: any) {
+    constructor(props: {}) {
         super("h3", props);
     }
 

@@ -114,19 +114,17 @@ export class Block<T extends TProps> {
     _makePropsProxy(props: any): any {
         // Можно и так передать this
         // Такой способ больше не применяется с приходом ES6+
-        const self = this;
-
         return new Proxy(props, {
             get(target, prop) {
                 const value = target[prop];
                 return typeof value === "function" ? value.bind(target) : value;
             },
-            set(target, prop, value) {
+            set: (target, prop, value) => {
                 target[prop] = value;
 
                 // Запускаем обновление компоненты
                 // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
-                self.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
+                this.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
                 return true;
             },
             deleteProperty() {

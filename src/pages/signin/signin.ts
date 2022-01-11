@@ -5,13 +5,10 @@ import {compile} from "../../util/compile";
 import {Input} from "../../components/Input/input";
 import {FormSignin} from "../../components/FormSignin/formSignin";
 import {Router} from '../../util/router';
-import AuthController from "../../controllers/AuthController"
-import {SignupData} from "../../api/AuthAPI"
+import AuthController from "../../controllers/AuthController";
+import {SignupData} from "../../api/AuthAPI";
 
 export class SigninPage extends Block<TProps> {
-    // getContent(): any {
-    //     throw new Error("Method not implemented.");
-    // }
     constructor() {
         super('div');
     }
@@ -203,7 +200,6 @@ export class SigninPage extends Block<TProps> {
 
             if (!isErrors) {
                 for (const [name, value] of formData) {
-                    console.log(`${name}: ${value}`);
                     // @ts-ignore
                     data[name] = value;
                 }

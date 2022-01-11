@@ -1,16 +1,16 @@
-import {Block, TProps} from "../../util/block"
-import template from "./chats.pug"
-import {Button} from "../../components/Button/button"
-import {compile} from "../../util/compile"
-import {FormChats} from "../../components/FormChats/formChats"
-import {Input} from "../../components/Input/input"
-import {Link} from "../../components/Link/link"
-import {List} from "../../components/List/list"
+import {Block, TProps} from "../../util/block";
+import template from "./chats.pug";
+import {Button} from "../../components/Button/button";
+import {compile} from "../../util/compile";
+import {FormChats} from "../../components/FormChats/formChats";
+import {Input} from "../../components/Input/input";
+import {Link} from "../../components/Link/link";
+import {List} from "../../components/List/list";
 import ChatsController from "../../controllers/ChatsController";
 import store from "../../util/store";
 import {FormAddUserInChat} from "../../components/FormAddUserInChat/formAddUserInChat";
 import {FormDeleteUserInChat} from "../../components/FormDeleteUserInChat/formDeleteUserInChat";
-import {Chat} from "../../components/Chat/chat"
+import {Chat} from "../../components/Chat/chat";
 import {NotSelectChat} from "../../components/NotSelectChat/notSelectChat";
 
 export class ChatsPage extends Block<TProps> {
@@ -24,7 +24,6 @@ export class ChatsPage extends Block<TProps> {
 
     public render(): DocumentFragment {
         const state = store.getState();
-        console.log('state', state);
         const listChats: [] = [];
         if(state.chats) {
             state.chats.forEach((chat: any) => {
@@ -219,7 +218,6 @@ export class ChatsPage extends Block<TProps> {
         const span: any = this._element.querySelector(`#error-${name}`);
         if(input.value.length > 0) {
             span.classList.add("error-hide");
-            console.log("Message: ", input.value);
             ChatsController.sendMessage(store.getState().currentChatId, input.value);
         } else {
             span.classList.remove('error-hide');

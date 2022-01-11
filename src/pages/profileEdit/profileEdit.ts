@@ -161,7 +161,7 @@ export class ProfileEditPage extends Block<TProps> {
 
     getImgData() {
         const chooseFile = document.getElementById("choose-file");
-        const imgPreview = document.getElementById("img-preview");
+        const imgPreview = document.querySelector(".img-preview");
         // @ts-ignore
         const files = chooseFile.files[0];
         if (files) {
@@ -189,7 +189,6 @@ export class ProfileEditPage extends Block<TProps> {
         for (let [name, value] of formData) {
             obj[name] = value;
         }
-        console.log(obj);
         // @ts-ignore
         UsersController.profileEdit(obj)
         // @ts-ignore
