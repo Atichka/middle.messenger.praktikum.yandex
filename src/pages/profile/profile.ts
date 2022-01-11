@@ -55,12 +55,12 @@ export class ProfilePage extends Block<TProps> {
             linkProfileEdit: linkProfileEdit,
             linkPasswordEdit: linkPasswordEdit,
             linkExit: linkExit,
-            email: state.user ? state.user.email : '',
-            login: state.user ? state.user.login : '',
-            firstName: state.user ? state.user.first_name : '',
-            secondName: state.user ? state.user.second_name : '',
-            displayName: state.user ? state.user.display_name : '',
-            phone: state.user ? state.user.phone : '',
+            email: state.user?.email || '',
+            login: state.user?.login || '',
+            firstName: state.user?.first_name || '',
+            secondName: state.user?.second_name || '',
+            displayName: state.user?.display_name || '',
+            phone: state.user?.phone || '',
             imageAvatar: imageAvatar,
         });
     }

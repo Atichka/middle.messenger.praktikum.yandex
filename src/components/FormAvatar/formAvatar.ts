@@ -4,15 +4,15 @@ import {compile} from "../../util/compile";
 import {addClass} from "../../util/funcForComponents";
 
 export class FormAvatar extends Block<TProps> {
-    constructor(props: any) {
+    constructor(props: {}) {
         super("form", props);
     }
 
     public render(): DocumentFragment {
         addClass(this._element, this.props)
-        this._element.setAttribute('id', <string>this.props.id);
-        this._element.setAttribute('name', <string>this.props.name);
-        this._element.setAttribute('enctype', <string>this.props.enctype);
+        this._element.setAttribute('id', this.props.id as string);
+        this._element.setAttribute('name', this.props.name as string);
+        this._element.setAttribute('enctype', this.props.enctype as string);
         return compile(template,
             {...this.props}
         );

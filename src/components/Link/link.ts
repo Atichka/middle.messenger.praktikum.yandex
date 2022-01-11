@@ -4,14 +4,14 @@ import template from "./template.pug";
 import {addClass} from "../../util/funcForComponents";
 
 export class Link extends Block<TProps> {
-    constructor(props: any) {
+    constructor(props: {}) {
         super("a", props);
     }
 
     render() {
         addClass(this._element, this.props);
         if(this.props.href) {
-            this._element.setAttribute('href', <string>this.props.href);
+            this._element.setAttribute('href', this.props.href as string);
         }
 
         return compile(template,{...this.props});

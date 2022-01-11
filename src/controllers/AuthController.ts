@@ -38,8 +38,7 @@ class AuthController {
     async fetchUser(): Promise<UserData> {
         try {
             const user = await this._api.read();
-            store.set(store.getState(), 'user', user);
-            console.log('user', user);
+            store.set(store.getState(), 'user', user)
 
             return user;
         } catch (e) {

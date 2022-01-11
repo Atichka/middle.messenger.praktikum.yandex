@@ -91,7 +91,6 @@ class ChatsController {
 
     async _fetchChats(): Promise<ChatsData> {
         const chats = await this._api.read();
-        console.log('chats', chats);
 
         return chats;
     }

@@ -4,7 +4,7 @@ import template from "./template.pug";
 import {addClass} from "../../util/funcForComponents";
 
 export class Button extends Block<TProps> {
-    constructor(props: any) {
+    constructor(props: {}) {
         super("button", props);
     }
 

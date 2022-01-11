@@ -20,7 +20,6 @@ class UserController {
 
     async _fetchUser(): Promise<UserData> {
         const user = await this._api.read();
-        console.log('user', user);
 
         return user;
     }
