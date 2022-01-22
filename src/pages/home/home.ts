@@ -4,7 +4,7 @@ import {Button} from "../../components/Button/button"
 import {compile} from "../../util/compile"
 import {Router} from "../../util/router"
 
-export class HomePage extends Block {
+export class HomePage extends Block<any> {
     constructor() {
         super('div');
     }

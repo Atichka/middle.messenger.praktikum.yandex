@@ -1,4 +1,5 @@
 import { EventBus } from './event-bus';
+// @ts-ignore
 import { v4 as uuid } from 'uuid';
 
 export type TProps = {
@@ -19,7 +20,7 @@ export class Block<T extends TProps> {
     _meta: any;
 
     props: T;
-    eventBus: EventBus;
+    eventBus: () => EventBus;
 
     /** JSDoc
      * @param {string} tagName
@@ -56,27 +57,33 @@ export class Block<T extends TProps> {
 
     init(): void {
         this._createResources();
+        // @ts-ignore
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
     _componentDidMount(): void {
+        // @ts-ignore
         this.componentDidMount();
+        // @ts-ignore
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
     // Может переопределять пользователь, необязательно трогать
-    componentDidMount(oldProps): void {}
+    // @ts-ignore
+    componentDidMount(oldProps: any): void {}
 
     _componentDidUpdate(oldProps: T, newProps: T) {
         const response = this.componentDidUpdate(oldProps, newProps);
 
         if (response) {
+            // @ts-ignore
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
 
     // Может переопределять пользователь, необязательно трогать
-    componentDidUpdate(oldProps, newProps) {
+    // @ts-ignore
+    componentDidUpdate(oldProps: any, newProps: any) {
         return true;
     }
 
@@ -124,6 +131,7 @@ export class Block<T extends TProps> {
 
                 // Запускаем обновление компоненты
                 // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
+                // @ts-ignore
                 this.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
                 return true;
             },
@@ -133,7 +141,7 @@ export class Block<T extends TProps> {
         });
     }
 
-    _createDocumentElement(tagName: HTMLElement) {
+    _createDocumentElement(tagName: keyof HTMLElementTagNameMap) {
         // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
         return document.createElement(tagName);
     }
