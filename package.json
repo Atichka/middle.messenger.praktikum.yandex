@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "chai-dom": "^1.11.0",
+    "connect-history-api-fallback": "^1.6.0",
     "html-webpack-plugin": "^5.5.0",
     "jsdom": "^19.0.0",
     "normalize-scss": "^7.0.1",
