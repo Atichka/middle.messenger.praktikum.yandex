@@ -61,5 +61,11 @@
     "style-loader": "^3.3.1",
     "uuid": "^8.3.2",
     "websocket": "^1.0.34"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
+    }
   }
 }
