@@ -1,8 +1,7 @@
 import {renderTemplate} from '../index'
 
-const profileLink = document.querySelector('.profileLink');
+const profileLink = document.querySelector('.profileLink') as HTMLElement;
 
-// @ts-ignore
 profileLink.addEventListener('click', () => {
     renderTemplate('profile')
 });

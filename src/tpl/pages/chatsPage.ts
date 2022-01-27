@@ -1,8 +1,7 @@
 import {renderTemplate} from '../index'
 
-const chatsLink = document.querySelector('.chatsLink');
+const chatsLink = document.querySelector('.chatsLink') as HTMLElement;
 
-// @ts-ignore
 chatsLink.addEventListener('click', () => {
     renderTemplate('chats')
 });

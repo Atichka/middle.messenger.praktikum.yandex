@@ -1,8 +1,8 @@
-import {renderTemplate} from '../index'
-import {Block} from "../../util/block";
-import {Button} from "../../components/Button/button";
-import {compile} from "../../util/compile";
-import template from "../../pages/home/login.pug";
+import {renderTemplate} from 'index'
+import {Block} from "util/block";
+import {Button} from "components/Button/button";
+import {compile} from "util/compile";
+import template from "pages/home/login.pug";
 // @ts-ignore
 const forms: HTMLFormElement[] = Array.from(document.forms);
 

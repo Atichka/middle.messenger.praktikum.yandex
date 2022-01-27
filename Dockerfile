@@ -1,4 +1,4 @@
-FROM node:14.17.4
+FROM node:16.13.1-alpine
 WORKDIR /var/www
 COPY . .
 RUN npm install && npm build

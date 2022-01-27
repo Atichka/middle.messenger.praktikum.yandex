@@ -10,7 +10,11 @@ module.exports = {
         filename: 'index.[chunkhash].js'
     },
     resolve: {
-        extensions: ['.ts', '.js', '.json']
+        extensions: ['.ts', '.js', '.json'],
+        alias: {
+            modules: './src/app/modules',
+            utils: path.resolve(__dirname, 'src/app/utils/'),
+        },
     },
     module: {
         rules: [
@@ -40,4 +44,15 @@ module.exports = {
             {test: /\.(pug|jade)$/, loader: 'pug-loader'},
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'index.html' // тут путь до твоего index.html
+        })
+    ],
+    devServer: {
+        static: path.join(__dirname, 'dist'),
+        compress: true,
+        historyApiFallback: true,
+        port: 3000
+    }
 };

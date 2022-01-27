@@ -1,8 +1,7 @@
 import {renderTemplate} from '../index'
 
-const error500Link = document.querySelector('.error500Link');
+const error500Link = document.querySelector('.error500Link') as HTMLElement;
 
-// @ts-ignore
 error500Link.addEventListener('click', () => {
     renderTemplate('error500')
 });

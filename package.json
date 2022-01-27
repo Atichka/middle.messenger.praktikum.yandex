@@ -3,12 +3,10 @@
   "version": "0.0.0",
   "description": "Веб-приложение \"Чат\"",
   "scripts": {
-    "start": "parcel index.html --port 3000 --no-cache",
-    "serve": "parcel src/tpl/index.pug --port 3000 node server.js",
-    "build": "parcel build index.html",
+    "start": "webpack serve",
+    "build": "webpack",
     "lint": "eslint . --fix",
-    "test": "TS_NODE_FILES=true TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha --require ts-node/register --require ./pugHook.js 'src/**/*.spec.ts'",
-    "webpack": "./node_modules/.bin/webpack"
+    "test": "TS_NODE_FILES=true TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha --require ts-node/register --require ./pugHook.js 'src/**/*.spec.ts'"
   },
   "repository": {
     "type": "git",
@@ -48,7 +46,8 @@
     "ts-node": "^10.4.0",
     "typescript": "^4.5.5",
     "webpack": "^5.67.0",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
     "chai-dom": "^1.11.0",

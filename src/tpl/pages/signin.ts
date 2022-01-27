@@ -1,8 +1,7 @@
 import {renderTemplate} from '../index'
 
-const signinLink = document.querySelector('.signinLink');
+const signinLink = document.querySelector('.signinLink') as HTMLElement;
 
-// @ts-ignore
 signinLink.addEventListener('click', () => {
     renderTemplate('signin')
 });
