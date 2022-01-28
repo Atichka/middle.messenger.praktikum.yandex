@@ -1,15 +1,15 @@
-import {Block, TProps} from "../../util/block";
+import {Block, TProps} from "@/util/block";
 import template from "./profileEdit.pug";
-import {Button} from "../../components/Button/button";
-import {compile} from "../../util/compile";
-import {Input} from "../../components/Input/input";
-import {Image} from "../../components/Image/image"
-import {FormProfileEdit} from "../../components/FormProfileEdit/formProfileEdit";
-import {FormAvatar} from "../../components/FormAvatar/formAvatar";
-import {Router} from "../../util/router";
-import UserController from "../../controllers/UserController";
-import store from "../../util/store";
-import UsersController from "../../controllers/UsersController";
+import {Button} from "@/components/Button/button";
+import {compile} from "@/util/compile";
+import {Input} from "@/components/Input/input";
+import {Image} from "@/components/Image/image"
+import {FormProfileEdit} from "@/components/FormProfileEdit/formProfileEdit";
+import {FormAvatar} from "@/components/FormAvatar/formAvatar";
+import {Router} from "@/util/router";
+import UserController from "@/controllers/UserController";
+import store from "@/util/store";
+import UsersController from "@/controllers/UsersController";
 
 export class ProfileEditPage extends Block<TProps> {
     constructor() {

@@ -14,6 +14,7 @@ module.exports = {
         alias: {
             modules: './src/app/modules',
             utils: path.resolve(__dirname, 'src/app/utils/'),
+            "@": path.resolve(__dirname, 'src')
         },
     },
     module: {
@@ -46,7 +47,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.html' // тут путь до твоего index.html
+            template: 'index.html' // тут путь index.html
         })
     ],
     devServer: {

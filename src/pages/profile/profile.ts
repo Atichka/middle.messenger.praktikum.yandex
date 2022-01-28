@@ -1,13 +1,13 @@
-import {Block, TProps} from "../../util/block";
+import {Block, TProps} from "@/util/block";
 import template from "./profile.pug";
-import {Button} from "../../components/Button/button";
-import {compile} from "../../util/compile";
-import {Router} from "../../util/router";
-import {Link} from "../../components/Link/link";
-import AuthController from "../../controllers/AuthController";
-import UserController from "../../controllers/UserController";
-import {Image} from "../../components/Image/image";
-import store from "../../util/store";
+import {Button} from "@/components/Button/button";
+import {compile} from "@/util/compile";
+import {Router} from "@/util/router";
+import {Link} from "@/components/Link/link";
+import AuthController from "@/controllers/AuthController";
+import UserController from "@/controllers/UserController";
+import {Image} from "@/components/Image/image";
+import store from "@/util/store";
 
 export class ProfilePage extends Block<TProps> {
     constructor() {

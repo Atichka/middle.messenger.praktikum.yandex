@@ -12,6 +12,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": [ "*" ]
+    }
   },
   "lib": ["dom"],
 }

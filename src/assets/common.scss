@@ -13,14 +13,6 @@ $black-background: #000;
 $light-grey-border: #eaeaea;
 $light-grey-box: rgba(0, 0, 0, 0.14);
 
-@import url(./page.scss);
-@import url(./search.scss);
-@import url(./chat-preview.scss);
-@import url(./chat-page.scss);
-@import url(./login.scss);
-@import url(./signin.scss);
-@import url(./profile.scss);
-
 body {
   font-weight: 500;
   line-height: 1.25;

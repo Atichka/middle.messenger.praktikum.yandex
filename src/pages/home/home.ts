@@ -1,8 +1,8 @@
-import {Block} from "../../util/block"
+import {Block} from "@/util/block"
 import template from "./home.pug"
-import {Button} from "../../components/Button/button"
-import {compile} from "../../util/compile"
-import {Router} from "../../util/router"
+import {Button} from "@/components/Button/button"
+import {compile} from "@/util/compile"
+import {Router} from "@/util/router"
 
 export class HomePage extends Block<any> {
     constructor() {
