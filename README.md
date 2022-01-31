@@ -3,23 +3,23 @@
 ---
 
 Домен https://confident-goldberg-a8b74c.netlify.app
+      https://practikum-messenger.herokuapp.com/profile
 
 ---
 
 Ссылка на прототип проекта https://www.figma.com/file/siuGfqgwyvFII2JE2vY5Qc/Chat?node-id=0%3A1
 
-Ссылка на PR https://github.com/Atichka/middle.messenger.praktikum.yandex/pull/16
+Ссылка на PR https://github.com/Atichka/middle.messenger.praktikum.yandex/pull/17
 
 ---
 
 ## Функционал
 
-- добавлен роутинг в проект
-- внедрён HTTP API чатов, авторизации и пользователей
-- подключен WebSocket для работы с real-time сообщениями
-- написаны тесты
-- проект защищён от XSS и DOS
-- сборка реализована при помощи Parcel
+- настроен Webpack в проекте
+- настроена Docker-сборка статического приложения
+- размещена в Heroku проект с Docker-сборкой
+- настроен precommit на проекте
+- проведен аудит пакетов
 
 ## Установка
 
@@ -29,3 +29,4 @@
 - `npm run build` — сборка стабильной версии
 - `npm run lint` — запуск ESLint
 - `npm run test` - запуск тестов
+- `npm run webpack` - запуск webpack

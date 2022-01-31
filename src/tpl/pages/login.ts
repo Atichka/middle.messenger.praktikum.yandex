@@ -1,11 +1,12 @@
-import {renderTemplate} from '../index'
-import {Block} from "../../util/block";
-import {Button} from "../../components/Button/button";
-import {compile} from "../../util/compile";
-import template from "../../pages/home/login.pug";
+import {renderTemplate} from 'index'
+import {Block} from "util/block";
+import {Button} from "components/Button/button";
+import {compile} from "util/compile";
+import template from "pages/home/login.pug";
+// @ts-ignore
 const forms: HTMLFormElement[] = Array.from(document.forms);
 
-export class LoginPage extends Block {
+export class LoginPage extends Block<any> {
     constructor() {
         super('div')
     }
@@ -31,11 +32,13 @@ const validations = {
     tel: /([\+]\d{1}\s?[\(]?\d{3}[\)]?\s?[\-]?\d{3}[\-]?\d{2}[\-]?\d{2})|(8\d{10})$/,
 };
 
+// @ts-ignore
 loginLink.addEventListener('click', () => {
     renderTemplate('login')
 });
 
-function sendData(form) {
+// @ts-ignore
+function sendData(form: this | HTMLFormElement | undefined) {
     const formData: any = new FormData(form);
     const obj: Record<string, unknown> = {};
     for (const [name, value] of formData) {
@@ -61,26 +64,27 @@ function sendData(form) {
     }
 }
 
-function addBlurFocusListener(field) {
+function addBlurFocusListener(field: { querySelector: (arg0: string) => any; }) {
     const input = field.querySelector('.form__input');
     input.addEventListener("focus", () => onFocus(input));
-    input.addEventListener("blur", e => onBlur(e, field));
+    input.addEventListener("blur", (e: any) => onBlur(e, field));
 }
 
-function onFocus(input) {
+function onFocus(input: any) {
     input.classList.remove('field-error');
 }
 
-function onBlur(event, field) {
+function onBlur(event: any, field: any) {
     validateInput(event.target, field);
 }
 
-function validateInput(input, field) {
+function validateInput(input: any, field: any) {
     const type = input.type;
     const value = input.value;
 
     let regexp = /\w+/;
     if (type in validations) {
+        // @ts-ignore
         regexp = validations[type];
     }
 
@@ -92,6 +96,7 @@ function validateInput(input, field) {
     }
     return true;
 }
-
+// @ts-ignore
 window.sendData = sendData
+// @ts-ignore
 window.addBlurFocusListener = addBlurFocusListener

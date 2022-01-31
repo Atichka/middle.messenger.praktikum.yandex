@@ -36,10 +36,15 @@ export class ChatService extends EventBus {
         const messages = messagesState[this.id] || [];
 
         if (data.type === 'message') {
+            data.time = new Date(data.time)
             store.set(store.getState(), `messages.${this.id}`, [...messages, data]);
         }
         if (Array.isArray(data) && data.length > 0) {
-            store.set(store.getState(), `messages.${this.id}`, [...messages, ...data]);
+            data.forEach(i=>{
+                i.time = new Date(i.time)
+            })
+            data.sort((prev, next) => prev.time - next.time);
+            store.set(store.getState(), `messages.${this.id}`, data);
         }
     }
 

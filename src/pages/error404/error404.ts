@@ -1,7 +1,7 @@
-import {Block, TProps} from "../../util/block";
+import {Block, TProps} from "@/util/block";
 import template from "./error404.pug";
-import {compile} from "../../util/compile";
-import {Link} from "../../components/Link/link";
+import {compile} from "@/util/compile";
+import {Link} from "@/components/Link/link";
 
 export class Error404Page extends Block<TProps> {
     constructor() {

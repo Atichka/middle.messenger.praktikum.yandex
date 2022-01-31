@@ -1,12 +1,12 @@
-import {Block, TProps} from "../../util/block";
+import {Block, TProps} from "@/util/block";
 import template from './signin.pug';
-import {Button} from "../../components/Button/button";
-import {compile} from "../../util/compile";
-import {Input} from "../../components/Input/input";
-import {FormSignin} from "../../components/FormSignin/formSignin";
-import {Router} from '../../util/router';
-import AuthController from "../../controllers/AuthController";
-import {SignupData} from "../../api/AuthAPI";
+import {Button} from "@/components/Button/button";
+import {compile} from "@/util/compile";
+import {Input} from "@/components/Input/input";
+import {FormSignin} from "@/components/FormSignin/formSignin";
+import {Router} from '@/util/router';
+import AuthController from "@/controllers/AuthController";
+import {SignupData} from "@/api/AuthAPI";
 
 export class SigninPage extends Block<TProps> {
     constructor() {

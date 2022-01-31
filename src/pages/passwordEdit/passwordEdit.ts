@@ -1,14 +1,14 @@
-import {Block, TProps} from "../../util/block";
+import {Block, TProps} from "@/util/block";
 import template from "./passwordEdit.pug";
-import {Button} from "../../components/Button/button";
-import {compile} from "../../util/compile";
-import {Input} from "../../components/Input/input";
-import {FormPasswordEdit} from "../../components/FormPasswordEdit/formPasswordEdit";
-import {Router} from "../../util/router";
-import {Image} from "../../components/Image/image";
-import store from "../../util/store";
-import UserController from "../../controllers/UserController";
-import UsersController from "../../controllers/UsersController";
+import {Button} from "@/components/Button/button";
+import {compile} from "@/util/compile";
+import {Input} from "@/components/Input/input";
+import {FormPasswordEdit} from "@/components/FormPasswordEdit/formPasswordEdit";
+import {Router} from "@/util/router";
+import {Image} from "@/components/Image/image";
+import store from "@/util/store";
+import UserController from "@/controllers/UserController";
+import UsersController from "@/controllers/UsersController";
 
 export class PasswordEditPage extends Block<TProps> {
     constructor() {

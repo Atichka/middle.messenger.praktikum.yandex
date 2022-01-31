@@ -1,12 +1,12 @@
-import {Block, TProps} from "../../util/block";
+import {Block, TProps} from "@/util/block";
 import template from "./login.pug";
-import {Button} from "../../components/Button/button";
-import {compile} from "../../util/compile";
-import {Input} from "../../components/Input/input";
-import {FormLogin} from "../../components/FormLogin/formLogin";
-import {Router} from "../../util/router";
-import {LoginData} from "../../api/AuthAPI";
-import AuthController from "../../controllers/AuthController";
+import {Button} from "@/components/Button/button";
+import {compile} from "@/util/compile";
+import {Input} from "@/components/Input/input";
+import {FormLogin} from "@/components/FormLogin/formLogin";
+import {Router} from "@/util/router";
+import {LoginData} from "@/api/AuthAPI";
+import AuthController from "@/controllers/AuthController";
 
 export class LoginPage extends Block<TProps> {
     constructor() {

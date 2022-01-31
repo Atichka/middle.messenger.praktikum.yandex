@@ -1,17 +1,17 @@
-import {Block, TProps} from "../../util/block";
+import {Block, TProps} from "@/util/block";
 import template from "./chats.pug";
-import {Button} from "../../components/Button/button";
-import {compile} from "../../util/compile";
-import {FormChats} from "../../components/FormChats/formChats";
-import {Input} from "../../components/Input/input";
-import {Link} from "../../components/Link/link";
-import {List} from "../../components/List/list";
-import ChatsController from "../../controllers/ChatsController";
-import store from "../../util/store";
-import {FormAddUserInChat} from "../../components/FormAddUserInChat/formAddUserInChat";
-import {FormDeleteUserInChat} from "../../components/FormDeleteUserInChat/formDeleteUserInChat";
-import {Chat} from "../../components/Chat/chat";
-import {NotSelectChat} from "../../components/NotSelectChat/notSelectChat";
+import {Button} from "@/components/Button/button";
+import {compile} from "@/util/compile";
+import {FormChats} from "@/components/FormChats/formChats";
+import {Input} from "@/components/Input/input";
+import {Link} from "@/components/Link/link";
+import {List} from "@/components/List/list";
+import ChatsController from "@/controllers/ChatsController";
+import store from "@/util/store";
+import {FormAddUserInChat} from "@/components/FormAddUserInChat/formAddUserInChat";
+import {FormDeleteUserInChat} from "@/components/FormDeleteUserInChat/formDeleteUserInChat";
+import {Chat} from "@/components/Chat/chat";
+import {NotSelectChat} from "@/components/NotSelectChat/notSelectChat";
 
 export class ChatsPage extends Block<TProps> {
     constructor() {

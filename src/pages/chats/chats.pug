@@ -4,7 +4,7 @@ include ../../tpl/mixins/chatList
 
 block aside
     ul.chat-list
-         each chat in listChats
+        each chat in listChats || []
             | !{chat}
 block content
     | !{showMessages}
